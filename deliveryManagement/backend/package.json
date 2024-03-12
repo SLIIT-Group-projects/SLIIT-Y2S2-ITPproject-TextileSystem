@@ -11,5 +11,11 @@
     "url": "SLIIT-Y2S2-ITPproject-TextileSystem"
   },
   "author": "siluni",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "mongoose": "^8.2.1"
+  }
 }

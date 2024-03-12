@@ -1,0 +1,15 @@
+{
+  "name": "deliverymanagement",
+  "version": "1.0.0",
+  "description": "delivery management in pti enterprises",
+  "main": "delivery.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "SLIIT-Y2S2-ITPproject-TextileSystem"
+  },
+  "author": "siluni",
+  "license": "ISC"
+}

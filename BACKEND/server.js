@@ -29,8 +29,12 @@ const productRouter = require("./routes/products.js");
 app.use("/product",productRouter)
 
 // this is th route for material table
-// const materialRouter = require("./routes/materials.js");
-// app.use("/product",materialRouter)
+const materialRouter = require("./routes/materials.js");
+app.use("/material",materialRouter)
+
+// this is th route for realeased material table
+const released_materials_Router = require("./routes/released_materials.js");
+app.use("/released_material",released_materials_Router)
 
 
 

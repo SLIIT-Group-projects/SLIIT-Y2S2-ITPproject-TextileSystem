@@ -7,10 +7,14 @@ const released_materialSchema = new Schema({
         required:true
     },
     released_quantity :{
-        type : String,
+        type : Number,
         required:true
     },
     employee_id:{
+        type : String,
+        required:true
+    },
+    employee_name:{
         type : String,
         required:true
     },
@@ -20,5 +24,5 @@ const released_materialSchema = new Schema({
     }
 })
 
-const product = mongoose.model("released_material",released_materialSchema);
-module.exports=product;
+const released_material = mongoose.model("released_material",released_materialSchema);
+module.exports=released_material;

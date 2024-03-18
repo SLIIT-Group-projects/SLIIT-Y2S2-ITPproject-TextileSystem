@@ -50,5 +50,29 @@ router.route("/update/:id").put(async(req,res)=>{
     })    
 })
 
+router.route("/delete/:id").delete(async(req,res)=>{
+    let deliveryId=req.params.id;
+
+    await Delivery.findByIdAndDelete(deliveryId).then(()=>{
+        res.status(200).send({status: "Delivery deleted"})
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status: "Cannot update the delivery"})
+    })
+
+})
+
+router.route("/get/:id").get(async (req, res) => {
+    let deliveryId = req.params.id;
+    try {
+        const delivery = await Delivery.findById(deliveryId);
+        res.status(200).send({ status: "Delivery fetched", delivery: delivery });
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send({ status: "Error fetching the delivery" });
+    }
+});
+
+
 
 module.exports=router;

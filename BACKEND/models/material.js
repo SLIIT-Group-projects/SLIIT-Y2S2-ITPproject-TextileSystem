@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MaterialSchema = new Schema({
+    material_ID :{
+        type : String,
+        required:true
+    },
     material_name :{
         type : String,
         required:true
@@ -17,13 +21,7 @@ const MaterialSchema = new Schema({
     color:{
         type : String,
         required:true
-    },
-    supplier_id :{
-        type : String,
-        required:true
     }
-
-
 })
 
 const material = mongoose.model("material",MaterialSchema);

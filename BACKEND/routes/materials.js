@@ -7,18 +7,18 @@ let Material = require("../models/material");
 
 router.route("/add").post((req,res)=>{
     //catch the details from in request body that come from frontend
+    const material_ID = req.body.material_ID;
     const material_name = req.body.material_name;
     const material_type = req.body.material_type;
     const roll_quantity = Number(req.body.roll_quantity);
     const color = req.body.color;
-    const supplier_id = req.body.supplier_id;
 
     const newMaterial = new material({
+        material_ID,
         material_name,
         material_type,
         roll_quantity,
-        color,
-        supplier_id
+        color
     })
 
     //save in database and gave console msg or log errors(exception handilng)
@@ -44,15 +44,15 @@ router.route("/").get((req,res)=>{
 //update the material
 router.route("/update/:id").put(async(req,res)=>{
     let userId = req.params.id;
-    const {material_name,material_type,roll_quantity,color,supplier_id
+    const {material_ID,material_name,material_type,roll_quantity,color
     }=req.body;
     
     const updateMaterials = {
+        material_ID,
         material_name,
         material_type,
         roll_quantity,
-        color,
-        supplier_id
+        color
     }
     const update = await material.findByIdAndUpdate(userId,updateMaterials).then((material)=>{
         res.status(200).send({status:"user updated",material})

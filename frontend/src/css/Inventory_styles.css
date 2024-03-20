@@ -1,0 +1,46 @@
+/* Inventory Allproducts page */
+.inv-AllProducts-headng{
+    color: blue;
+}
+.inv-Allproducts-table{
+    width: 100%;
+    height: 50px;
+    border-collapse:separate;
+    border-spacing:0 15px;
+}
+.inv-allProducts-button{
+    width: 100px;
+    height: 40px;
+}
+.inv-Allproducts-table-row{
+    height: 40px;
+}
+.inv-Allproducts-table-heading1{
+    border-radius: 10px 0 0 10px ;
+}
+.inv-Allproducts-table-heading2{
+    border-radius: 0 10px 10px 0 ;
+}
+
+.inv-Allproducts-table-row1{
+    border-radius: 10px 0 0 10px ;
+}
+.inv-Allproducts-table-row2{
+    border-radius: 0 10px 10px 0 ;
+}
+.pti-allProducts-tble-buttons{
+    /* width: 20px; */
+    font-size: 20px;
+    height: 25px;
+    background: none;
+    border: none;
+}
+.pti-allProducts-edit-buttons{
+    color: green;
+}
+.pti-allProducts-delete-buttons{
+    color: red;
+}
+.gfg {
+    
+}

@@ -5,16 +5,20 @@ let Product = require("../models/product");
 
 router.route("/add").post((req,res)=>{
     //catch the details from in request body that come from frontend
+    const product_ID = req.body.product_ID;
     const product_name = req.body.product_name;
     const product_description = req.body.product_description;
     const quantity = Number(req.body.quantity);
+    const weight = Number(req.body.weight);
     const unit_price = Number(req.body.unit_price);
     const size = req.body.size;
 
     const newProduct = new Product({
+        product_ID,
         product_name,
         product_description,
         quantity,
+        weight,
         unit_price,
         size
     })

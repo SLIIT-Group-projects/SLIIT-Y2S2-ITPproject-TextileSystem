@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
+    product_ID :{
+        type : String,
+        required:true
+    },
     product_name :{
         type : String,
         required:true
@@ -11,6 +15,10 @@ const ProductSchema = new Schema({
         required:true
     },
     quantity :{
+        type : Number,
+        required:true
+    },
+    weight:{
         type : Number,
         required:true
     },

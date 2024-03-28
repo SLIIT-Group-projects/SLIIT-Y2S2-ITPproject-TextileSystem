@@ -22,8 +22,11 @@ connection.once("open", ()=> {
 })
 
 const deliveryRouter=require("./routes/delivery.js")
+const orderRouter=require("./routes/order.js")
 
 app.use("/delivery",deliveryRouter);
+app.use("/order",orderRouter);
+
 app.listen(PORT, () =>{
     console.log(`Server is up and running on port ${PORT}`);
 })

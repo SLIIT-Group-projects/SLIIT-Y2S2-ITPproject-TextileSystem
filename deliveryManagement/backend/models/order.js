@@ -7,13 +7,16 @@ const orderSchema= new Schema({
         required:true
     },
     orderId :{
-        type:String
+        type:String,
+        required:true
     },
-    DeliveryAddress:{
-        type:String
+    deliveryAddress:{
+        type:String,
+        required:true
     },
-    Quantity:{
-        type:String
+    quantity:{
+        type:String,
+        required:true
     }
 
 })

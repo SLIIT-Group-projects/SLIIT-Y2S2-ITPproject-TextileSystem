@@ -1,23 +1,7 @@
 const router= require("express").Router();
 const Order = require("../models/order");
 
-router.route("/add").post((req,res)=>{
-    const deliveryDate= Date(req.body.deliveryDate);
-    const vehicleNo= req.body.vehicleNo;
-    const driverId= req.body.driverId;
 
-    const newDelivery= new Delivery({
-        deliveryDate,
-        vehicleNo,
-        driverId
-    })
-
-    newDelivery.save().then(()=>{
-        res.json("Delivery added")
-    }).catch((err)=>{
-        console.log(err);
-    })
-})
 router.route("/").get((req,res)=>{
     Order.find().then((order)=>{
         res.json(order)
@@ -26,7 +10,25 @@ router.route("/").get((req,res)=>{
     })
 
 })
+router.route("/add").post((req,res)=>{
+    const customerCode= req.body.customerCode;
+    const orderId= req.body.orderId;
+    const deliveryAddress= req.body.deliveryAddress;
+    const quantity= req.body.quantity;
+    
+    const newOrder= new Order({
+        customerCode,
+        orderId,
+        deliveryAddress,
+        quantity
+    })
 
+    newOrder.save().then(()=>{
+        res.json("Order added")
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
 
 router.route("/get/:id").get(async (req, res) => {
     let orderId = req.params.id;

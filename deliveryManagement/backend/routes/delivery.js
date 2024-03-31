@@ -1,10 +1,9 @@
 const router= require("express").Router();
 const Delivery = require("../models/delivery");
 
-
 //add adeliverylog
 router.route("/add").post((req,res)=>{
-    const deliveryDate= Date(req.body.deliveryDate);
+    const deliveryDate= req.body.deliveryDate;
     const vehicleNo= req.body.vehicleNo;
     const driverId= req.body.driverId;
 

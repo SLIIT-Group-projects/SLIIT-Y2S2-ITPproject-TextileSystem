@@ -4,10 +4,12 @@ const Delivery = require("../models/delivery");
 //add adeliverylog
 router.route("/add").post((req,res)=>{
     const deliveryDate= req.body.deliveryDate;
+    const orderId= req.body.orderId;
     const vehicleNo= req.body.vehicleNo;
     const driverId= req.body.driverId;
 
     const newDelivery= new Delivery({
+        orderId,
         deliveryDate,
         vehicleNo,
         driverId
@@ -36,6 +38,7 @@ router.route("/update/:id").put(async(req,res)=>{
     //const name=req.body.age;  if the below function is not using use this
     const {deliveryDate,vehicleNo,driverId}=req.body;
     const updateDelivery={
+        orderId,
         deliveryDate,
         vehicleNo,
         driverId

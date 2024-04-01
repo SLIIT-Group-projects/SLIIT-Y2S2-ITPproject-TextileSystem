@@ -3,6 +3,7 @@ import axios from "axios"
 
 export default function CreateDeliveryLog(){
     const [deliveryDate, setDate]= useState("");
+    const [orderId, setOrderId]= useState("");
     const [vehicleNo, setVehicleNumber]= useState("");
     const [driverId, setDriverId]= useState("");
     
@@ -10,6 +11,7 @@ export default function CreateDeliveryLog(){
         e.preventDefault();
         
         const newDeliveryLog= {
+            orderId,
             deliveryDate,
             vehicleNo,
             driverId
@@ -31,6 +33,10 @@ export default function CreateDeliveryLog(){
                     setDate(e.target.value);}} 
                     class="form-control" id="deliveryDate" aria-describedby="emailHelp"></input>
              
+            </div>
+            <div class="mb-3">
+                <label for="orderId" class="form-label">Order Id:</label>
+                <input type="text" onChange={(e)=>{setOrderId(e.target.value);}} class="form-control" id="orderId"></input>
             </div>
             <div class="mb-3">
                 <label for="vehicleNumber" class="form-label">Vehicle No</label>

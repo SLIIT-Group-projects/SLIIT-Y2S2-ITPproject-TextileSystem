@@ -13,14 +13,14 @@ export default function ViewOrders(){
                         <a class="nav-link active" aria-current="page" href="#">Orders</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Completed</a>
+                        <a class="nav-link" href="/">Delivery log</a>
                         </li>
                         <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Delivery Log
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Pending</a></li>
+                            <li><a class="dropdown-item" href="">Pending</a></li>
                             <li><a class="dropdown-item" href="#">Completed</a></li>
                         </ul>
                         </li>

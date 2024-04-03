@@ -4,8 +4,10 @@ import ViewOrders from './components/ViewOrders';
 import CreateDeliveryLog from './components/CreateDeliveryLog';
 import DeliveryHeader from './components/DeliveryHeader'
 import ViewDeliveryLog from './components/ViewDeliveryLog'
+import UpdateDeliveryLog from './components/UpdateDeliveryLog';
 
 import {BrowserRouter as  Router, Route, Routes} from "react-router-dom"
+
 function App() {
   return (
     <Router>
@@ -14,8 +16,10 @@ function App() {
       
           <Routes>
           <Route path="/delivery/add" exact Component={CreateDeliveryLog}/>
-          <Route path='/order/' exact Component={ViewOrders}/>
+          
           <Route path="/delivery/" exact Component={ViewDeliveryLog}/>
+          <Route path="/delivery/update/:id" exact Component={UpdateDeliveryLog}/>
+          <Route path='/order/' exact Component={ViewOrders}/>
           </Routes>
         </div>
     </Router>

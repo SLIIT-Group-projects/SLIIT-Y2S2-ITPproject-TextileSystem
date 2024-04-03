@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function ViewOrders(){
 
@@ -28,9 +29,15 @@ export default function ViewOrders(){
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{ Delivery.driverId}</h5>
+                       
                         <p class="card-text">{ Delivery.vehicleNo}</p>
                         <p class="card-text">{ Delivery.deliveryDate}</p> 
-                        <a href="#" class="btn btn-primary">Update</a>
+                        <Link
+                      to={`/delivery/update/${Delivery._id}`}
+                      className="btn btn-primary"
+                    >
+                      Update
+                    </Link>
                         <a href="#" class="btn btn-primary">Delete</a>
                     </div>
                     <br/>

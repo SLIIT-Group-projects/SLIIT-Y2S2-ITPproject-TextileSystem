@@ -36,7 +36,7 @@ router.route("/").get((req,res)=>{
 router.route("/update/:id").put(async(req,res)=>{
     let deliveryId=req.params.id;
     //const name=req.body.age;  if the below function is not using use this
-    const {deliveryDate,vehicleNo,driverId}=req.body;
+    const {orderId,deliveryDate,vehicleNo,driverId}=req.body;
     const updateDelivery={
         orderId,
         deliveryDate,
@@ -68,6 +68,9 @@ router.route("/get/:id").get(async (req, res) => {
     let deliveryId = req.params.id;
     try {
         const delivery = await Delivery.findById(deliveryId);
+        if (!delivery) {
+            return res.status(404).send({ status: "Delivery not found" });
+        }
         res.status(200).send({ status: "Delivery fetched", delivery: delivery });
     } catch (err) {
         console.log(err.message);

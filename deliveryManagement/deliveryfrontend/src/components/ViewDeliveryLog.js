@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import {useNavigate} from 'react-router'
 export default function ViewOrders(){
 
     const[deliveries, setDeliveries]=useState([]);
@@ -14,6 +14,10 @@ export default function ViewOrders(){
                 alert.apply(err.message);
             })
         },[]);
+
+    const history= useNavigate();
+    
+
     return(
         <div className="container">
             <h1>Delivery Logs</h1>
@@ -23,8 +27,7 @@ export default function ViewOrders(){
                 <div key={i}>
                     
                     <div class="card">
-                    <div class="card-header">
-                       
+                    <div class="card-header">  
                        {Delivery.orderId}
                     </div>
                     <div class="card-body">
@@ -32,13 +35,18 @@ export default function ViewOrders(){
                        
                         <p class="card-text">{ Delivery.vehicleNo}</p>
                         <p class="card-text">{ Delivery.deliveryDate}</p> 
-                        <Link
+                    <Link
                       to={`/delivery/update/${Delivery._id}`}
                       className="btn btn-primary"
                     >
                       Update
                     </Link>
-                        <a href="#" class="btn btn-primary">Delete</a>
+                    <Link
+                      to={`/delivery/delete/${Delivery._id}`}
+                      className="btn btn-primary"
+                    >
+                      Delete
+                    </Link>   
                     </div>
                     <br/>
                     </div>

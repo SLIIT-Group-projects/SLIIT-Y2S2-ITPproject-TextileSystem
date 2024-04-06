@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
+import {useNavigate} from 'react-router'
 
 export default function UpdateDeliveryLog() {
     const { id } = useParams();
+    const history= useNavigate();
+
     const [delivery, setDelivery] = useState({
         orderId: "",
         deliveryDate: "",
@@ -30,6 +33,7 @@ export default function UpdateDeliveryLog() {
         axios.put(`http://localhost:8070/delivery/update/${id}`, delivery)
             .then(() => {
                 alert("Delivery details updated");
+                history.push("/ViewDeliveryLog");
                 // Redirect to view page or any other page
             })
             .catch((err) => {

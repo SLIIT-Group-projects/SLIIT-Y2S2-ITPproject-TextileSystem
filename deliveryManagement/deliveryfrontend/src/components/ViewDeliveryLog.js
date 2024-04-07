@@ -1,7 +1,9 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useRef} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {useNavigate} from 'react-router'
+import {useNavigate} from 'react-router-dom';
+import { useReactToPrint } from "react-to-print";
+
 export default function ViewOrders(){
 
     const[deliveries, setDeliveries]=useState([]);
@@ -17,44 +19,71 @@ export default function ViewOrders(){
 
     const history= useNavigate();
     
+    const ComponentsRef= useRef();
+
+    const handlePrint= useReactToPrint({
+        content:()=>ComponentsRef.current,
+        DocumentTitle: "Delivery Report",
+        onafterprint:()=>alert("Delivery report successfully downloaded")
+    })
+
+    const [searchQuery, setSearchQuery]=useState("");
+    const [noResults, setNoResults]= useState(false);
+
+    const handleSearch=(e)=>{
+        e.preventDefault();
+            const filteredDeliveries= deliveries.filter((delivery)=>
+            Object.values(delivery).some((field)=>
+            field.toString().toLowerCase().includes(searchQuery.toLowerCase())
+            ))
+            setDeliveries(filteredDeliveries);
+            setNoResults(filteredDeliveries.length==0);
+        
+    }
 
     return(
-        <div className="container">
+        <div className="container" ref={ComponentsRef}>
+        <form class="d-flex" role="search">
+            <input onChange={(e)=>setSearchQuery(e.target.value)} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+            <button onClick={handleSearch} class="btn btn-outline-success" type="submit">Search deliveries</button>
+        </form>
             <h1>Delivery Logs</h1>
            <div className="container">
-           <div class="row row-cols-1 row-cols-md-3 g-4">
-            {deliveries && deliveries.map((Delivery, i)=>(
-                <div key={i}>
-                    
-                    <div class="card">
-                    <div class="card-header">  
-                       {Delivery.orderId}
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{ Delivery.driverId}</h5>
-                       
-                        <p class="card-text">{ Delivery.vehicleNo}</p>
-                        <p class="card-text">{ Delivery.deliveryDate}</p> 
-                    <Link
-                      to={`/delivery/update/${Delivery._id}`}
-                      className="btn btn-primary"
-                    >
-                      Update
-                    </Link>
-                    <Link
-                      to={`/delivery/delete/${Delivery._id}`}
-                      className="btn btn-primary"
-                    >
-                      Delete
-                    </Link>   
-                    </div>
-                    <br/>
-                    </div>
-              </div> 
-                 
-            
+           {noResults ?(
+                <div>
+                    <p>No delivery found</p>
+                </div>
+           ): (
+           <div >
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Driver Id</th>
+                    <th scope="col">Lorry Number</th>
+                    <th scope="col">Delivery Date</th>
+                    <th></th>
+                    <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {deliveries && deliveries.map((Delivery, i)=>(
+                <tr key={i}>  
+                        <td>{Delivery.orderId}</td>
+                        <td>{Delivery.driverId}</td>
+                        <td> {Delivery.vehicleNo}</td>
+                        <td>{ Delivery.deliveryDate}</td>
+                        <td><Link to={`/delivery/update/${Delivery._id}`} className="btn btn-primary"> Update  </Link></td>
+                        <td><Link to={`/delivery/delete/${Delivery._id}`} className="btn btn-primary"> Delete</Link> </td>
+                </tr>    
+             
+
             ))}
+            </tbody> 
+            </table>
             </div>
+            )}
+            <button onClick={handlePrint}> Download Report</button>
         </div>
         </div>     
  

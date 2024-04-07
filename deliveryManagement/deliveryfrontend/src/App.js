@@ -16,7 +16,7 @@ function App() {
           <DeliveryHeader/>
       
           <Routes>
-          <Route path="/delivery/add" exact Component={CreateDeliveryLog}/>
+          <Route path="/delivery/add/" exact Component={CreateDeliveryLog}/>
           
           <Route path="/delivery/" exact Component={ViewDeliveryLog}/>
           <Route path="/delivery/update/:id" exact Component={UpdateDeliveryLog}/>

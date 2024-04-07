@@ -1,11 +1,14 @@
-import React,{useState} from "react"
+import React,{useState, useEffect} from "react"
 import axios from "axios"
+import { useParams } from 'react-router-dom';
 
 export default function CreateDeliveryLog(){
     const [deliveryDate, setDate]= useState("");
     const [orderId, setOrderId]= useState("");
     const [vehicleNo, setVehicleNumber]= useState("");
     const [driverId, setDriverId]= useState("");
+
+    const { id } = useParams();
     
     function sendDeliveryDetails(e){
         e.preventDefault();
@@ -24,6 +27,8 @@ export default function CreateDeliveryLog(){
             alert(err)
         })
     } 
+
+
     return(
         <div className="container">
             <form onSubmit={sendDeliveryDetails}>

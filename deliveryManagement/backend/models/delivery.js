@@ -4,7 +4,8 @@ const Schema =mongoose.Schema;
 const deliverySchema= new Schema({
     orderId:{
         type:String,
-        required:true
+        required:true,
+        ref: 'order'
     },
     deliveryDate:{
         type:String,

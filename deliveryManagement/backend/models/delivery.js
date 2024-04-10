@@ -3,8 +3,7 @@ const mongoose= require('mongoose');
 const Schema =mongoose.Schema;
 const deliverySchema= new Schema({
     orderId:{
-        type:String,
-        required:true,
+        type:mongoose.Schema.Types.ObjectId,
         ref: 'order'
     },
     deliveryDate:{
@@ -17,9 +16,12 @@ const deliverySchema= new Schema({
     driverId:{
         type:String
     }
+    
+}, {
+
+    timestamps:true
 
 })
 const Delivery= mongoose.model("delivery",deliverySchema);
 
 module.exports=Delivery;
-

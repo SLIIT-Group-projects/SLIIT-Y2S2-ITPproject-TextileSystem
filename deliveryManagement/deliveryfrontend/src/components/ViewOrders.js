@@ -23,14 +23,13 @@ export default function ViewOrders(){
                     
                     <div class="card">
                     <div class="card-header">
-                       
                        {Order.customerCode}
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{ Order.orderId}</h5>
                         <p class="card-text">{ Order.deliveryAddress}</p>
                         <p class="card-text">{ Order.quantity}</p> 
-                        <a href="/delivery/add/${Order.orderId}" class="btn btn-primary">Create  Delivery Log</a>
+                        <a href="/delivery/add/" class="btn btn-primary">Create  Delivery Log</a>
                         
                     </div>
                     <br/>

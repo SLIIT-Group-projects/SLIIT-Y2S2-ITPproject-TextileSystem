@@ -17,8 +17,10 @@ const orderSchema= new Schema({
     quantity:{
         type:String,
         required:true
-    }
-
+    },
+    deliveries: [
+        { type: mongoose.Schema.Types.ObjectId, ref:'Delivery'}
+    ]
 })
 const Order= mongoose.model("order",orderSchema);
 

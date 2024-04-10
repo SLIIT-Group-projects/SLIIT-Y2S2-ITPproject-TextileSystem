@@ -24,13 +24,13 @@ export default function AllProducts() {
       <div className="pti-text-dark pti-text-h1 pti-bold text-center pb-5 pt-3">INVENTORY DASHBOARD</div>
       <div className="d-flex justify-content-center gap-3 pb-5">
         <button className="inv-allProducts-button pti-bg-secondary_blue  pti-bold pti-rounded-small border-0 text-light pti-text-p">PRODUCTS</button>
-        <button to="/add" className="inv-allProducts-button pti-bg-secondary_blue  pti-bold pti-rounded-small border-0 text-light pti-text-p"><Link className="nav-link active" to="/material">MATERIALS</Link></button>
+        <button  className="inv-allProducts-button pti-bg-secondary_blue  pti-bold pti-rounded-small border-0 text-light pti-text-p"><Link className="nav-link active" to="/material">MATERIALS</Link></button>
         <button className="inv-allProducts-button pti-bg-secondary_blue  pti-bold pti-rounded-small border-0 text-light pti-text-p">RELEASED</button>
       </div>
       <div className="d-flex justify-content-between">
         <div className="pti-text-h2 pti-bold text-black">PRODUCTS</div>
         <div>
-          <button className="pti-bg-black p-2 text-light pti-rounded-small pti-bold">ADD PRODUCT</button>
+          <button className="pti-bg-black p-2 text-light pti-rounded-small pti-bold" ><Link className="nav-link active" to="/add">ADD PRODUCT</Link></button>
         </div>
       </div>
       <table border={0} className="inv-Allproducts-table">

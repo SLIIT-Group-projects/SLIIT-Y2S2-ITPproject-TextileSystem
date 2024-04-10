@@ -9,7 +9,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "10mb" }));
 
 //create connection using url in .env
 const URL = process.env.MONGODB_URL;

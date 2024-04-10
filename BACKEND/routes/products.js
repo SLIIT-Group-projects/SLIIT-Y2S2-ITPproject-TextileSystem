@@ -6,6 +6,7 @@ let Product = require("../models/product");
 router.route("/add").post((req,res)=>{
     //catch the details from in request body that come from frontend
     const product_ID = req.body.product_ID;
+    const image = req.body.image; // Make sure this matches the frontend key 'image'
     const product_name = req.body.product_name;
     const product_description = req.body.product_description;
     const quantity = Number(req.body.quantity);
@@ -15,6 +16,7 @@ router.route("/add").post((req,res)=>{
 
     const newProduct = new Product({
         product_ID,
+        image,
         product_name,
         product_description,
         quantity,
@@ -29,9 +31,8 @@ router.route("/add").post((req,res)=>{
     }).catch((err)=>{
         console.log(err);
     })
-
-
 })
+
 
 
 // prducts view

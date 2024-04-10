@@ -6,6 +6,7 @@ const ProductSchema = new Schema({
         type : String,
         required:true
     },
+    image:String,
     product_name :{
         type : String,
         required:true

@@ -30,7 +30,7 @@ export default function AllMaterials() {
       <div className="d-flex justify-content-between">
         <div className="pti-text-h2 pti-bold text-black">MATERIALS</div>
         <div>
-          <button className="pti-bg-black p-2 text-light pti-rounded-small pti-bold">ADD MATERIAL</button>
+          <button className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold"><Link className="nav-link active" to="/material/add">ADD MATERIAL</Link></button>
         </div>
       </div>
       <table border={0} className="inv-Allproducts-table">

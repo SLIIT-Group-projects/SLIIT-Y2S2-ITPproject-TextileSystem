@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function AddProducts() {
   const [product_ID, setID] = useState("");
@@ -37,7 +38,7 @@ function AddProducts() {
       quantity: Number(quantity),
       weight: Number(weight),
       unit_price: Number(unit_price),
-      size
+      size,
     };
 
     // Send product data to the server
@@ -57,107 +58,163 @@ function AddProducts() {
 
   return (
     <div className="container">
+      <div className="pti-text-dark pti-text-h1 pti-bold text-center pb-5 pt-3">
+        INVENTORY DASHBOARD
+      </div>
+      <div className="d-flex justify-content-center gap-3 pb-5">
+        <button className="inv-allProducts-button pti-bg-secondary_blue  pti-bold pti-rounded-small border-0 text-light pti-text-p">
+          <Link className="nav-link active" to="/">
+            PRODUCTS
+          </Link>
+        </button>
+        <button className="inv-allProducts-button pti-bg-secondary_blue  pti-bold pti-rounded-small border-0 text-light pti-text-p">
+          <Link className="nav-link active" to="/material">
+            MATERIALS
+          </Link>
+        </button>
+        <button className="inv-allProducts-button pti-bg-secondary_blue  pti-bold pti-rounded-small border-0 text-light pti-text-p">
+          RELEASED
+        </button>
+      </div>
+      <div className="text-center pti-text-h2 pti-bold pb-4">ADD PRODUCTS</div>
       <form onSubmit={sendData}>
-        <div className="mb-3 d-flex flex-column align-items-start">
-          <div className="form-label">Product ID</div>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => {
-              setID(e.target.value);
-            }}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="uploadImage">
-            <div className="uploadBox">
-              <input
-                type="file"
-                id="img"
-                onChange={handleUploadImage}
-              />
+        <div className="d-flex justify-content-center gap-4 ">
+          {/* id */}
+          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
+            <div className="form-label pti-text-dark pti-bold">Product ID</div>
+            <input
+              type="text"
+              className="add-product-input form-control"
+              onChange={(e) => {
+                setID(e.target.value);
+              }}
+            />
+          </div>
+          {/* image */}
+          <div className=" pb-4 flex-grow-1">
+            <div className="form-label pti-text-dark pti-bold">
+              Product Image
             </div>
-          </label>
+            <label htmlFor="uploadImage">
+              <div className="uploadBox">
+                <input type="file" className="add-product-upload" id="img" onChange={handleUploadImage} />
+              </div>
+            </label>
+          </div>
+        </div>
+        {/* second row */}
+        <div className="d-flex justify-content-center gap-4">
+          {/* name */}
+          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
+            <label htmlFor="name" className="form-label pti-text-dark pti-bold">
+              Product Name
+            </label>
+            <input
+              type="text"
+              className="add-product-input form-control"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+          </div>
+          {/* quantity */}
+          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
+            <label
+              htmlFor="quantity"
+              className="form-label pti-text-dark pti-bold"
+            >
+              Quantity
+            </label>
+            <input
+              type="text"
+              className="add-product-input form-control"
+              onChange={(e) => {
+                setQuantity(e.target.value);
+              }}
+            />
+          </div>
         </div>
 
         <div className="mb-3 d-flex flex-column align-items-start">
-          <label htmlFor="name" className="form-label">
-            Product Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-        </div>
-        <div className="mb-3 d-flex flex-column align-items-start">
-          <label htmlFor="description" className="form-label">
+          <label
+            htmlFor="description"
+            className="form-label pti-text-dark pti-bold"
+          >
             Product Description
           </label>
           <input
             type="text"
-            className="form-control"
+            className="add-product-input form-control"
             onChange={(e) => {
               setDescription(e.target.value);
             }}
           />
         </div>
-        <div className="mb-3 d-flex flex-column align-items-start">
-          <label htmlFor="quantity" className="form-label">
-            Quantity
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => {
-              setQuantity(e.target.value);
-            }}
-          />
-        </div>
-        <div className="mb-3 d-flex flex-column align-items-start">
-          <label htmlFor="weight" className="form-label">
-            Weight
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => {
-              setWeight(e.target.value);
-            }}
-          />
-        </div>
-        <div className="mb-3 d-flex flex-column align-items-start">
-          <label htmlFor="unit_price" className="form-label">
-            Unit Price
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => {
-              setPrice(e.target.value);
-            }}
-          />
-        </div>
-        <div className="mb-3 d-flex flex-column align-items-start">
-          <label htmlFor="size" className="form-label">
-            Size
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => {
-              setSize(e.target.value);
-            }}
-          />
+
+        {/* third row */}
+        <div className="d-flex justify-content-center gap-4">
+          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
+            <label
+              htmlFor="weight"
+              className="form-label pti-text-dark pti-bold"
+            >
+              Weight
+            </label>
+            <input
+              type="text"
+              className="add-product-input form-control"
+              onChange={(e) => {
+                setWeight(e.target.value);
+              }}
+            />
+          </div>
+          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
+            <label
+              htmlFor="unit_price"
+              className="form-label pti-text-dark pti-bold"
+            >
+              Unit Price
+            </label>
+            <input
+              type="text"
+              className="add-product-input form-control"
+              onChange={(e) => {
+                setPrice(e.target.value);
+              }}
+            />
+          </div>
+          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
+            <label htmlFor="size" className="form-label pti-text-dark pti-bold">
+              Size
+            </label>
+            <select
+              className="add-product-input form-control"
+              onChange={(e) => {
+                setSize(e.target.value);
+              }}
+            >
+              <option value="" disabled selected>
+                Select a size
+              </option>
+              <option value="S">Small</option>
+              <option value="M">Medium</option>
+              <option value="L">Large</option>
+              <option value="XL">Extra Large</option>
+            </select>
+          </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
+        <div className="d-flex justify-content-center gap-2 pt-4">
+          <button
+            type="submit"
+            className="add-product-btn pti-bold btn btn-primary pti-rounded-small" >
+            Submit
+          </button>
+          <button type="reset" className="add-product-btn bg-black text-light pti-bold pti-rounded-small">cancel</button>
+          
+        </div>
       </form>
+      <br />
     </div>
   );
 }

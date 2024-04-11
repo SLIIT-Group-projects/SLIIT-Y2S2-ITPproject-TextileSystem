@@ -2,6 +2,7 @@ import Test from "./components/test";
 import './css/main.css'
 import './css/Inventory_styles.css'
 import AddProducts from "./components/addProducts";
+import AddMaterials from "./components/addMaterials";
 import AllProducts from "./components/AllProducts";
 import AllMaterials from "./components/AllMaterials";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -12,6 +13,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/add" exact element={<AddProducts />} />
+          <Route path="/material/add" exact element={<AddMaterials />} />
           <Route path="/material" exact element={<AllMaterials />} />
           <Route path="/" exact element={<AllProducts />} />
         </Routes>

@@ -9,8 +9,12 @@
     border-spacing:0 15px;
 }
 .inv-allProducts-button{
-    width: 100px;
+    width: 150px;
     height: 40px;
+}
+.inv-allProducts-button:active{
+    box-shadow: 0 5px #c2c2c2;
+    transform: translateY(2px);
 }
 .inv-Allproducts-table-row{
     height: 40px;
@@ -41,6 +45,18 @@
 .pti-allProducts-delete-buttons{
     color: red;
 }
-.gfg {
-    
+/* add product page css */
+.add-product-input{
+    border-color: var(--secondary_blue);
+}
+.add-product-btn{
+    width: 200px;
+}
+.add-product-btn:active{
+    box-shadow: 0 5px #c2c2c2;
+    transform: translateY(2px);
+}
+.add-product-upload{
+    width: 220px;
+    /* border: none; */
 }

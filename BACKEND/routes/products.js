@@ -47,10 +47,11 @@ router.route("/").get((req,res)=>{
 //update the product
 router.route("/update/:id").put(async(req,res)=>{
     let userId = req.params.id;
-    const {product_name,product_description,quantity,unit_price,size
+    const {image,product_name,product_description,quantity,unit_price,size
     }=req.body;
     
     const updateProduct = {
+        image,
         product_name,
         product_description,
         quantity,
@@ -58,7 +59,7 @@ router.route("/update/:id").put(async(req,res)=>{
         size
     }
     const update = await product.findByIdAndUpdate(userId,updateProduct).then((product)=>{
-        res.status(200).send({status:"user updated",product})
+        res.status(200).send({status:"product updated",product})
     }).catch((err)=>{
         console.log(err)
         res.status(500).send({status:"error with updating data",error:err.message});

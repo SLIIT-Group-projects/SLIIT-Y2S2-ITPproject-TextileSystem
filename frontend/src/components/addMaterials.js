@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AddMaterials() {
+  const navigate = useNavigate();
+
   const [material_ID, setID] = useState("");
   const [material_name, setName] = useState("");
   const [material_type, setType] = useState("");
@@ -25,6 +28,8 @@ function AddMaterials() {
       .post("http://localhost:8070/material/add", newMaterial)
       .then(() => {
         alert("Material Added");
+        navigate("/material"); // Navigate back to the materials page
+
       })
       .catch((err) => {
         alert(err);

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AddProducts() {
+  const navigate = useNavigate();
+
   const [product_ID, setID] = useState("");
   const [img, setImg] = useState("");
   const [product_name, setName] = useState("");
@@ -46,6 +49,7 @@ function AddProducts() {
       .post("http://localhost:8070/product/add", newProduct)
       .then(() => {
         alert("Product Added");
+        navigate("/");
       })
       .catch((err) => {
         alert(err);

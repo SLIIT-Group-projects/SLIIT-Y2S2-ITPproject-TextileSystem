@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function AllMaterials() {
-  const [materails, setMaterials] = useState([]);
+  const [materials, setMaterials] = useState([]);
   useEffect(() => {
     function getMaterials() {
       axios
@@ -18,6 +18,20 @@ export default function AllMaterials() {
     }
     getMaterials();
   }, []);
+
+
+  // delete function
+  const handleDelete = async (materialId) => {
+    try {
+      await axios.delete(`http://localhost:8070/material/delete/${materialId}`);
+      // Remove the deleted product from the state
+      setMaterials(materials.filter((material) => material._id !== materialId));
+      alert("Material deleted successfully");
+    } catch (err) {
+      console.error("Error deleting material:", err);
+      alert("Error deleting Material");
+    }
+  };
 
   return (
     <div className="inv-Allproducts-page container">
@@ -44,7 +58,7 @@ export default function AllMaterials() {
           <th></th>
           <th className="inv-Allproducts-table-heading2"></th>
         </tr>
-          {materails.map((material) => (
+          {materials.map((material) => (
             <tr className=" pti-bg-light_blue ">
               <td className="inv-Allproducts-table-row1 p-2">{material.material_ID }</td>
               <td>{material.material_name}</td>
@@ -53,8 +67,8 @@ export default function AllMaterials() {
               <td>{material.color }</td>
               
 
-              <td ><button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons"><i class="fa-solid fa-pen-to-square"></i></button></td>
-              <td  className="inv-Allproducts-table-row2"><button className="pti-allProducts-tble-buttons pti-allProducts-delete-buttons"><i class="fa-solid fa-trash"></i></button></td>
+              <td > <Link to={`/material/${material._id}`}><button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons"> <i class="fa-solid fa-pen-to-square"></i></button></Link></td>
+              <td  className="inv-Allproducts-table-row2"><button className="pti-allProducts-tble-buttons pti-allProducts-delete-buttons" onClick={() => handleDelete(material._id)}><i class="fa-solid fa-trash"></i></button></td>
             </tr>
           ))}
       </table>

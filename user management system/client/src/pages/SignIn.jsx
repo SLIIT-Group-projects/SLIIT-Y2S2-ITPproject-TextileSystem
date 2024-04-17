@@ -76,4 +76,5 @@ export default function SignIn() {
         {error ? error.message || 'Something went wrong!' : ''}
       </p>
     </div>
-  );}
+  );
+}

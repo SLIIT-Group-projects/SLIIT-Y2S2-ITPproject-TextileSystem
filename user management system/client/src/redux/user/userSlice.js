@@ -48,8 +48,8 @@ const userSlice = createSlice({
         },
         signOut: (state) => {
             state.currentUser = null;
+            state.error = null;
             state.loading = false;
-            state.error = false;
         },
     },
 });

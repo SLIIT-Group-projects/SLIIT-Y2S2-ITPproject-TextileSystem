@@ -17,6 +17,11 @@ import {
   deleteUserFailure,
   signOut,
 } from '../redux/user/userSlice';
+import { Link,useLocation } from 'react-router-dom';
+import {Button} from 'flowbite-react';
+import { Sidebar } from "flowbite-react";
+import { HiUser, HiArrowSmRight } from "react-icons/hi";
+
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -26,7 +31,8 @@ export default function Profile() {
   const [imageError, setImageError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
-
+  const path= useLocation().pathname;
+  
   const { currentUser, loading, error } = useSelector((state) => state.user);
   useEffect(() => {
     if (image) {
@@ -169,6 +175,15 @@ export default function Profile() {
         <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
           {loading ? 'Loading...' : 'Update'}
         </button>
+
+        {currentUser.isAdmin && (
+        <Link to={'/create-user'}>
+            <Button type='button'
+            gradientDuoTone='purpleToPink' className='w-full bg-blue-500  text-white p-1 rounded-lg uppercase hover:opacity-95 disabled:opacity-80' >
+              Create User
+            </Button>
+            </Link>
+           )}
       </form>
       <div className='flex justify-between mt-5'>
         <span
@@ -186,4 +201,5 @@ export default function Profile() {
         {updateSuccess && 'User is updated successfully!'}
       </p>
     </div>
-  );}
+  );
+}

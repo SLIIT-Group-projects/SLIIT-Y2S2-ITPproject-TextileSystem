@@ -19,14 +19,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg',
     },
-    userType: {
-        type: String,
 
-    },
-    secretKey: {
-        type: String,
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    }
 
-    },
+
 
 }, { timestamps: true });
 

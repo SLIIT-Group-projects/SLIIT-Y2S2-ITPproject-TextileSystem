@@ -28,7 +28,12 @@ export default function OAuth() {
       const data = await res.json();
       console.log(data);
       dispatch(signInSuccess(data));
-      navigate('/dashboard');
+      
+
+       
+        navigate('/dashboard'); // Redirect to dashboard for non-admin users
+      
+      
     } catch (error) {
       console.log('could not login with google', error);
     }

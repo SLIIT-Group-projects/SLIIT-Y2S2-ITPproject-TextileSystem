@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react"
+import DriverPortal from "./DriverPortal"
 
-
-export default function ViewOrders(){
+export default function DeliveryHeader(){
     return(
         <div>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -15,6 +15,12 @@ export default function ViewOrders(){
                         <li class="nav-item">
                         <a class="nav-link" href="/delivery/">Delivery log</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/driver/delivery/">Drivery portal</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="/delivery/download">Download Delivery Schedule</a>
+                        </li>
                         <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Delivery Log
@@ -23,6 +29,7 @@ export default function ViewOrders(){
                             <li><a class="dropdown-item" href="">Pending</a></li>
                             <li><a class="dropdown-item" href="#">Completed</a></li>
                         </ul>
+                        
                         </li>
                         
                     </ul>

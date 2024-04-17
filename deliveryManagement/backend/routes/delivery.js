@@ -1,26 +1,50 @@
-const router= require("express").Router();
+const router = require("express").Router();
 const Delivery = require("../models/delivery");
+const Order = require("../models/order"); // Import the Order model
 
-//add adeliverylog
-router.route("/add/").post((req,res)=>{
-    const deliveryDate= req.body.deliveryDate;
-    const orderId= req.body.orderId;
-    const vehicleNo= req.body.vehicleNo;
-    const driverId= req.body.driverId;
+// Add a delivery log
+router.route("/add").post(async (req, res) => {
+    const { deliveryDate, orderId, vehicleNo, driverId } = req.body;
 
-    const newDelivery= new Delivery({
-        orderId,
-        deliveryDate,
-        vehicleNo,
-        driverId
-    })
+    try {
+        // Check if there's an existing delivery for the order
+        const existingDelivery = await Delivery.findOne({ orderId });
 
-    newDelivery.save().then(()=>{
-        res.json("Delivery added")
-    }).catch((err)=>{
-        console.log(err);
-    })
-})
+        if (existingDelivery) {
+            return res.status(400).json({ status: "Error", message: "Delivery already exists for this order" });
+        }
+
+        // Create a new delivery
+        const newDelivery = new Delivery({
+            orderId,
+            deliveryDate,
+            vehicleNo,
+            driverId,
+            deliveryStatus:'pending',
+
+        });
+
+        // Save the new delivery log
+        await newDelivery.save();
+
+        // Update the associated order with the new delivery log
+        const order = await Order.findById(orderId);
+        if (!order) {
+            return res.status(404).json({ status: "Error", message: "Order not found" });
+        }
+
+        order.deliveries.push(newDelivery._id); // Add the delivery log reference to the order
+        await order.save();
+
+        res.json({ message: "Delivery added and associated with order" });
+    } catch (err) {
+        console.error("Error adding delivery:", err);
+        res.status(500).json({ status: "Error", message: "Failed to add delivery" });
+    }
+});
+
+module.exports = router;
+
 
 //view delivery log
 router.route("/").get((req,res)=>{
@@ -41,7 +65,8 @@ router.route("/update/:id").put(async(req,res)=>{
         orderId,
         deliveryDate,
         vehicleNo,
-        driverId
+        driverId,
+        
     }
     const update=await Delivery.findByIdAndUpdate(deliveryId,updateDelivery)
     .then(()=>{

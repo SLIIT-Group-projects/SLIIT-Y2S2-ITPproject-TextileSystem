@@ -11,7 +11,8 @@ export default function UpdateDeliveryLog() {
         orderId: "",
         deliveryDate: "",
         vehicleNo: "",
-        driverId: ""
+        driverId: "",
+        deliveryStatus:""
     });
 
     useEffect(() => {
@@ -60,6 +61,10 @@ export default function UpdateDeliveryLog() {
                 <div className="mb-3">
                     <label htmlFor="driverID" className="form-label">Driver ID</label>
                     <input type="text" id="driverID" name="driverId" value={delivery.driverId} onChange={handleChange} className="form-control" />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="driverID" className="form-label">Delivery status</label>
+                    <input type="text" id="driverID" name="driverId" value={delivery.deliveryStatus} readOnly className="form-control" />
                 </div>
                 <button type="submit" className="btn btn-primary">Update</button>
             </form>

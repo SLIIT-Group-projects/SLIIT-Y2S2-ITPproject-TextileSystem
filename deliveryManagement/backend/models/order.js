@@ -19,7 +19,8 @@ const orderSchema= new Schema({
         required:true
     },
     deliveries: [
-        { type: mongoose.Schema.Types.ObjectId, ref:'Delivery'}
+        { type: mongoose.Schema.Types.ObjectId,
+          ref:'Delivery'}
     ]
 })
 const Order= mongoose.model("order",orderSchema);

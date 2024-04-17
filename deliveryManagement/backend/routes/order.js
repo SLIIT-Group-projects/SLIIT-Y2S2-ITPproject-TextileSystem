@@ -1,7 +1,6 @@
 const router= require("express").Router();
 const Order = require("../models/order");
 
-
 router.route("/").get((req,res)=>{
     Order.find().then((order)=>{
         res.json(order)

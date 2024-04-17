@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import { useReactToPrint } from "react-to-print";
 
-export default function ViewOrders(){
+export default function ViewDeliveryLog(){
 
     const[deliveries, setDeliveries]=useState([]);
      useEffect(()=>{
@@ -21,12 +21,6 @@ export default function ViewOrders(){
     
     const ComponentsRef= useRef();
 
-    const handlePrint= useReactToPrint({
-        content:()=>ComponentsRef.current,
-        DocumentTitle: "Delivery Report",
-        onafterprint:()=>alert("Delivery report successfully downloaded")
-    })
-
     const [searchQuery, setSearchQuery]=useState("");
     const [noResults, setNoResults]= useState(false);
 
@@ -42,7 +36,7 @@ export default function ViewOrders(){
     }
 
     return(
-        <div className="container" ref={ComponentsRef}>
+        <div className="container">
         <form class="d-flex" role="search">
             <input onChange={(e)=>setSearchQuery(e.target.value)} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
             <button onClick={handleSearch} class="btn btn-outline-success" type="submit">Search deliveries</button>
@@ -55,6 +49,7 @@ export default function ViewOrders(){
                 </div>
            ): (
            <div >
+             <div className="container" >
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -62,6 +57,7 @@ export default function ViewOrders(){
                     <th scope="col">Driver Id</th>
                     <th scope="col">Lorry Number</th>
                     <th scope="col">Delivery Date</th>
+                    <th scope="col">Delivery Status</th>
                     <th></th>
                     <th></th>
                     </tr>
@@ -73,8 +69,10 @@ export default function ViewOrders(){
                         <td>{Delivery.driverId}</td>
                         <td> {Delivery.vehicleNo}</td>
                         <td>{ Delivery.deliveryDate}</td>
+                        <td>{ Delivery.deliveryStatus}</td> 
                         <td><Link to={`/delivery/update/${Delivery._id}`} className="btn btn-primary"> Update  </Link></td>
                         <td><Link to={`/delivery/delete/${Delivery._id}`} className="btn btn-primary"> Delete</Link> </td>
+                        <td><Link to={`/order/get/${Delivery.orderId}`} className="btn btn-primary"> View Order</Link> </td>
                 </tr>    
              
 
@@ -82,8 +80,9 @@ export default function ViewOrders(){
             </tbody> 
             </table>
             </div>
+            </div>
             )}
-            <button onClick={handlePrint}> Download Report</button>
+           
         </div>
         </div>     
  

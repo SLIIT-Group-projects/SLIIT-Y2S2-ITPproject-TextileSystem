@@ -15,6 +15,10 @@ const deliverySchema= new Schema({
     },
     driverId:{
         type:String
+    },
+    deliveryStatus:{
+        type:String,
+        required:true
     }
     
 }, {

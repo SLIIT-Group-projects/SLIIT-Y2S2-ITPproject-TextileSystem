@@ -156,10 +156,11 @@ export default function AllProducts() {
                 <td>{product.weight}</td>
                 <td>{product.unit_price}</td>
                 <td>{product.size}</td>
-                <td>
+                <td><Link to={`/product/${product._id}`}>
                   <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
                     <i className="fa-solid fa-pen-to-square"></i>
                   </button>
+                  </Link>
                 </td>
                 <td className="inv-Allproducts-table-row2">
                   <button

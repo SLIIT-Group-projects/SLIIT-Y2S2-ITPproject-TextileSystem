@@ -68,7 +68,7 @@ function AddMaterials() {
               onChange={(e) => {
                 setID(e.target.value);
               }}
-            />
+            required/>
           </div>
           <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
             <label htmlFor="name" className="form-label pti-text-dark pti-bold">
@@ -80,7 +80,7 @@ function AddMaterials() {
               onChange={(e) => {
                 setName(e.target.value);
               }}
-            />
+              required/>
           </div>
         </div>
         <div className="mb-3 d-flex flex-column align-items-start">
@@ -88,7 +88,7 @@ function AddMaterials() {
             htmlFor="description"
             className="form-label pti-text-dark pti-bold"
           >
-            Material Type
+            Material Description
           </label>
           <input
             type="text"
@@ -96,7 +96,7 @@ function AddMaterials() {
             onChange={(e) => {
               setType(e.target.value);
             }}
-          />
+            required/>
         </div>
         {/* third row */}
         <div className="d-flex justify-content-center gap-3">
@@ -113,7 +113,7 @@ function AddMaterials() {
               onChange={(e) => {
                 setQuantity(e.target.value);
               }}
-            />
+              required/>
           </div>
           <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
             <label

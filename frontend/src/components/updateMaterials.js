@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function UpdateUser() {
+function UpdateMaterials() {
     const { id } = useParams(); // Extract id from the URL parameters
     const navigate = useNavigate(); // useNavigate hook to navigate
     const [material, setMaterial] = useState({
@@ -109,7 +109,7 @@ function UpdateUser() {
                     </div>
                 </div>
                 <div className="mb-3 d-flex flex-column align-items-start">
-                    <label htmlFor="material_type" className="form-label pti-text-dark pti-bold">Material Type</label>
+                    <label htmlFor="material_type" className="form-label pti-text-dark pti-bold">Material Description</label>
                     <input
                         id="material_type"
                         type="text"
@@ -158,4 +158,4 @@ function UpdateUser() {
     );
 }
 
-export default UpdateUser;
+export default UpdateMaterials;

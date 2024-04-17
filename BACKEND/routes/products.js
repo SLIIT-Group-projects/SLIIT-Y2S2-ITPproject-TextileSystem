@@ -47,7 +47,7 @@ router.route("/").get((req,res)=>{
 //update the product
 router.route("/update/:id").put(async(req,res)=>{
     let userId = req.params.id;
-    const {image,product_name,product_description,quantity,unit_price,size
+    const {image,product_name,product_description,quantity,weight,unit_price,size
     }=req.body;
     
     const updateProduct = {
@@ -55,6 +55,7 @@ router.route("/update/:id").put(async(req,res)=>{
         product_name,
         product_description,
         quantity,
+        weight,
         unit_price,
         size
     }

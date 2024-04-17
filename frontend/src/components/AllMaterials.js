@@ -112,7 +112,7 @@ export default function AllMaterials() {
                 <tr className="inv-Allproducts-table-row pti-bg-secondary_blue text-light rounded-5">
                     <th className="inv-Allproducts-table-heading1 p-2">Material ID</th>
                     <th>Material Name</th>
-                    <th>Material type</th>
+                    <th>Material Description</th>
                     <th>Roll Quantity</th>
                     <th>Material color</th>
                     <th></th>

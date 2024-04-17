@@ -60,3 +60,7 @@
     width: 220px;
     /* border: none; */
 }
+/* search bar */
+.inv-search-bar{
+    width: 400px;
+}

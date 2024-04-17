@@ -57,36 +57,85 @@ export default function DriverPortal() {
     return (
         <div className="container">
             <h1>Welcome to Driver Portal</h1>
-            <h2>Order Details</h2>
-            <p>Customer Code: {order.customerCode}</p>
-            <p>Order ID: {order.orderId}</p>
-            <p>Delivery Address: {order.deliveryAddress}</p>
-            <p>Quantity: {order.quantity}</p>
 
             <h2>Delivery Details</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="container">
-                    <label htmlFor="deliveryDate" className="form-label">Delivery Date</label>
-                    <input type="date" id="deliveryDate" name="deliveryDate" value={delivery.deliveryDate} onChange={handleChange} className="form-control" />
-                </div>
+                
+            <table className="table">
+                    <tbody>
+                        <tr>
+                            <td>Delivery Date</td>
+                            <td>{delivery.deliveryDate}</td>
+                        </tr>
+                        <tr>
+                            <td>Order ID:</td>
+                            <td>{delivery.orderId}</td>
+                        </tr>
+                        <tr>
+                            <td>Vehicle ID:</td>
+                            <td>{delivery.vehicleNo}</td>
+                        </tr>
+                        <tr>
+                            <td>Driver id</td>
+                            <td>{delivery.driverId}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="orderId" className="form-label">Order Id:</label>
-                    <input type="text" id="orderId" name="orderId" value={delivery.orderId} onChange={handleChange} className="form-control" />
+                    <label htmlFor="deliveryStatus" className="form-label">Delivery Status</label>
+                    <select id="deliveryStatus" name="deliveryStatus" value={delivery.deliveryStatus} onChange={handleChange} className="form-control">
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="vehicleNumber" className="form-label">Vehicle No</label>
-                    <input type="text" id="vehicleNumber" name="vehicleNo" value={delivery.vehicleNo} onChange={handleChange} className="form-control" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="driverID" className="form-label">Driver ID</label>
-                    <input type="text" id="driverID" name="driverId" value={delivery.driverId} onChange={handleChange} className="form-control" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="driverID" className="form-label">Delivery status</label>
-                    <input type="text" id="driverID" name="driverId" value={delivery.deliveryStatus} readOnly className="form-control" />
-                </div>
-                <button type="submit" className="btn btn-primary">Update</button>
+                <button type="submit" className="btn btn-primary">Update Delivery Status</button>
+
             </form>
+
+            <h2>Order Details</h2>
+            <table className="table">
+                    <tbody>
+                        <tr>
+                            <td>Customer Code:</td>
+                            <td>{order.user}</td>
+                        </tr>
+                        <tr>
+                            <td>Delivery Address:</td>
+                            <td>{order.shippingAddress}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Price:</td>
+                            <td>{order.totalPrice}</td>
+                        </tr>
+                        <tr>
+                            <td>Payment Method:</td>
+                            <td>{order.paymentMethod}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Ordered Items</h2>
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {order.orderItems && order.orderItems.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{item.name}</td>
+                                    <td>{item.qty}</td>
+                                    <td>${item.price}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+            
         </div>
     );
 }

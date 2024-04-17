@@ -1,6 +1,7 @@
 const router= require("express").Router();
 const Order = require("../models/order");
 
+
 router.route("/").get((req,res)=>{
     Order.find().then((order)=>{
         res.json(order)
@@ -10,16 +11,22 @@ router.route("/").get((req,res)=>{
 
 })
 router.route("/add").post((req,res)=>{
-    const customerCode= req.body.customerCode;
-    const orderId= req.body.orderId;
-    const deliveryAddress= req.body.deliveryAddress;
-    const quantity= req.body.quantity;
+    const user= req.body.user;
+    const orderItems= req.body.orderItems;
+    const shippingAddress= req.body.shippingAddress;
+    const shippingPrice= req.body.shippingPrice;
+    const itemsPrice= req.body.itemsPrice;
+    const paymentMethod= req.body.paymentMethod;
+    const totalPrice= req.body.totalPrice;
     
     const newOrder= new Order({
-        customerCode,
-        orderId,
-        deliveryAddress,
-        quantity
+        user,
+        orderItems,
+        shippingAddress,
+        shippingPrice,
+        itemsPrice, 
+        paymentMethod,
+        totalPrice,
     })
 
     newOrder.save().then(()=>{

@@ -20,7 +20,7 @@ router.route("/add").post(async (req, res) => {
             deliveryDate,
             vehicleNo,
             driverId,
-            deliveryStatus:'pending',
+            deliveryStatus,
 
         });
 
@@ -60,13 +60,13 @@ router.route("/").get((req,res)=>{
 router.route("/update/:id").put(async(req,res)=>{
     let deliveryId=req.params.id;
     //const name=req.body.age;  if the below function is not using use this
-    const {orderId,deliveryDate,vehicleNo,driverId}=req.body;
+    const {orderId,deliveryDate,vehicleNo,driverId,deliveryStatus}=req.body;
     const updateDelivery={
         orderId,
         deliveryDate,
         vehicleNo,
         driverId,
-        
+        deliveryStatus
     }
     const update=await Delivery.findByIdAndUpdate(deliveryId,updateDelivery)
     .then(()=>{

@@ -41,8 +41,9 @@ export default function ViewOrders() {
           <thead>
             <tr>
               <th scope="col">Customer Code</th>
-              <th scope="col">Delivery Address</th>
-              <th scope="col">Quantity</th>
+              <th scope="col">shippingAddress</th>
+              <th scope="col">Item Details</th>
+              <th scope="col">Total Price</th>
               <th scope="col">Delivery Log status</th>
               <th></th>
               <th></th>
@@ -51,9 +52,17 @@ export default function ViewOrders() {
           <tbody>
             {orders.map((Order, i) => (
               <tr key={i}>
-                <td>{Order.orderId}</td>
-                <td>{Order.deliveryAddress}</td>
-                <td>{Order.quantity}</td>
+                <td>{Order.user}</td>
+                <td>{Order.shippingAddress}</td>
+
+                {Order.orderItems.map((item, index) => (
+                    <div key={index}>
+                    <td>Item Name: {item.name} <br/><br/>
+                    Quantity: {item.qty}</td>
+                    </div>
+                  ))}
+
+                <td>{Order.totalPrice}</td>
                 <td>
                   {Order.deliveries.length > 0 ? (
                     <p>Delivery already created</p>

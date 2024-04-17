@@ -18,7 +18,8 @@ const deliverySchema= new Schema({
     },
     deliveryStatus:{
         type:String,
-        required:true
+        required:true,
+        default: "Pending"
     }
     
 }, {

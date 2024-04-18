@@ -55,8 +55,9 @@ export default function AdminHome() {
                 Profile
               </Sidebar.Item>
             </Link>
-
-            <Link to='/users'>
+            {/* in dashuser.jsx */}
+            <Link to='/getusers'>
+             
 
             <Sidebar.Item 
               active={true}

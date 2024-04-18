@@ -95,21 +95,12 @@ export const getUsers = async(req, res, next) => {
 }
 
 
-// const getUsers = async(req, res, next) => {
-//     let users;
-//     //Get all users
+// // Fetch all users
+// export const getUsers = async(req, res, next) => {
 //     try {
-//         users = await User.find();
+//         const users = await User.find();
+//         res.status(200).json(users);
 //     } catch (error) {
-//         console.log(error);
+//         next(error);
 //     }
-
-//     //not found
-//     if (!users) {
-//         return res.status(404).json({ message: "No users found" });
-//     }
-//     //Display all users
-//     return res.status(200).json({ users });
-
 // };
-// export default getUsers;

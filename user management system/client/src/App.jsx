@@ -8,7 +8,8 @@ import AdminHome from './pages/AdminHome';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
-// import CreateUser from './pages/CreateUser';
+ //import CreateUser from './pages/CreateUser';
+import DashUsers from './components/DashUsers';
 
 export default function App() {
   return (
@@ -21,6 +22,8 @@ export default function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/admin-home' element={<AdminHome />} />
+
+        <Route path='/getusers' element={<DashUsers />} />
         
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />

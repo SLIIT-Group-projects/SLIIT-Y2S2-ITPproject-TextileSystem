@@ -10,6 +10,8 @@ import PrivateRoute from './components/PrivateRoute';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
  //import CreateUser from './pages/CreateUser';
 import DashUsers from './components/DashUsers';
+import Employee from './components/Empoyee';
+import AddEmployee from './pages/AddEmployee';
 
 export default function App() {
   return (
@@ -21,7 +23,7 @@ export default function App() {
         <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/admin-home' element={<AdminHome />} />
+        <Route path='/dashboard' element={<AdminHome />} />
 
         <Route path='/getusers' element={<DashUsers />} />
         
@@ -31,6 +33,9 @@ export default function App() {
         </Route>
         <Route element={<OnlyAdminPrivateRoute />}>
           {/* <Route path='/create-user' element={<CreateUser />} /> */}
+          <Route path='/employees' element={<Employee />} />
+          <Route path='/addemployee' element={<AddEmployee />} />
+
           
         </Route>
       </Routes>

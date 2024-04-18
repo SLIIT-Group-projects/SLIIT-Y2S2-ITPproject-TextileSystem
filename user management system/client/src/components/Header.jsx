@@ -55,7 +55,7 @@ export default function Header() {
 
         
         <ul className='flex gap-4'>
-        <Link to={currentUser?.isAdmin ? '/admin-home' : '/'}>
+        <Link to={currentUser?.isAdmin ? '/dashboard' : '/'}>
             <li>{currentUser?.isAdmin ? 'Admin-Home' : 'Home'}</li>
           </Link>
           

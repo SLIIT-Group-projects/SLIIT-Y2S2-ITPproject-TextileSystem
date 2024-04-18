@@ -7,6 +7,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import {useReactToPrint} from 'react-to-print';
 
+
 export default function DashUsers() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,7 +37,7 @@ export default function DashUsers() {
     
 
     if (currentUser.isAdmin) {
-      fetchUsers();
+      fetchUsers(); 
     }
   }, [currentUser._id]);
 

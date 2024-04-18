@@ -6,7 +6,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from 'react-router-dom';
 
-export default function CreatePost() {
+export default function AddEmployee() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
@@ -111,9 +111,9 @@ export default function CreatePost() {
             onChange={(e) => setFormData({ ...formData, category: e.target.value })}
           >
             <option value="uncategorized">Select a user category</option>
-            <option value="fabricSupplier">Fabric Suppliers</option>
-            <option value="chemicalSupplier">Chemical Suppliers</option>
-            <option value="fiberSupplier">Fiber Suppliers</option>
+            <option value="operator">Operator</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="textileArtist">Textile Artist</option>
           </Select>
         </div>
         <div className="flex flex-col gap-4">

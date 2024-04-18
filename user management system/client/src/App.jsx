@@ -10,8 +10,9 @@ import PrivateRoute from './components/PrivateRoute';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
  //import CreateUser from './pages/CreateUser';
 import DashUsers from './components/DashUsers';
-import Employee from './components/Empoyee';
+import Employee from './components/Employee';
 import AddEmployee from './pages/AddEmployee';
+import UpdateEmployee from './pages/UpdateEmployee';
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           {/* <Route path='/create-user' element={<CreateUser />} /> */}
           <Route path='/employees' element={<Employee />} />
           <Route path='/addemployee' element={<AddEmployee />} />
+          <Route path='/update-employee/:employeeId' element={<UpdateEmployee />} />
 
           
         </Route>

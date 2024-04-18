@@ -177,7 +177,7 @@ export default function Profile() {
         </button>
 
         {currentUser.isAdmin && (
-        <Link to={'/create-user'}>
+        <Link to={'/addemployee'}>
             <Button type='button'
             gradientDuoTone='purpleToPink' className='w-full bg-blue-500  text-white p-1 rounded-lg uppercase hover:opacity-95 disabled:opacity-80' >
               Create User

@@ -6,7 +6,7 @@ import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import User from "./models/user.model.js";
-import createUserRoutes from "./routes/CreateUser.route.js";
+// import createUserRoutes from "./routes/CreateUser.route.js";
 dotenv.config();
 
 //database
@@ -39,7 +39,7 @@ app.listen(3000, () => {
 
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/createuser", createUserRoutes);
+// app.use("/api/createuser", createUserRoutes);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

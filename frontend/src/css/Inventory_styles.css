@@ -85,3 +85,8 @@
     background-image: url(../resources/piechart.png);
     background-size: cover;
 }
+
+/* Highlight rows with roll quantity less than 50 */
+.low-roll-quantity {
+    background-color: rgb(241, 110, 110);
+}

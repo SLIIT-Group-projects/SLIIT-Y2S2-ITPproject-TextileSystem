@@ -10,8 +10,9 @@ export default function CreateUser() {
   <TextInput type='text' placeholder='Enter Secrete Key' required id='secreteKey' className='flex-1'/>
   <select>
     <option value='uncategorized'>Select a user category</option>
-    <option value='employee'>Employee</option>
-    <option value='supplier'>Supplier</option>
+    <option value='fabricSupplier'>Fabric Suppliers</option>
+    <option value='chemicalSupplier'>Chemical Suppliers</option>
+    <option value='fiberSupplier'>Fiber Suppliers</option>
   </select>
 </div>
 <div className='flex flex-col gap-4'>

@@ -2,35 +2,34 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import AdminHeader from '../components/AdminHeader';
+import AdminHeader from "../components/AdminHeader";
 
 function AddMaterials() {
   const navigate = useNavigate();
 
   const [material_ID, setID] = useState("");
   const [material_name, setName] = useState("");
-  const [material_type, setType] = useState("");
   const [roll_quantity, setQuantity] = useState("");
   const [color, setColor] = useState("");
+  const [date, setDate] = useState("");
 
   const sendData = async (e) => {
     e.preventDefault();
 
-    const newMaterial = {
+    const newRequestMaterial = {
       material_ID,
       material_name,
-      material_type,
       roll_quantity: Number(roll_quantity),
       color,
+      date,
     };
 
     // Send product data to the server
     axios
-      .post("http://localhost:8070/material/add", newMaterial)
+      .post("http://localhost:8070/request_material/add", newRequestMaterial)
       .then(() => {
-        alert("Material Added");
-        navigate("/material"); // Navigate back to the materials page
-
+        alert("Request Material Added");
+        navigate("/request_material"); // Navigate back to the materials page
       })
       .catch((err) => {
         alert(err);
@@ -39,8 +38,10 @@ function AddMaterials() {
 
   return (
     <div className="container">
-      <AdminHeader/>
-      <div className="text-center pti-text-h2 pti-bold pb-4">ADD MATERIALS</div>
+      <AdminHeader />
+      <div className="text-center pti-text-h2 pti-bold pb-4">
+        ADD REQUEST MATERIALS
+      </div>
       <form onSubmit={sendData}>
         {/* first row */}
         <div className="d-flex justify-content-center gap-3">
@@ -52,7 +53,8 @@ function AddMaterials() {
               onChange={(e) => {
                 setID(e.target.value);
               }}
-            required/>
+              required
+            />
           </div>
           <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
             <label htmlFor="name" className="form-label pti-text-dark pti-bold">
@@ -64,24 +66,11 @@ function AddMaterials() {
               onChange={(e) => {
                 setName(e.target.value);
               }}
-              required/>
+              required
+            />
           </div>
         </div>
-        <div className="mb-3 d-flex flex-column align-items-start">
-          <label
-            htmlFor="description"
-            className="form-label pti-text-dark pti-bold"
-          >
-            Material Description
-          </label>
-          <input
-            type="text"
-            className="add-product-input form-control"
-            onChange={(e) => {
-              setType(e.target.value);
-            }}
-            required/>
-        </div>
+
         {/* third row */}
         <div className="d-flex justify-content-center gap-3">
           <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
@@ -97,7 +86,8 @@ function AddMaterials() {
               onChange={(e) => {
                 setQuantity(e.target.value);
               }}
-              required/>
+              required
+            />
           </div>
           <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
             <label
@@ -112,6 +102,22 @@ function AddMaterials() {
               onChange={(e) => {
                 setColor(e.target.value);
               }}
+            />
+          </div>
+          <div className="mb-3 d-flex flex-column align-items-start">
+            <label
+              htmlFor="description"
+              className="form-label pti-text-dark pti-bold"
+            >
+              Date
+            </label>
+            <input
+              type="date"
+              className="add-product-input form-control"
+              onChange={(e) => {
+                setDate(e.target.value);
+              }}
+              required
             />
           </div>
         </div>

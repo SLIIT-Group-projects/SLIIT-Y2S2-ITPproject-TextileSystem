@@ -128,3 +128,7 @@
     font-size: 1.5rem;
     cursor: pointer;
 }
+/* request materials css */
+.inv-request-table-row{
+    width: 300px;
+}

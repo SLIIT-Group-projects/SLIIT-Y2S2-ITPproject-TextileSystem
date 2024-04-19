@@ -36,6 +36,9 @@ app.use("/material",materialRouter)
 const released_materials_Router = require("./routes/released_materials.js");
 app.use("/released_material",released_materials_Router)
 
+// this is th route for request material 
+const requestMaterialsRouter = require("./routes/request_materials");
+app.use("/request_material", requestMaterialsRouter);
 
 
 app.listen(PORT, () => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import AdminHeader from '../components/AdminHeader';
 
 function UpdateProducts() {
   const { id } = useParams();
@@ -70,24 +71,7 @@ function UpdateProducts() {
 
   return (
     <div className="container">
-      <div className="pti-text-dark pti-text-h1 pti-bold text-center pb-5 pt-3">
-        INVENTORY DASHBOARD
-      </div>
-      <div className="d-flex justify-content-center gap-3 pb-5">
-        <button className="inv-allProducts-button pti-bg-secondary_blue pti-bold pti-rounded-small border-0 text-light pti-text-p">
-          <Link className="nav-link active" to="/">
-            PRODUCTS
-          </Link>
-        </button>
-        <button className="inv-allProducts-button pti-bg-secondary_blue pti-bold pti-rounded-small border-0 text-light pti-text-p">
-          <Link className="nav-link active" to="/material">
-            MATERIALS
-          </Link>
-        </button>
-        <button className="inv-allProducts-button pti-bg-secondary_blue pti-bold pti-rounded-small border-0 text-light pti-text-p">
-          RELEASED
-        </button>
-      </div>
+      <AdminHeader/>
       <div className="text-center pti-text-h2 pti-bold pb-4">
         UPDATE PRODUCTS
       </div>

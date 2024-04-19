@@ -50,18 +50,18 @@ export default function DownloadDelivery() {
         <div className="container">
             <form className="d-flex" role="search">
                 <input onChange={(e) => setSearchQuery(e.target.value)} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                <button onClick={handleSearch} className="btn btn-outline-success" type="submit">Search deliveries</button>
+                <button onClick={handleSearch} className="btn btn-outline-info" type="submit">Search deliveries</button>
             </form>
-            <h1>Delivery Schedule</h1>
             <div className="container" ref={ComponentsRef}>
+            <h1>Delivery Schedule</h1>
                 {noResults ? (
                     <div>
                         <p>No delivery found</p>
                     </div>
                 ) : (
-                    <table className="table table-hover">
-                        <thead>
-                            <tr>
+                    <table className="table table-hover table-delivery">
+                        <thead className="table-delivery">
+                            <tr className="table-del-header">
                                 <th scope="col">Order Id</th>
                                 <th scope="col">Driver Id</th>
                                 <th scope="col">Lorry Number</th>
@@ -72,7 +72,7 @@ export default function DownloadDelivery() {
                         </thead>
                         <tbody>
                             {deliveries && deliveries.map((delivery, i) => (
-                                <tr key={i}>
+                                <tr className="table-del-row" key={i}>
                                     <td>{delivery.orderId}</td>
                                     <td>{delivery.driverId}</td>
                                     <td>{delivery.vehicleNo}</td>
@@ -94,7 +94,7 @@ export default function DownloadDelivery() {
                     </table>
                 )}
             </div>
-            <button onClick={handlePrint}>Download Report</button>
+            <button className="btn action-button btn-primary" onClick={handlePrint}>Download Report</button>
         </div>
     )
 }

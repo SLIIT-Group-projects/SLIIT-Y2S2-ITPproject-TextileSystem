@@ -57,27 +57,35 @@ export default function UpdateDeliveryLog() {
             <h1>Update Delivery Log</h1>
             <form onSubmit={handleSubmit}>
                 <div className="container">
-                    <label htmlFor="deliveryDate" className="form-label">Delivery Date</label>
-                    <input type="date" id="deliveryDate" name="deliveryDate" value={delivery.deliveryDate} onChange={handleChange} className="form-control" />
+                    <div className="d-inline-flex p-2 form-controllers">
+                        <label htmlFor="deliveryDate" className="form-label del-labels">Delivery Date</label>
+                        <input type="date" id="deliveryDate" name="deliveryDate" value={delivery.deliveryDate} onChange={handleChange} className="del-form form-control" />
+                    </div>
+                    <div className="d-inline-flex p-2">
+                        <label htmlFor="orderId" className="form-label del-labels">Order Id:</label>
+                        <input type="text" id="orderId" name="orderId" readOnly value={delivery.orderId} onChange={handleChange} className="form-control del-form" />
+                    </div>
+                </div>
+                <br/>
+                <div className="container">
+                    <div className="d-inline-flex p-2 form-controllers">
+                        <label htmlFor="vehicleNumber" className="form-label del-labels">Vehicle No</label>
+                        <input type="text" id="vehicleNumber" name="vehicleNo" value={delivery.vehicleNo} onChange={handleChange} className="form-control del-form" />
+                    </div>
+                    <div className="d-inline-flex p-2 ">
+                        <label htmlFor="driverID" className="form-label del-labels">Delivery status</label>
+                        <input type="text" id="driverID" name="driverId" value={delivery.deliveryStatus} readOnly className="form-control del-form" />
+                    </div>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="orderId" className="form-label">Order Id:</label>
-                    <input type="text" id="orderId" name="orderId" value={delivery.orderId} onChange={handleChange} className="form-control" />
+                    <label htmlFor="driverID" className="form-label del-labels">Driver ID</label>
+                    <input type="text" id="driverID" name="driverId" value={delivery.driverId} onChange={handleChange} className="form-control del-form" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="vehicleNumber" className="form-label">Vehicle No</label>
-                    <input type="text" id="vehicleNumber" name="vehicleNo" value={delivery.vehicleNo} onChange={handleChange} className="form-control" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="driverID" className="form-label">Driver ID</label>
-                    <input type="text" id="driverID" name="driverId" value={delivery.driverId} onChange={handleChange} className="form-control" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="driverID" className="form-label">Delivery status</label>
-                    <input type="text" id="driverID" name="driverId" value={delivery.deliveryStatus} readOnly className="form-control" />
-                </div>
+                
                 <button type="submit" className="btn del-button btn-primary">Update</button>
+                
             </form>
+            <button type="submit" className="btn cancel"><a href="/delivery/"> Cancel</a></button>
         </div>
     );
 }

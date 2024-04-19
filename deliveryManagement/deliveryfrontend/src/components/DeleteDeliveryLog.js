@@ -38,22 +38,26 @@ export default function UpdateDeliveryLog() {
         <div className="container">
             <h1>Delete Delivery Log</h1>
             <form onSubmit={deleteHandler}>
-                <div className="container">
-                    <label htmlFor="deliveryDate" className="form-label">Delivery Date</label>
-                    <input type="date" id="deliveryDate" name="deliveryDate" value={delivery.deliveryDate} className="form-control" />
+            <div className="container">
+                <div className="d-inline-flex p-2 form-controllers">
+                    <label htmlFor="deliveryDate" className="form-label del-labels">Delivery Date</label>
+                    <input type="date" id="deliveryDate" name="deliveryDate" value={delivery.deliveryDate} className="del-form form-control" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="orderId" className="form-label">Order Id:</label>
-                    <input type="text" id="orderId" name="orderId" value={delivery.orderId}  className="form-control" />
+                <div className="d-inline-flex p-2 ">
+                    <label htmlFor="orderId" className="form-label del-labels">Order Id:</label>
+                    <input type="text" id="orderId" name="orderId" value={delivery.orderId}  className="del-form form-control" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="vehicleNumber" className="form-label">Vehicle No</label>
-                    <input type="text" id="vehicleNumber" name="vehicleNo" value={delivery.vehicleNo} className="form-control" />
+            </div>
+            <div className="container">
+                <div className="d-inline-flex p-2 form-controllers">
+                    <label htmlFor="vehicleNumber" className="form-label del-labels">Vehicle No</label>
+                    <input type="text" id="vehicleNumber" name="vehicleNo" value={delivery.vehicleNo} className="del-form form-control" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="driverID" className="form-label">Driver ID</label>
-                    <input type="text" id="driverID" name="driverId" value={delivery.driverId}  className="form-control" />
+                <div className="d-inline-flex p-2 ">
+                    <label htmlFor="driverID" className="form-label del-labels">Driver ID</label>
+                    <input type="text" id="driverID" name="driverId" value={delivery.driverId}  className="del-form form-control" />
                 </div>
+            </div>
                 <button type="submit" className="btn action-button btn-primary">Delete</button>
             </form>
         </div>

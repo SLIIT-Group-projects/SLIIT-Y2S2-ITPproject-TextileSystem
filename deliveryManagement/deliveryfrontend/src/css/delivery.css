@@ -16,6 +16,14 @@
     shape-margin: 0%;
     
 }
+.cancel{
+    width: 150px;
+    height: 40px;
+    border: none;
+    background-color: black;
+    color: azure;
+    shape-margin: 0%;
+}
 .action-button{
     width: fit-content;
     height: fit-content;
@@ -41,4 +49,18 @@
 .table-button{
     padding-right: 0%;
     margin-right: 0%;
+}
+.del-form{
+    border: none;
+    background-color: #DBECF2;
+    
+}
+.form-controllers{
+    margin-right: 20%;
+    width: 400px;
+    
+}
+.del-labels{
+    width: fit-content;
+    font-weight: bold;
 }

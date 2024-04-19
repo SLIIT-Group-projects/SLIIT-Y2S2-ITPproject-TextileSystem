@@ -5,18 +5,29 @@ import { useReactToPrint } from "react-to-print";
 
 export default function DownloadDelivery() {
     const [deliveries, setDeliveries] = useState([]);
+    const [orders, setOrders] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [noResults, setNoResults] = useState(false);
     const ComponentsRef = useRef();
 
     useEffect(() => {
+        axios.get("http://localhost:8070/order")
+            .then((res) => {
+                setOrders(res.data);
+            }).catch((err) => {
+                alert(err.message);
+            });
+    
         axios.get("http://localhost:8070/delivery")
             .then((res) => {
                 setDeliveries(res.data);
             }).catch((err) => {
-                alert.apply(err.message);
-            })
+                alert(err.message);
+            });
     }, []);
+    
+
+   
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -66,8 +77,17 @@ export default function DownloadDelivery() {
                                     <td>{delivery.driverId}</td>
                                     <td>{delivery.vehicleNo}</td>
                                     <td>{delivery.deliveryDate}</td>
-                                    <td>{delivery.order?.deliveryAddress}</td> {/* Display delivery address */}
-                                    <td>{delivery.order?.quantity}</td> {/* Display quantity */}
+                                    <td>{orders.find(order => order._id === delivery.orderId)?.shippingAddress}</td>
+                                    <td>
+                                        {/* Render the item name and quantity for each order */}
+                                        <ul>
+                                            {orders.find(order => order._id === delivery.orderId)?.orderItems.map((item, index) => (
+                                                <li key={index}>
+                                                    {item.name}: {item.qty}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

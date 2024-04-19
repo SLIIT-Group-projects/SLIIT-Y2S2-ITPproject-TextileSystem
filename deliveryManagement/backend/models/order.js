@@ -4,9 +4,8 @@ const deliverySchema = require('./delivery');
 const Schema =mongoose.Schema;
 const orderSchema= new Schema({
         user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',    
-        },
+          type: String, required: true ,
+        },    
         orderItems: [
           {
             name: { type: String, required: true },

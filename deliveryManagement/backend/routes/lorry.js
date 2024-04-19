@@ -1,22 +1,23 @@
 const router = require('express').Router();
-const lorry = require('../models/lorry');
+const Lorry = require('../models/lorry');
 
 // Create a new lorry
-router.post('/add', async (req, res) => {
-    try {
-        const { lorryNumber, capacity } = req.body;
-        const newLorry = new Lorry({
-            lorryNumber,
-            capacity,
-            // Add other fields here
-        });
-        await newLorry.save();
-        res.status(201).json({ message: 'Lorry details added successfully', lorry: newLorry });
-    } catch (err) {
-        console.error('Error adding lorry:', err);
-        res.status(500).json({ error: 'Failed to add lorry details' });
-    }
-});
+router.route("/add").post((req,res)=>{
+    const { lorryNumber, capacity, driverName} = req.body;
+    
+    const newLorry = new Lorry({
+        lorryNumber,
+        capacity,
+        driverName,
+    });
+
+    newLorry.save().then(()=>{
+        res.json("lorry added")
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
 
 // Get all lorries
 router.get('/', async (req, res) => {
@@ -46,10 +47,11 @@ router.get('/:id', async (req, res) => {
 // Update a lorry by ID
 router.put('/update/:id', async (req, res) => {
     try {
-        const { lorryNumber, capacity } = req.body;
+        const { lorryNumber, capacity,driverName } = req.body;
         const updatedLorry = await Lorry.findByIdAndUpdate(req.params.id, {
             lorryNumber,
             capacity,
+            driverName,
             // Add other fields to update here
         }, { new: true });
         if (!updatedLorry) {

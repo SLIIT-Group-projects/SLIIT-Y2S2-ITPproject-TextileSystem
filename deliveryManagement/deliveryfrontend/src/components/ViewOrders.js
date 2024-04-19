@@ -37,8 +37,8 @@ export default function ViewOrders() {
     <div className="container">
       <h1>Orders</h1>
       <div className="container">
-        <table className="table table-hover">
-          <thead>
+        <table border={0} className="table table-delivery rounded-5">
+          <thead className="table-del-header">
             <tr>
               <th scope="col">Customer Code</th>
               <th scope="col">shippingAddress</th>
@@ -51,22 +51,25 @@ export default function ViewOrders() {
           </thead>
           <tbody>
             {orders.map((Order, i) => (
-              <tr key={i}>
+              <tr className="table-del-row" key={i}>
                 <td>{Order.user}</td>
                 <td>{Order.shippingAddress}</td>
-
+                <div>
                 {Order.orderItems.map((item, index) => (
                     <div key={index}>
                     <td>Item Name: {item.name} <br/><br/>
                     Quantity: {item.qty}</td>
                     </div>
+                    
                   ))}
-
+                </div>
                 <td>{Order.totalPrice}</td>
                 <td>
                   {Order.deliveries.length > 0 ? (
                     <p>Delivery already created</p>
+                    
                   ) : (
+            
                     <CreateDeliveryLog orderId={Order._id} />
                   )}
                 </td>

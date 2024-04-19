@@ -1,0 +1,44 @@
+.pti-text {
+    color: #08A6D5;
+    align-items: center;
+    font-size: 55pt;
+    font-family:"Poppins", sans-serif; 
+    padding-bottom: 0%;
+    font-weight: bold;
+    
+}
+.del-button{
+    width: 150px;
+    height: 40px;
+    border: none;
+    background-color: #08A6D5;
+    color: aliceblue;
+    shape-margin: 0%;
+    
+}
+.action-button{
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    background-color: #08A6D5;
+    color: aliceblue;
+    shape-margin: 0%;
+    
+}
+.table-delivery{
+    width: 100%;
+    height: 50px;
+    border-collapse:separate;
+    border-spacing:0 15px;
+
+}
+.table-del-header{
+    background-color: #DBECF2;
+}
+.table-del-row{
+    background-color: #DBECF2;
+}
+.table-button{
+    padding-right: 0%;
+    margin-right: 0%;
+}

@@ -43,9 +43,10 @@ router.route("/get/:id").get(async (req, res) => {
         res.status(200).send({ status: "order is fetched", order: order });
     } catch (err) {
         console.log(err.message);
-        res.status(500).send({ status: "Error fetching the delivery" });
+        res.status(500).send({ status: "Error fetching the order" });
     }
 });
+
 
 
 

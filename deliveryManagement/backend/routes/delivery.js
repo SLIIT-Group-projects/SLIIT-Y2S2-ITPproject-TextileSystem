@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Delivery = require("../models/delivery");
 const Order = require("../models/order"); // Import the Order model
+const nodeMailer= require('nodemailer');
 
 // Add a delivery log
 router.route("/add").post(async (req, res) => {
@@ -20,7 +21,7 @@ router.route("/add").post(async (req, res) => {
             deliveryDate,
             vehicleNo,
             driverId,
-            deliveryStatus,
+            deliveryStatus:'pending',
 
         });
 
@@ -36,11 +37,22 @@ router.route("/add").post(async (req, res) => {
         order.deliveries.push(newDelivery._id); // Add the delivery log reference to the order
         await order.save();
 
+        const emailHTML = `
+            <h1>New Delivery</h1>
+            <p>Delivery details:</p>
+            <p>Order ID: ${orderId}</p>
+            <p>Delivery Date: ${deliveryDate}</p>
+            <p>Vehicle Number: ${vehicleNo}</p>
+            <p>Driver ID: ${driverId}</p>
+        `;
+
+       
         res.json({ message: "Delivery added and associated with order" });
     } catch (err) {
         console.error("Error adding delivery:", err);
         res.status(500).json({ status: "Error", message: "Failed to add delivery" });
     }
+    
 });
 
 module.exports = router;

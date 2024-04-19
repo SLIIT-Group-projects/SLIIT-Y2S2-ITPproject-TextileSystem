@@ -54,7 +54,7 @@ export default function UpdateDeliveryLog() {
                     <label htmlFor="driverID" className="form-label">Driver ID</label>
                     <input type="text" id="driverID" name="driverId" value={delivery.driverId}  className="form-control" />
                 </div>
-                <button type="submit" className="btn btn-primary">Delete</button>
+                <button type="submit" className="btn action-button btn-primary">Delete</button>
             </form>
         </div>
     );

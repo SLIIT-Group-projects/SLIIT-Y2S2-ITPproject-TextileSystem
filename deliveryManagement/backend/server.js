@@ -4,7 +4,7 @@ const bodyParser= require("body-parser");
 const cors=require("cors");
 const dotenv=require("dotenv");
 require("dotenv").config();
-
+const nodeMailer= require('nodemailer');
 const app=express();
 
 const PORT= process.env.PORT || 8070;
@@ -23,11 +23,14 @@ connection.once("open", ()=> {
 
 const deliveryRouter=require("./routes/delivery.js")
 const orderRouter=require("./routes/order.js")
+const lorryRouter=require("./routes/lorry.js")
 
 app.use("/delivery",deliveryRouter);
 app.use("/order",orderRouter);
+app.use("/lorry",lorryRouter);
 
 app.listen(PORT, () =>{
     console.log(`Server is up and running on port ${PORT}`);
 })
+
 

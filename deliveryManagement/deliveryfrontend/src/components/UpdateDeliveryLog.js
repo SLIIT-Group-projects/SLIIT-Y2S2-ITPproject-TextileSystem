@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router'
 export default function UpdateDeliveryLog() {
     const { id } = useParams();
     const history= useNavigate();
+    const [errorMessage, setErrorMessage] = useState("");
 
     const [delivery, setDelivery] = useState({
         orderId: "",
@@ -26,6 +27,15 @@ export default function UpdateDeliveryLog() {
     }, [id]);
 
     const handleChange = (e) => {
+   const { name, value } = e.target;
+        if (name === "deliveryDate") {
+            const selectedDate = new Date(value);
+            const currentDate = new Date();
+            if (selectedDate < currentDate) {
+                alert("Delivery date cannot be before today.");
+                return;
+            }
+        }
         setDelivery({ ...delivery, [e.target.name]: e.target.value });
     };
 
@@ -66,7 +76,7 @@ export default function UpdateDeliveryLog() {
                     <label htmlFor="driverID" className="form-label">Delivery status</label>
                     <input type="text" id="driverID" name="driverId" value={delivery.deliveryStatus} readOnly className="form-control" />
                 </div>
-                <button type="submit" className="btn btn-primary">Update</button>
+                <button type="submit" className="btn del-button btn-primary">Update</button>
             </form>
         </div>
     );

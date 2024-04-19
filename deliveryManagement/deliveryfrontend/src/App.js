@@ -1,5 +1,6 @@
 import './App.css';
-
+import './css/bootstrap.css'
+import './css/delivery.css'
 import ViewOrders from './components/ViewOrders';
 import CreateDeliveryLog from './components/CreateDeliveryLog';
 import DeliveryHeader from './components/DeliveryHeader'
@@ -9,6 +10,7 @@ import DeleteDeliveryLog from './components/DeleteDeliveryLog';
 import DriverPortal from './components/DriverPortal';
 import CompleteDelivery from './components/CompleteDelivery'
 import DownloadDelivery from './components/DownloadDelivery';
+import LorryManagement from './components/LorryManagement';
 
 import {BrowserRouter as  Router, Route, Routes} from "react-router-dom"
 
@@ -17,7 +19,7 @@ function App() {
     <Router>
         <div>
           <DeliveryHeader/>
-          
+
           <Routes>
           <Route path="/delivery/add/" exact Component={CreateDeliveryLog}/>
           <Route path="/delivery/" exact Component={ViewDeliveryLog}/>
@@ -27,10 +29,11 @@ function App() {
           <Route path="/delivery/delete/:id" exact Component={DeleteDeliveryLog}/>
           <Route path="/delivery/download" exact Component={DownloadDelivery}/>
           <Route path='/order/' exact Component={ViewOrders}/>
+          <Route path='/lorry/' exact Component={LorryManagement}/>
           </Routes>
+
         </div>
     </Router>
   );
 }
-
 export default App;

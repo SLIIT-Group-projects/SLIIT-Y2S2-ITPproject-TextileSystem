@@ -36,7 +36,7 @@ export default function DriverPortal() {
             <h1>welcome to driver portal</h1>
             <form class="d-flex" role="search">
             <input onChange={(e)=>setSearchQuery(e.target.value)} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-            <button onClick={handleSearch} class="btn btn-outline-success" type="submit">Search deliveries</button>
+            <button onClick={handleSearch} class="btn btn-outline-info" type="submit">Search deliveries</button>
             </form>
             <br></br>
 
@@ -47,9 +47,9 @@ export default function DriverPortal() {
                 </div>
            ): (
            <div >
-            <table class="table table-hover">
+            <table class="table table-delivery">
                 <thead>
-                    <tr>
+                    <tr className="table-del-header">
                     <th scope="col">Order Id</th>
                     <th scope="col">Driver Id</th>
                     <th scope="col">Lorry Number</th>
@@ -61,13 +61,13 @@ export default function DriverPortal() {
                 </thead>
                 <tbody>
                 {deliveries && deliveries.map((Delivery, i)=>(
-                <tr key={i}>  
+                <tr className="table-del-row" key={i}>  
                         <td>{Delivery.orderId}</td>
                         <td>{Delivery.driverId}</td>
                         <td> {Delivery.vehicleNo}</td>
                         <td>{ Delivery.deliveryDate}</td>
                         <td>{ Delivery.deliveryStatus}</td>
-                        <td><Link to={`/driver/delivery/update/${Delivery._id}`} className="btn btn-primary"> Complete Delivery  </Link></td>
+                        <td><Link to={`/driver/delivery/update/${Delivery._id}`} className="btn action-button btn-primary"> Complete Delivery  </Link></td>
                         
                 </tr>    
              

@@ -10,7 +10,7 @@ const lorrySchema = new Schema({
         type: Number,
         required: true
     },
-    driverId:{
+    driverName:{
         type:String,
         required:true
     }

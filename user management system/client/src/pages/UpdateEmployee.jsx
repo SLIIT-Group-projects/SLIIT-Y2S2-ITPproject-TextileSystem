@@ -14,20 +14,20 @@ export default function UpdateEmployee() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const { employeeId } = useParams();
-  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
-        const res = await fetch(`/api/employee/getemployee/${employeeId}`);
+        const res = await fetch(`/api/employee/getemployees?employeeId=${employeeId}`);
         const data = await res.json();
         if (!res.ok) {
           console.log(data.message);
           setPublishError(data.message);
           return;
         }
-        if (res.ok) {
+        if (res.ok) { // Check if employee data is not empty
           setPublishError(null);
           setFormData(data.employee[0]);
         }
@@ -35,8 +35,9 @@ export default function UpdateEmployee() {
         console.log(error.message);
       }
     };
-    fetchEmployee();
-  }, [employeeId]);
+    fetchEmployee(); // Move fetchEmployee function outside of try-catch block
+
+  }, [employeeId]); // Close useEffect dependency array with square brackets
 
   const handleUploadImage = async () => {
     try {
@@ -111,12 +112,12 @@ export default function UpdateEmployee() {
             id='secreteKey'
             className='flex-1'
             onChange={(e) => setFormData({ ...formData, secreteKey: e.target.value })}
-            value={formData.secreteKey || ''}
+            value={formData.secreteKey}
           />
           <Select
             defaultValue='uncategorized'
             onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-            value={formData.category || 'uncategorized'}
+            value={formData.category}
           >
             <option value='uncategorized'>Select a user category</option>
             <option value='operator'>Operator</option>
@@ -132,7 +133,7 @@ export default function UpdateEmployee() {
             id='registerNumber'
             className='bg-slate-100 p-3 rounded-lg'
             onChange={(e) => setFormData({ ...formData, registerNumber: e.target.value })}
-            value={formData.registerNumber || ''}
+            value={formData.registerNumber}
           />
           <TextInput
             type='text'
@@ -140,7 +141,7 @@ export default function UpdateEmployee() {
             id='username'
             className='bg-slate-100 p-3 rounded-lg'
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-            value={formData.username || ''}
+            value={formData.username}
           />
           <TextInput
             type='email'
@@ -148,7 +149,7 @@ export default function UpdateEmployee() {
             id='email'
             className='bg-slate-100 p-3 rounded-lg'
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            value={formData.email || ''}
+            value={formData.email}
           />
           <TextInput
             type='text'
@@ -156,7 +157,7 @@ export default function UpdateEmployee() {
             id='phoneNumber'
             className='bg-slate-100 p-3 rounded-lg'
             onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-            value={formData.phoneNumber || ''}
+            value={formData.phoneNumber}
           />
         </div>
         {/* File input for image upload */}

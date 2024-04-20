@@ -16,11 +16,12 @@ const AddOrder = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  const materialOptions = ['Wood', 'Metal', 'Plastic']; // Hardcoded material options
+  const materialOptions = ['Silk', 'Threads','Elastic', 'Cotton']; // Hardcoded material options
   const supplierData = {
-    Wood: ['Supplier A', 'Supplier B'],
-    Metal: ['Supplier X', 'Supplier Y'],
-    Plastic: ['Supplier M', 'Supplier N'],
+    Silk: ['Supplier A', 'Supplier B'],
+    Threads: ['Supplier X', 'Supplier Y'],
+    Elastic: ['Supplier L', 'Supplier P'],
+    Cotton: ['Supplier M', 'Supplier N'],
   };
 
   const [dynamicSuppliers, setDynamicSuppliers] = useState([]);

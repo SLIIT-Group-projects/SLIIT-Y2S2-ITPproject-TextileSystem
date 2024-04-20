@@ -1,22 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 
 const Header = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
-      <Navbar.Brand href="/">Order Management System</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/addorder" className="nav-link">
-            Add Order
-          </Nav.Link>
-          <Nav.Link as={Link} to="/orders" className="nav-link">
+    <Navbar bg="transparent" variant="dark" expand="lg" className="mb-4">
+      {/* First line: Centered title "MATERIAL ORDERS" */}
+      <div className='container'>
+      <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+        <span style={{ color: '#08A6D5', fontFamily: 'Poppins', fontWeight: 'bold', fontSize: '55px', display: 'block' }}>
+          MATERIAL ORDERS
+        </span>
+      </div>
+      </div>
+      {/* Second line: Buttons for "Add New Orders" and "View All Orders" */}
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '20px' }}>
+        <Link to="/addorder">
+          <Button 
+            className="nav-button" 
+            style={{
+              backgroundColor: '#08A6D5',
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontWeight: 'bold',
+              fontSize: '14px', // Smaller font size
+              width: 'fit-content', // Adjusted width
+              height: 'fit-content',
+              borderRadius: '10px'
+            }}
+          >
+            Add New Order
+          </Button>
+        </Link>
+        <Link to="/orders" style={{ marginLeft: '10px' }}>
+          <Button 
+            className="nav-button" 
+            style={{
+              backgroundColor: '#08A6D5',
+              color: 'white',
+              fontFamily: 'Poppins',
+              fontWeight: 'bold',
+              fontSize: '14px', // Smaller font size
+              width: 'fit-content', // Adjusted width
+              height: 'fit-content',
+              borderRadius: '10px'
+            }}
+          >
             View All Orders
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
+          </Button>
+        </Link>
+      </div>
     </Navbar>
   );
 };

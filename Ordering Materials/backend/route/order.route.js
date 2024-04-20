@@ -61,14 +61,14 @@ router.post('/', async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'assignmentsagaofficial@gmail.com',
+        user: 'ptiproject2024@gmail.com',
         pass: 'uzgi faop atfx zsqr',
       },
     });
 
     const mailOptions = {
-      from: 'assignmentsagaofficial@gmail.com',
-      to: 'assignmentsagaofficial@gmail.com',
+      from: 'ptiproject2024@gmail.com',
+      to: 'wsasanka.shenal@gmail.com',
       subject: `New Order Invoice: ${newOrder._id}`, // Use newOrder._id instead of _id
       text: 'Please find attached the invoice for your recent order.',
       attachments: [{ filename: 'order.pdf', path: 'order.pdf' }],

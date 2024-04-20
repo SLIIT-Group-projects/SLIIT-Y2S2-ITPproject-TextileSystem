@@ -7,6 +7,8 @@ export default function DownloadDelivery() {
     const [deliveries, setDeliveries] = useState([]);
     const [orders, setOrders] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [selectedDate, setSelectedDate] = useState("");
+    const [selectedLorry, setSelectedLorry] = useState("");
     const [noResults, setNoResults] = useState(false);
     const ComponentsRef = useRef();
 
@@ -25,17 +27,24 @@ export default function DownloadDelivery() {
                 alert(err.message);
             });
     }, []);
-    
-
-   
 
     const handleSearch = (e) => {
         e.preventDefault();
-        const filteredDeliveries = deliveries.filter((delivery) =>
-            Object.values(delivery).some((field) =>
+        const filteredDeliveries = deliveries.filter((delivery) => {
+            // Check if delivery matches the selected date
+            const isDateMatch = !selectedDate || delivery.deliveryDate === selectedDate;
+
+            // Check if delivery matches the selected lorry number
+            const isLorryMatch = !selectedLorry || delivery.vehicleNo === selectedLorry;
+
+            // Check if any field contains the search query
+            const isSearchMatch = Object.values(delivery).some((field) =>
                 field.toString().toLowerCase().includes(searchQuery.toLowerCase())
-            )
-        );
+            );
+
+            return isDateMatch && isLorryMatch && isSearchMatch;
+        });
+
         setDeliveries(filteredDeliveries);
         setNoResults(filteredDeliveries.length === 0);
     }
@@ -50,10 +59,12 @@ export default function DownloadDelivery() {
         <div className="container">
             <form className="d-flex" role="search">
                 <input onChange={(e) => setSearchQuery(e.target.value)} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+                <input onChange={(e) => setSelectedDate(e.target.value)} className="form-control me-2" type="date" placeholder="Select Date" aria-label="Select Date"></input>
+                <input onChange={(e) => setSelectedLorry(e.target.value)} className="form-control me-2" type="text" placeholder="Enter Lorry Number" aria-label="Enter Lorry Number"></input>
                 <button onClick={handleSearch} className="btn btn-outline-info" type="submit">Search deliveries</button>
             </form>
             <div className="container" ref={ComponentsRef}>
-            <h1>Delivery Schedule</h1>
+                <h1>Delivery Schedule</h1>
                 {noResults ? (
                     <div>
                         <p>No delivery found</p>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function UpdateDeliveryLog() {
     const { id } = useParams();
@@ -60,6 +61,9 @@ export default function UpdateDeliveryLog() {
             </div>
                 <button type="submit" className="btn action-button btn-primary">Delete</button>
             </form>
+            <Link to={'/delivery/'}>
+            <button type="submit" className="btn cancel">Cancel</button>
+            </Link>
         </div>
     );
 }

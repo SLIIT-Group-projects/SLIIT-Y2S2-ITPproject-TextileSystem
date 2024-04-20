@@ -20,6 +20,10 @@ const deliverySchema= new Schema({
         type:String,
         required:true,
         default: "Pending"
+    },
+    pin:{
+        type:String,
+        required:true
     }
     
 }, {

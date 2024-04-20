@@ -36,11 +36,14 @@ export default function CreateDeliveryLog({ orderId }) {
         setErrorMessage("Please select a delivery date after today.");
         return;
       }
+      const pin = Math.floor(1000 + Math.random() * 9000).toString();
+
     const newDelivery = {
       orderId,
       deliveryDate,
       vehicleNo,
       driverId,
+      pin,
     };
 
     axios

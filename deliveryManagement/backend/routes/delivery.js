@@ -5,7 +5,7 @@ const nodeMailer= require('nodemailer');
 
 // Add a delivery log
 router.route("/add").post(async (req, res) => {
-    const { deliveryDate, orderId, vehicleNo, driverId } = req.body;
+    const { deliveryDate, orderId, vehicleNo, driverId,pin } = req.body;
 
     try {
         // Check if there's an existing delivery for the order
@@ -22,6 +22,7 @@ router.route("/add").post(async (req, res) => {
             vehicleNo,
             driverId,
             deliveryStatus:'pending',
+            pin,
 
         });
 
@@ -44,6 +45,7 @@ router.route("/add").post(async (req, res) => {
             <p>Delivery Date: ${deliveryDate}</p>
             <p>Vehicle Number: ${vehicleNo}</p>
             <p>Driver ID: ${driverId}</p>
+            <p>Pin: ${pin}</p>
         `;
 
         // Create transporter

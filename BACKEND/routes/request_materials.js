@@ -31,5 +31,15 @@ router.route("/").get((req,res)=>{
     })
 })
 
+// get one material
+router.route("/get/:id").get(async(req,res)=>{
+    let userId=req.params.id;
+    //product.findOne(email)
+   const user =  await material.findById(userId).then((material)=>{
+        res.status(200).send({status:"material fetched",material})
+    }).catch(()=>{
+        res.status(500).send({status:"error with get material",error:err.message});
+    })
+})
 
 module.exports = router;

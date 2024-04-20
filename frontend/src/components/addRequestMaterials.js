@@ -1,143 +1,169 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import { useParams } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AdminHeader from "../components/AdminHeader";
 
 function AddMaterials() {
+  const { id } = useParams(); // Extract id from the URL parameters
   const navigate = useNavigate();
+  const location = useLocation();
+  const [material, setMaterial] = useState({
+    material_ID: "",
+    material_name: "",
+    roll_quantity: "",
+    color: "",
+    date: ""
+  });
 
-  const [material_ID, setID] = useState("");
-  const [material_name, setName] = useState("");
-  const [roll_quantity, setQuantity] = useState("");
-  const [color, setColor] = useState("");
-  const [date, setDate] = useState("");
+  useEffect(() => {
+    const fetchMaterialData = async () => {
+      try {
+        const response = await Axios.get(
+          `http://localhost:8070/material/get/${id}`
+        );
+        const materialData = response.data.material;
+        setMaterial(materialData);
+      } catch (error) {
+        console.error("Error fetching material data:", error);
+        if (error.response && error.response.status === 404) {
+          alert("Material data not found");
+        } else {
+          alert("An error occurred while fetching material data");
+        }
+      }
+    };
+    
+    fetchMaterialData();
+  }, [location]);
 
   const sendData = async (e) => {
     e.preventDefault();
 
-    const newRequestMaterial = {
-      material_ID,
-      material_name,
-      roll_quantity: Number(roll_quantity),
-      color,
-      date,
+    const newMaterial = {
+      material_ID: material.material_ID,
+      material_name: material.material_name,
+      roll_quantity: Number(material.roll_quantity),
+      color: material.color,
+      date: material.date
     };
 
-    // Send product data to the server
-    axios
-      .post("http://localhost:8070/request_material/add", newRequestMaterial)
-      .then(() => {
-        alert("Request Material Added");
-        navigate("/request_material"); // Navigate back to the materials page
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    try {
+      await Axios.post("http://localhost:8070/request_material/add", newMaterial);
+      alert("Material Added");
+      navigate("/request_material"); // Navigate back to the materials page
+    } catch (error) {
+      console.error("Error adding material:", error);
+      alert("Error adding material");
+    }
+  };
+
+  const handleIDChange = (e) => {
+    setMaterial({ ...material, material_ID: e.target.value });
+  };
+
+  const handleNameChange = (e) => {
+    setMaterial({ ...material, material_name: e.target.value });
+  };
+
+  const handleQuantityChange = (e) => {
+    setMaterial({ ...material, roll_quantity: e.target.value });
+  };
+
+  const handleColorChange = (e) => {
+    setMaterial({ ...material, color: e.target.value });
+  };
+
+  const handleDateChange = (e) => {
+    setMaterial({ ...material, date: e.target.value });
   };
 
   return (
     <div className="container">
       <AdminHeader />
       <div className="text-center pti-text-h2 pti-bold pb-4">
-        ADD REQUEST MATERIALS
+        Add Request Material
       </div>
       <form onSubmit={sendData}>
-        {/* first row */}
-        <div className="d-flex justify-content-center gap-3">
-          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
-            <div className="form-label pti-text-dark pti-bold">Material ID</div>
-            <input
-              type="text"
-              className="add-product-input form-control"
-              onChange={(e) => {
-                setID(e.target.value);
-              }}
-              required
-            />
-          </div>
-          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
-            <label htmlFor="name" className="form-label pti-text-dark pti-bold">
-              Material Name
-            </label>
-            <input
-              type="text"
-              className="add-product-input form-control"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              required
-            />
-          </div>
+        {/* Material ID */}
+        <div className="mb-3">
+          <label htmlFor="materialID" className="form-label">
+            Material ID
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="materialID"
+            value={material.material_ID}
+            onChange={handleIDChange}
+            required
+          />
         </div>
 
-        {/* third row */}
-        <div className="d-flex justify-content-center gap-3">
-          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
-            <label
-              htmlFor="quantity"
-              className="form-label pti-text-dark pti-bold"
-            >
-              Roll Quantity
-            </label>
-            <input
-              type="number"
-              className="add-product-input form-control"
-              onChange={(e) => {
-                setQuantity(e.target.value);
-              }}
-              required
-            />
-          </div>
-          <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
-            <label
-              htmlFor="weight"
-              className="form-label pti-text-dark pti-bold"
-            >
-              Colour
-            </label>
-            <input
-              type="text"
-              className="add-product-input form-control"
-              onChange={(e) => {
-                setColor(e.target.value);
-              }}
-            />
-          </div>
-          <div className="mb-3 d-flex flex-column align-items-start">
-            <label
-              htmlFor="description"
-              className="form-label pti-text-dark pti-bold"
-            >
-              Date
-            </label>
-            <input
-              type="date"
-              className="add-product-input form-control"
-              onChange={(e) => {
-                setDate(e.target.value);
-              }}
-              required
-            />
-          </div>
+        {/* Material Name */}
+        <div className="mb-3">
+          <label htmlFor="materialName" className="form-label">
+            Material Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="materialName"
+            value={material.material_name}
+            onChange={handleNameChange}
+            required
+          />
         </div>
 
-        <div className="d-flex justify-content-center gap-3 pt-4">
-          <button
-            type="submit"
-            className="add-product-btn pti-bold btn btn-primary pti-rounded-small"
-          >
-            Submit
-          </button>
-          <button
-            type="reset"
-            className="add-product-btn bg-black text-light pti-bold pti-rounded-small"
-          >
-            cancel
-          </button>
+        {/* Roll Quantity */}
+        <div className="mb-3">
+          <label htmlFor="rollQuantity" className="form-label">
+            Roll Quantity
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            id="rollQuantity"
+            value={material.roll_quantity}
+            onChange={handleQuantityChange}
+            required
+          />
         </div>
+
+        {/* Color */}
+        <div className="mb-3">
+          <label htmlFor="color" className="form-label">
+            Color
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="color"
+            value={material.color}
+            onChange={handleColorChange}
+          />
+        </div>
+
+        {/* Date */}
+        <div className="mb-3">
+          <label htmlFor="date" className="form-label">
+            Date
+          </label>
+          <input
+            type="date"
+            className="form-control"
+            id="date"
+            value={material.date}
+            onChange={handleDateChange}
+            required
+          />
+        </div>
+
+        {/* Submit Button */}
+        <button type="submit" className="btn btn-primary">
+          {location.state ? "Add" : "Update"}
+        </button>
       </form>
-      <br />
     </div>
   );
 }

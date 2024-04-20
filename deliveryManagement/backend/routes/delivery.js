@@ -46,6 +46,31 @@ router.route("/add").post(async (req, res) => {
             <p>Driver ID: ${driverId}</p>
         `;
 
+        // Create transporter
+        const transporter = nodeMailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: "ptiproject2024@gmail.com",
+                pass: "gdgj szjg nkth pmxe"
+            }
+        });
+
+        const mailOptions = {
+            from: 'ptiproject2024@gmail.com',
+            to: 'silunirupasinghe@gmail.com',
+            subject: "Delivery Update", 
+            html: emailHTML
+          };  
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.error(error);
+              res.status(500).json({ message: 'Error sending email' });
+            } else {
+              console.log('Email sent: ' + info.response);
+           }
+          });
+
        
         res.json({ message: "Delivery added and associated with order" });
     } catch (err) {
@@ -114,7 +139,5 @@ router.route("/get/:id").get(async (req, res) => {
         res.status(500).send({ status: "Error fetching the delivery" });
     }
 });
-
-
 
 module.exports=router;

@@ -11,7 +11,7 @@
   --light_blue: #e8f2f6;
   --black: #0d0d0d;
   --grey: #545454;
-  --primary_white: FFFFFF;
+  --primary_white: white;
 
   /* transistion */
   --transition1: 200ms;
@@ -23,7 +23,7 @@
   --font-h1-md: 40px;
   --font-h1: 30px;
 
-  --font-h-medium-lg: 34px;
+  --font-h-medium-lg: 36px;
   --font-h-medium-md: 28px;
   --font-h-medium: 22px;
 

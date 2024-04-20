@@ -15,7 +15,7 @@ app.use(cors({
   }));  
 
 // MongoDB Atlas connection
-mongoose.connect('mongodb+srv://ptiproject123:ptiproject123@cluster0.4yctu6r.mongodb.net/orderingMaterial', {
+mongoose.connect('mongodb+srv://ptiproject123:ptiproject123@cluster0.4yctu6r.mongodb.net/pti_db', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

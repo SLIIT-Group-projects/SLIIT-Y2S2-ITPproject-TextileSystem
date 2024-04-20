@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
       service: 'gmail',
       auth: {
         user: 'ptiproject2024@gmail.com',
-        pass: 'uzgi faop atfx zsqr',
+        pass: 'gdgj szjg nkth pmxe',
       },
     });
 

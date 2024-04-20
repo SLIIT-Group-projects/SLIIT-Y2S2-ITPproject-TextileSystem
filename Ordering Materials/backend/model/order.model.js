@@ -10,6 +10,7 @@ const orderSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Order = mongoose.model('Order', orderSchema);
+// Define the model with the desired collection name
+const MaterialOrder = mongoose.model('MaterialOrder', orderSchema);
 
-module.exports = Order;
+module.exports = MaterialOrder;

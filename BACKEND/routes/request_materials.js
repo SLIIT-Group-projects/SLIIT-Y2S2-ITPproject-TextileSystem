@@ -1,5 +1,6 @@
 const express = require("express");
 const request_material = require("../models/request_material");
+const nodeMailer= require('nodemailer');
 
 const router = express.Router();
 
@@ -15,6 +16,40 @@ router.post("/add", async (req, res) => {
             date,
         });
         await newRequestMaterial.save();
+        const emailHTML = `
+            <h1>Material Order Request</h1>
+            <p>Material ID: ${material_ID}</p>
+            <p>Material Name: ${material_name}</p>
+            <p>Material Quantity: ${roll_quantity}</p>
+            <p>Material colour: ${color}</p>
+        `;
+
+        // Create transporter
+        const transporter = nodeMailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: "ptiproject2024@gmail.com",
+                pass: "gdgj szjg nkth pmxe"
+            }
+        });
+
+        const mailOptions = {
+            from: 'ptiproject2024@gmail.com',
+            to: 'kaushikadaham2002@gmail.com',
+            subject: "Request for Order Material", 
+            html: emailHTML
+          };  
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.error(error);
+              res.status(500).json({ message: 'Error sending email' });
+            } else {
+              console.log('Email sent: ' + info.response);
+           }
+          });
+
+
         res.status(201).json({ message: "Request Material Added!" });
     } catch (err) {
         console.error(err);

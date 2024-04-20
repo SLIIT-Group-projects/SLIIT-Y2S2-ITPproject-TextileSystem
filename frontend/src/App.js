@@ -14,6 +14,9 @@ import AddRequestMaterials from "./components/addRequestMaterials";
 import ViewLowMaterials from "./components/viewLowMaterials";
 // header
 import Header from "./components/header";
+// footer
+import Footer from "./components/footer";
+
 // home
 import Home from "./components/home";
 
@@ -26,7 +29,7 @@ function App() {
         <Routes>
           <Route path="/add" exact element={<AddProducts />} />
           {/* header tempory */}
-          {/* <Route path="/header" exact element={<Header />} /> */}
+          <Route path="/footer" exact element={<Footer />} />
 
           <Route path="/home" exact element={<Home />} />
 

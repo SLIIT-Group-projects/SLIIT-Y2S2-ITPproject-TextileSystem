@@ -1,0 +1,13 @@
+.footer{
+    height: 400px;
+}
+
+.footer-logo{
+    width: 110px;
+    height: 45px;
+    background-size: cover;
+    background-image: url("../resources/header/logo.png");
+}
+.footer-test{
+    color: aquamarine;
+}

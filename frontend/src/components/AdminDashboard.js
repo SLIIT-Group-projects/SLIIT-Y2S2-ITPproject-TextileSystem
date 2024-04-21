@@ -8,13 +8,14 @@ export default function AdminDashboard() {
   
   return (
     <div className="container">
-        <div>
-            d
-        </div>
-        <div>
-            
-        </div>
-     
+      <div>PTI ADMINS</div>
+      <div>
+        <div></div>
+        <div></div>
+      </div>
+      <div></div>
+      <div></div>
+      
     </div>
   );
 }

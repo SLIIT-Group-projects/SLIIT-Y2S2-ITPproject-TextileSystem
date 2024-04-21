@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
-export default function AllMaterials() {
+export default function AdminHeader() {
   return (
     <div>
       {/* Page header */}

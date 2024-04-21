@@ -1,0 +1,23 @@
+.header-list:hover{
+    color: var(--secondary_blue);
+}
+.header-list:active{
+    color: white;
+}
+.header_logo{
+    width: 110px;
+    height: 45px;
+    background-size: cover;
+    background-image: url("../resources/header/logo.png");
+}
+/* footer css */
+.footer{
+    height: 400px;
+}
+
+.footer-logo{
+    width: 110px;
+    height: 45px;
+    background-size: cover;
+    background-image: url("../resources/header/logo.png");
+}

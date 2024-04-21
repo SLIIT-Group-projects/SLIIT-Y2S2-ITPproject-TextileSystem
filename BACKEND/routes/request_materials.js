@@ -18,10 +18,13 @@ router.post("/add", async (req, res) => {
         await newRequestMaterial.save();
         const emailHTML = `
             <h1>Material Order Request</h1>
+            <h2>please request the follwing material from the relevant supplier</h2> <br/>
             <p>Material ID: ${material_ID}</p>
             <p>Material Name: ${material_name}</p>
             <p>Material Quantity: ${roll_quantity}</p>
-            <p>Material colour: ${color}</p>
+            <p>Material colour: ${color}</p> <br/>
+            <p><i>Internal use only</i></p> <br/>
+
         `;
 
         // Create transporter

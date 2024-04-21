@@ -30,7 +30,6 @@ function AddMaterials() {
       .then(() => {
         alert("Material Added");
         navigate("/material"); // Navigate back to the materials page
-
       })
       .catch((err) => {
         alert(err);
@@ -52,7 +51,7 @@ function AddMaterials() {
               onChange={(e) => {
                 setID(e.target.value);
               }}
-            required/>
+              required/>
           </div>
           <div className="mb-3 flex-grow-1 d-flex flex-column align-items-start">
             <label htmlFor="name" className="form-label pti-text-dark pti-bold">
@@ -93,6 +92,7 @@ function AddMaterials() {
             </label>
             <input
               type="number"
+              min="0"
               className="add-product-input form-control"
               onChange={(e) => {
                 setQuantity(e.target.value);

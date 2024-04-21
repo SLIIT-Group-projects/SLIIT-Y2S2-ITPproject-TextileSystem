@@ -29,7 +29,6 @@ function AddProducts() {
     const file = e.target.files[0];
     const maxSize = 2 * 1024 * 1024; // 5 MB (adjust this value as needed)
 
-    // Check if file exists and its size is within the limit
     if (file && file.size <= maxSize) {
       setImg(file);
     } else {

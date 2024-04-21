@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 export default function UpdateTask() {
   const { id } = useParams();
-  const [task, setTask] = useState({});
   const [taskData, setTaskData] = useState({
     task_id: "",
     color: "",
@@ -18,32 +17,37 @@ export default function UpdateTask() {
   });
 
   useEffect(() => {
-    axios.put(`http://localhost:8070/task/update/${id}`)
-      .then((res) => {
-        setTask(res.data);
-        setTaskData(res.data);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
-  }, [id]);
+    const fetchTaskData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8070/task/${id}`);
+        const taskData = response.data;
+        setTaskData(taskData);
+      } catch (error) {
+        console.error("Error fetching task data:", error);
+        if (error.response && error.response.status === 404) {
+          alert("Task data not found");
+        } else {
+          alert("An error occurred while fetching task data");
+        }
+      }
+    };
 
+    fetchTaskData();
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTaskData({ ...taskData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:8070/task/update/${id}`, taskData)
-      .then((res) => {
-        alert("Task updated successfully");
-        // Redirect to DisplayTasks or any other route after update
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+    try {
+      await axios.put(`http://localhost:8070/task/update/${id}`, taskData);
+      alert("Task updated successfully");
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -95,54 +99,59 @@ export default function UpdateTask() {
           <input
             type="number"
             className="form-control"
-            name="target"
+            name="final_count"
             value={taskData.final_count}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-            <label>Deadline</label>
-            <input type="date" 
-            className="form-control" 
-            id="deadline" 
+          <label>Deadline</label>
+          <input
+            type="date"
+            className="form-control"
+            name="deadline"
             value={taskData.deadline}
             onChange={handleChange}
-        />    
-            </div>
-            <div className="form-group">
-              <label>Employee ID</label>
-              <input type="text" 
-              className="form-control" 
-              id="emp_id" 
-              value={taskData.emp_id}
-              onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-                <label>Approval</label>
-                 <select 
-                    className="form-control" id="approval"  
-                    value={taskData.approval}
-                    onChange={handleChange}
-                     >
-                <option value="Not Approved">Not Approved</option>
-                <option value="Approved">Approved</option>
-                </select>
-                </div>
-                <div className="form-group">
-                    <label>Status</label>
-                    <select 
-                    className="form-control" id="status" 
-                    value={taskData.status}
-                    onChange={handleChange}
-                        >
-                    <option value="Pending">Pending</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Complete">Complete</option>
-                    </select>
-                </div>
-        
-        <button type="submit" className="btn btn-primary">Update</button>
+          />
+        </div>
+        <div className="form-group">
+          <label>Employee ID</label>
+          <input
+            type="text"
+            className="form-control"
+            name="emp_id"
+            value={taskData.emp_id}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Approval</label>
+          <select
+            className="form-control"
+            name="approval"
+            value={taskData.approval}
+            onChange={handleChange}
+          >
+            <option value="Not Approved">Not Approved</option>
+            <option value="Approved">Approved</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Status</label>
+          <select
+            className="form-control"
+            name="status"
+            value={taskData.status}
+            onChange={handleChange}
+          >
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Complete">Complete</option>
+          </select>
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Update
+        </button>
       </form>
     </div>
   );

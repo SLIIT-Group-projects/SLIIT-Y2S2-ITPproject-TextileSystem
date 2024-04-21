@@ -60,7 +60,7 @@ export default function DisplayTasks() {
         <input
           type="text"
           className="form-control"
-          placeholder="Search by status"
+          placeholder="Search by Status"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
@@ -115,12 +115,12 @@ export default function DisplayTasks() {
               <td>{task.emp_id}</td>
               <td>{task.approval}</td>
               <td>{task.status}</td>
-              <td> {/* Update button */}
-                <Link to={'/update/${task._id}'} className="btn btn-primary">
+              <td>
+                <Link to={`/update/${task._id}`} className="btn btn-primary">
                   Update
                 </Link>
               </td>
-              <td> {/* Delete button */}
+              <td>
                 <button onClick={() => handleDelete(task._id)} className="btn btn-danger">
                   Delete
                 </button>

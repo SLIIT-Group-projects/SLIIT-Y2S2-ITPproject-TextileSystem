@@ -5,7 +5,9 @@ import AddTask from './components/AddTask';
 import AddTaskButton from './components/AddTaskButton';
 import DisplayTasks from './components/DisplayTask';
 import UpdateTask from './components/UpdateTask';
-import DeleteTask from './components/DeleteTask'; // Import DeleteTask component
+import DeleteTask from './components/DeleteTask'; 
+import ExcessCompletedTasks from "./components/ExcessCompletedTasks";
+
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/update/:id" element={<UpdateTask />} />
           <Route path="/delete/:id" element={<DeleteTask />} /> {/* Route for DeleteTask component */}
           <Route path="/*" element={<ConditionalDisplayTasks />} />
+          <Route path="/" element={<DisplayTasks />} />
+          <Route path="/excess-completed" element={<ExcessCompletedTasks />} />
         </Routes>
       </div>
     </Router>
@@ -31,5 +35,6 @@ function ConditionalDisplayTasks() {
     </div>
   );
 }
+
 
 export default App;

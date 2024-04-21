@@ -1,3 +1,5 @@
+// DisplayTasks.js
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -6,12 +8,13 @@ export default function DisplayTasks() {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [excessCompletedTasks, setExcessCompletedTasks] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:8070/task/")
       .then((res) => {
         setTasks(res.data);
-        setFilteredTasks(res.data); // Initialize filteredTasks with all tasks
+        setFilteredTasks(res.data);
       })
       .catch((err) => {
         alert(err.message);
@@ -19,7 +22,6 @@ export default function DisplayTasks() {
   }, []);
 
   useEffect(() => {
-    // Filter tasks based on searchQuery
     const filtered = tasks.filter(task =>
       Object.values(task).some(val =>
         typeof val === "string" && val.toLowerCase().includes(searchQuery.toLowerCase())
@@ -34,20 +36,29 @@ export default function DisplayTasks() {
   };
 
   const handleReset = () => {
-    setSearchQuery(""); // Clear search query
-    setFilteredTasks(tasks); // Display all tasks
+    setSearchQuery(""); 
+    setFilteredTasks(tasks);
   };
 
   const handleDelete = (id) => {
     axios.delete(`http://localhost:8070/task/delete/${id}`)
       .then(() => {
         alert("Task deleted successfully");
-        // Update tasks state after deletion
         setTasks(tasks.filter(task => task._id !== id));
         setFilteredTasks(filteredTasks.filter(task => task._id !== id));
       })
       .catch((err) => {
         alert(err.message);
+      });
+  };
+
+  const calculateExcessCompletedTasks = () => {
+    axios.get("http://localhost:8070/task/excess-completed")
+      .then((res) => {
+        setExcessCompletedTasks(res.data);
+      })
+      .catch((err) => {
+        alert("Error fetching excess completed tasks: " + err.message);
       });
   };
 
@@ -81,10 +92,7 @@ export default function DisplayTasks() {
           </button>
         </div>
       </div>
-
-      {/* Table displaying tasks */}
       <table className="table table-striped table-bordered">
-        {/* Table headers */}
         <thead className="thead-dark">
           <tr>
             <th>Task ID</th>
@@ -96,14 +104,11 @@ export default function DisplayTasks() {
             <th>Employee ID</th>
             <th>Approval</th>
             <th>Status</th>
-            <th>Update</th> {/* New column header */}
-            <th>Delete</th> {/* New column header */}
+            <th>Update</th> 
+            <th>Delete</th> 
           </tr>
         </thead>
-
-        {/* Table body */}
         <tbody>
-          {/* Display tasks */}
           {filteredTasks.map((task) => (
             <tr key={task._id}>
               <td>{task.task_id}</td>
@@ -129,6 +134,12 @@ export default function DisplayTasks() {
           ))}
         </tbody>
       </table>
+      <Link to="/excess-completed" className="btn btn-primary">
+        Excess Completed Tasks
+      </Link>
+      <Link to="/add-task" className="btn btn-success ml-2">
+        Add Task
+      </Link>
     </div>
   );
 }

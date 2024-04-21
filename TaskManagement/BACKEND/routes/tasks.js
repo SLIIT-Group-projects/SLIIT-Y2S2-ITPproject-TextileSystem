@@ -94,4 +94,31 @@ router.route("/delete/:id").delete(async(req,res)=>{
     })
 })
 
+router.route("/excess-completed").get(async (req, res) => {
+    try {
+      const allTasks = await Task.find();
+      const completedTasks = allTasks.filter(task => task.status === "completed");
+      const completedTasksCountByEmployee = completedTasks.reduce((acc, task) => {
+        acc[task.emp_id] = (acc[task.emp_id] || 0) + 1;
+        return acc;
+      }, {});
+      const targetsByEmployee = {};
+      allTasks.forEach(task => {
+        targetsByEmployee[task.emp_id] = targetsByEmployee[task.emp_id] || 0;
+        targetsByEmployee[task.emp_id]++;
+      });
+      const excessCompletedTasks = Object.keys(completedTasksCountByEmployee).map(emp_id => {
+        const completedCount = completedTasksCountByEmployee[emp_id];
+        const targetCount = targetsByEmployee[emp_id] || 0;
+        const excess = completedCount - targetCount;
+        return { emp_id, excess };
+      });
+      res.status(200).json(excessCompletedTasks);
+    } catch (error) {
+      console.error("Error calculating excess completed tasks:", error);
+      res.status(500).json({ error: "Error calculating excess completed tasks", message: error.message });
+    }
+  });
+
+
 module.exports = router;

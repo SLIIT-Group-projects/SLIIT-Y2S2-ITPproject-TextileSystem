@@ -93,7 +93,7 @@ export default function DisplayTasks() {
         </div>
       </div>
       <table className="table table-striped table-bordered">
-        <thead className="thead-dark">
+        <thead className="app-color">
           <tr>
             <th>Task ID</th>
             <th>Item Name</th>

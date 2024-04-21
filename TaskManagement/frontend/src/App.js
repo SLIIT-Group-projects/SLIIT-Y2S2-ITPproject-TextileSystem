@@ -13,8 +13,11 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Task Dashboard</h1>
-        <Routes>
+      <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+        <span style={{ color: '#08A6D5', fontFamily: 'Poppins', fontWeight: 'bold', fontSize: '55px', display: 'block' }}>
+          TASK DASHBOARD
+        </span>
+      </div>        <Routes>
           <Route path="/add-task" element={<AddTask />} />
           <Route path="/update/:id" element={<UpdateTask />} />
           <Route path="/delete/:id" element={<DeleteTask />} /> {/* Route for DeleteTask component */}

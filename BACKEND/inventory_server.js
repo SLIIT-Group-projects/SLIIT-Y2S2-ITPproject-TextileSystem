@@ -24,6 +24,16 @@ connection.once("open", () => {
   console.log("Mongodb Connection success!");
 });
 
+
+//siluni-delivery management
+const deliveryRouter=require("./routes/delivery.js")
+const orderRouter=require("./routes/order.js")
+const lorryRouter=require("./routes/lorry.js")
+app.use("/delivery",deliveryRouter);
+app.use("/order",orderRouter);
+app.use("/lorry",lorryRouter);
+
+//daham- inventory management
 // this is th route for products table
 const productRouter = require("./routes/products.js");
 app.use("/product",productRouter)

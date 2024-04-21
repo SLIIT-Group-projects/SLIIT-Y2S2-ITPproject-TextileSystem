@@ -25,6 +25,21 @@ function AddProducts() {
     });
   };
 
+  const handleUploadImage = (e) => {
+    const file = e.target.files[0];
+    const maxSize = 5 * 1024 * 1024; // 5 MB (adjust this value as needed)
+
+    // Check if file exists and its size is within the limit
+    if (file && file.size <= maxSize) {
+      setImg(file);
+    } else {
+      // Notify the user if the file exceeds the size limit
+      alert("Please select an image file smaller than 5 MB.");
+      // Clear the input field to allow the user to select a new file
+      e.target.value = null;
+    }
+  };
+
   const sendData = async (e) => {
     e.preventDefault();
 
@@ -55,10 +70,6 @@ function AddProducts() {
       .catch((err) => {
         alert(err);
       });
-  };
-
-  const handleUploadImage = (e) => {
-    setImg(e.target.files[0]);
   };
 
   return (
@@ -114,7 +125,8 @@ function AddProducts() {
               Quantity
             </label>
             <input
-              type="text"
+              type="number"
+              min="0"
               className="add-product-input form-control"
               onChange={(e) => {
                 setQuantity(e.target.value);
@@ -149,7 +161,8 @@ function AddProducts() {
               Weight
             </label>
             <input
-              type="text"
+              type="number"
+              min="0"
               className="add-product-input form-control"
               onChange={(e) => {
                 setWeight(e.target.value);
@@ -164,7 +177,9 @@ function AddProducts() {
               Unit Price
             </label>
             <input
-              type="text"
+              type="number"
+              min="0"
+              step="0.01"
               className="add-product-input form-control"
               onChange={(e) => {
                 setPrice(e.target.value);

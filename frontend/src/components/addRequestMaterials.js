@@ -13,8 +13,10 @@ function AddMaterials() {
     material_name: "",
     roll_quantity: "",
     color: "",
-    date: ""
+    date: new Date().toISOString().substr(0, 10) // Default to today's date
   });
+
+  const today = new Date().toISOString().substr(0, 10); // Current date in YYYY-MM-DD format
 
   useEffect(() => {
     const fetchMaterialData = async () => {
@@ -75,7 +77,15 @@ function AddMaterials() {
   };
 
   const handleDateChange = (e) => {
-    setMaterial({ ...material, date: e.target.value });
+    const selectedDate = e.target.value;
+    // Check if selected date is today's date
+    if (selectedDate === today) {
+      setMaterial({ ...material, date: selectedDate });
+    } else {
+      // If not today's date, set the date back to today
+      alert("Please select today's date.");
+      setMaterial({ ...material, date: today });
+    }
   };
 
   return (
@@ -122,6 +132,7 @@ function AddMaterials() {
           </label>
           <input
             type="number"
+            min="0"
             className="form-control"
             id="rollQuantity"
             value={material.roll_quantity}

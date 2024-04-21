@@ -4,8 +4,8 @@ let Task = require("../models/task.js");
 router.route("/add").post((req,res)=>{
 
     const task_id = Number(req.body.task_id);
-    const task_description = req.body.task_description;
-    const item_id = req.body.item_id;
+    const color = req.body.color;
+    const item_name = req.body.item_name;
     const target = Number(req.body.target);
     const final_count = Number(req.body.final_count);
     const deadline = req.body.deadline;
@@ -14,8 +14,8 @@ router.route("/add").post((req,res)=>{
     const status = req.body.status;
 
     const newTask = new Task({
-        task_id,task_description,
-        item_id,
+        task_id,color,
+        item_name,
         target,final_count,
         deadline,
         emp_id,
@@ -41,11 +41,11 @@ router.route("/").get((req,res)=>{
 
 router.route("/update/:id").put(async(req,res)=>{
     let taskId = req.params.id;
-    const{task_id,task_description,item_id,target,final_count,deadline,emp_id,approval,status} = req.body;
+    const{task_id,color,item_name,target,final_count,deadline,emp_id,approval,status} = req.body;
 
     const updateTask = {
-        task_id,task_description,
-        item_id,
+        task_id,
+        item_name,color,
         target,final_count,
         deadline,
         emp_id,

@@ -8,13 +8,13 @@ const taskSchema = new Schema({
         type : Number,
         required: true
     },
-    task_description : {
-        type : String,
-        default : '-'
-    },
-    item_id : {
+    item_name : {
         type : String,
         required: true
+    },
+    color : {
+        type : String,
+        default : '-'
     },
     target : {
         type : Number

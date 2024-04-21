@@ -88,8 +88,8 @@ export default function DisplayTasks() {
         <thead className="thead-dark">
           <tr>
             <th>Task ID</th>
-            <th>Task Description</th>
-            <th>Item ID</th>
+            <th>Item Name</th>
+            <th>Color</th> 
             <th>Target</th>
             <th>Final Count</th>
             <th>Deadline</th>
@@ -107,8 +107,8 @@ export default function DisplayTasks() {
           {filteredTasks.map((task) => (
             <tr key={task._id}>
               <td>{task.task_id}</td>
-              <td>{task.task_description}</td>
-              <td>{task.item_id}</td>
+              <td>{task.item_name}</td>
+              <td>{task.color}</td>
               <td>{task.target}</td>
               <td>{task.final_count}</td>
               <td>{task.deadline}</td>
@@ -116,7 +116,7 @@ export default function DisplayTasks() {
               <td>{task.approval}</td>
               <td>{task.status}</td>
               <td> {/* Update button */}
-                <Link to={`/update/${task._id}`} className="btn btn-primary">
+                <Link to={'/update/${task._id}'} className="btn btn-primary">
                   Update
                 </Link>
               </td>

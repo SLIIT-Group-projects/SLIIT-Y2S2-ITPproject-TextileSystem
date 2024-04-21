@@ -4,8 +4,8 @@ import axios from "axios";
 export default function AddTask() {
 
     const [task_id, setTaskId] = useState("");
-    const [task_description, setTaskDescription] = useState("-");
-    const [item_id, setItemId] = useState("");
+    const [color, setColor] = useState("-");
+    const [item_name, setItemName] = useState("");
     const [target, setTarget] = useState("");
     const [final_count, setFinalCount] = useState("");
     const [deadline, setDeadline] = useState("");
@@ -17,8 +17,8 @@ export default function AddTask() {
         e.preventDefault();
         //alert("insert");
         const newTask = {
-            task_id,task_description,
-            item_id,
+            task_id,color,
+            item_name,
             target,final_count,
             deadline,
             emp_id,
@@ -30,8 +30,8 @@ export default function AddTask() {
             alert("Task Added")
 /*
             setTaskId("");
-            setTaskDescription("");
-            setItemId("");
+            setColor("");
+            setItemName("");
             setTarget("");
             setFinalCount("");
             setDeadline("");
@@ -60,22 +60,22 @@ export default function AddTask() {
               }/>
             </div>
             <div className="form-group">
-              <label htmlFor="task_description" className="form-label">Task Description</label>
-              <input type="text" className="form-control" id="task_description" defaultValue="-" 
+              <label htmlFor="item_name" className="form-label">Item Name</label>
+              <input type="text" className="form-control" id="item_name" required 
               onChange={(e)=>
               
-                setTaskDescription(e.target.value)
+                setItemName(e.target.value)
+              
+              }/>
+            <div className="form-group">
+              <label htmlFor="color" className="form-label">Color</label>
+              <input type="text" className="form-control" id="color" defaultValue="-" 
+              onChange={(e)=>
+              
+                setColor(e.target.value)
               
               }/>
             </div>
-            <div className="form-group">
-              <label htmlFor="item_id" className="form-label">Item ID</label>
-              <input type="text" className="form-control" id="item_id" required 
-              onChange={(e)=>
-              
-                setItemId(e.target.value)
-              
-              }/>
             </div>
             <div className="form-group">
               <label htmlFor="target" className="form-label">Target</label>

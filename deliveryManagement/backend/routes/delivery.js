@@ -39,13 +39,21 @@ router.route("/add").post(async (req, res) => {
         await order.save();
 
         const emailHTML = `
-            <h1>New Delivery</h1>
-            <p>Delivery details:</p>
-            <p>Order ID: ${orderId}</p>
-            <p>Delivery Date: ${deliveryDate}</p>
-            <p>Vehicle Number: ${vehicleNo}</p>
-            <p>Driver ID: ${driverId}</p>
-            <p>Pin: ${pin}</p>
+            <p>Dear customer,</p>
+            <p>Your order has confirmed & delivery has been scheduled. Please enter the PIN number to the delivery device when collecting the order.</p>
+
+            <h4 className="" style="{font-weight:bold}">Delivery Detail Confirmation</h4>
+            
+            Order ID: ${orderId}<br/>
+            Delivery Date: ${deliveryDate}<br/>
+            Vehicle Number: ${vehicleNo}<br/>
+            Driver ID: ${driverId}<br/>
+            Pin: ${pin}<br/>
+
+            Contact us for any inquiry.<br/>
+            Thank you<br/>
+            PTI team<br/>
+            0711497951<br/>
         `;
 
         // Create transporter

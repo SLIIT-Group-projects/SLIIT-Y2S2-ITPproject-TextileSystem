@@ -14,7 +14,7 @@ export default function DriverPortal() {
         vehicleNo: "",
         driverId: "",
         deliveryStatus: "",
-        pin: "" // Add pin field to store the emailed PIN
+        pin: "" 
     });
 
     const [order, setOrder] = useState({
@@ -55,35 +55,39 @@ export default function DriverPortal() {
             setErrorMessage("Invalid PIN. Please enter the correct PIN.");
             return;
         }
+        const updatedDelivery = { ...delivery, deliveryStatus: delivery.deliveryStatus };
 
         // PIN validation successful, proceed with updating delivery status
         try {
-            const response = await axios.put(`http://localhost:8070/delivery/update/${id}`, delivery);
+            const response = await axios.put(`http://localhost:8070/delivery/update/${id}`, updatedDelivery);
             setSuccessMessage("Delivery details updated successfully.");
+            // Optionally, you may update the local state with the updated delivery data from the server
+            setDelivery(updatedDelivery);
         } catch (err) {
             console.error("Error updating delivery:", err);
         }
+    
     };
 
     return (
         <div className="container">
             <h2>Delivery Details</h2>
                 
-                <table className="table">
-                        <tbody>
-                            <tr>
+                <table className="table table-hover table-delivery">
+                        <tbody className="table-delivery">
+                            <tr className="table-del-row">
                                 <td>Delivery Date</td>
                                 <td>{delivery.deliveryDate}</td>
                             </tr>
-                            <tr>
+                            <tr className="table-del-row">
                                 <td>Order ID:</td>
                                 <td>{delivery.orderId}</td>
                             </tr>
-                            <tr>
+                            <tr className="table-del-row">
                                 <td>Vehicle ID:</td>
                                 <td>{delivery.vehicleNo}</td>
                             </tr>
-                            <tr>
+                            <tr className="table-del-row"> 
                                 <td>Driver id</td>
                                 <td>{delivery.driverId}</td>
                             </tr>
@@ -117,21 +121,21 @@ export default function DriverPortal() {
             </form>
 
             <h2>Order Details</h2>
-            <table className="table">
+            <table class="table table-hover table-delivery">
                     <tbody>
-                        <tr>
+                        <tr className="table-del-header">
                             <td>Customer Code:</td>
                             <td>{order.user}</td>
                         </tr>
-                        <tr>
+                        <tr className="table-del-header">
                             <td>Delivery Address:</td>
                             <td>{order.shippingAddress}</td>
                         </tr>
-                        <tr>
+                        <tr className="table-del-header">
                             <td>Total Price:</td>
                             <td>{order.totalPrice}</td>
                         </tr>
-                        <tr>
+                        <tr className="table-del-header">
                             <td>Payment Method:</td>
                             <td>{order.paymentMethod}</td>
                         </tr>
@@ -139,9 +143,9 @@ export default function DriverPortal() {
                 </table>
 
                 <h2>Ordered Items</h2>
-                    <table className="table">
+                    <table class="table table-hover table-delivery">
                         <thead>
-                            <tr>
+                            <tr className="table-del-header">
                                 <th>Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
@@ -149,9 +153,9 @@ export default function DriverPortal() {
                         </thead>
                         <tbody>
                             {order.orderItems && order.orderItems.map((item, index) => (
-                                <tr key={index}>
-                                    <td>{item.name}</td>
-                                    <td>{item.qty}</td>
+                                <tr className="table-del-header" key={index}>
+                                    <td>{item.item_name}</td>
+                                    <td>{item.quantity}</td>
                                     <td>${item.price}</td>
                                 </tr>
                             ))}

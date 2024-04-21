@@ -57,8 +57,8 @@ export default function ViewOrders() {
                 <div>
                 {Order.orderItems.map((item, index) => (
                     <div key={index}>
-                    <td>Item Name: {item.name} <br/><br/>
-                    Quantity: {item.qty}</td>
+                    <td>Item Name: {item.product_name} <br/>
+                    Quantity: {item.quantity}</td>
                     </div>
                     
                   ))}

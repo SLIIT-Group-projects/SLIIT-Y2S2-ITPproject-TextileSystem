@@ -41,7 +41,6 @@ export default function DownloadDelivery() {
             const isSearchMatch = Object.values(delivery).some((field) =>
                 field.toString().toLowerCase().includes(searchQuery.toLowerCase())
             );
-
             return isDateMatch && isLorryMatch && isSearchMatch;
         });
 
@@ -94,7 +93,7 @@ export default function DownloadDelivery() {
                                         <ul>
                                             {orders.find(order => order._id === delivery.orderId)?.orderItems.map((item, index) => (
                                                 <li key={index}>
-                                                    {item.name}: {item.qty}
+                                                    {item.product_name}: {item.quantity}
                                                 </li>
                                             ))}
                                         </ul>

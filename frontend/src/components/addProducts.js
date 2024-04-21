@@ -27,14 +27,14 @@ function AddProducts() {
 
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
-    const maxSize = 5 * 1024 * 1024; // 5 MB (adjust this value as needed)
+    const maxSize = 2 * 1024 * 1024; // 5 MB (adjust this value as needed)
 
     // Check if file exists and its size is within the limit
     if (file && file.size <= maxSize) {
       setImg(file);
     } else {
       // Notify the user if the file exceeds the size limit
-      alert("Please select an image file smaller than 5 MB.");
+      alert("Please select an image file smaller than 2 MB.");
       // Clear the input field to allow the user to select a new file
       e.target.value = null;
     }

@@ -37,27 +37,6 @@ function AddMaterials() {
     fetchMaterialData();
   }, [location]);
 
-  const sendData = async (e) => {
-    e.preventDefault();
-
-    const newMaterial = {
-      material_ID: material.material_ID,
-      material_name: material.material_name,
-      roll_quantity: Number(material.roll_quantity),
-      color: material.color,
-      date: material.date
-    };
-
-    try {
-      await Axios.post("http://localhost:8070/request_material/add", newMaterial);
-      alert("Material Added");
-      navigate("/request_material"); // Navigate back to the materials page
-    } catch (error) {
-      console.error("Error adding material:", error);
-      alert("Error adding material");
-    }
-  };
-
   const handleIDChange = (e) => {
     setMaterial({ ...material, material_ID: e.target.value });
   };
@@ -75,7 +54,31 @@ function AddMaterials() {
   };
 
   const handleDateChange = (e) => {
-    setMaterial({ ...material, date: e.target.value });
+    // Set the date to today's date
+    const currentDate = new Date();
+    const formattedToday = currentDate.toISOString().slice(0, 10);
+    setMaterial({ ...material, date: formattedToday });
+  };
+
+  const sendData = async (e) => {
+    e.preventDefault();
+
+    const newMaterial = {
+      material_ID: material.material_ID,
+      material_name: material.material_name,
+      roll_quantity: Number(material.roll_quantity),
+      color: material.color,
+      date: material.date
+    };
+
+    try {
+      await Axios.post("http://localhost:8070/request_material/add", newMaterial);
+      alert("Material Added");
+      navigate("/request_material");
+    } catch (error) {
+      console.error("Error adding material:", error);
+      alert("Error adding material");
+    }
   };
 
   return (
@@ -85,7 +88,6 @@ function AddMaterials() {
         Add Request Material
       </div>
       <form onSubmit={sendData}>
-        {/* Material ID */}
         <div className="mb-3">
           <label htmlFor="materialID" className="form-label">
             Material ID
@@ -100,7 +102,6 @@ function AddMaterials() {
           />
         </div>
 
-        {/* Material Name */}
         <div className="mb-3">
           <label htmlFor="materialName" className="form-label">
             Material Name
@@ -115,7 +116,6 @@ function AddMaterials() {
           />
         </div>
 
-        {/* Roll Quantity */}
         <div className="mb-3">
           <label htmlFor="rollQuantity" className="form-label">
             Roll Quantity
@@ -130,7 +130,6 @@ function AddMaterials() {
           />
         </div>
 
-        {/* Color */}
         <div className="mb-3">
           <label htmlFor="color" className="form-label">
             Color
@@ -144,7 +143,6 @@ function AddMaterials() {
           />
         </div>
 
-        {/* Date */}
         <div className="mb-3">
           <label htmlFor="date" className="form-label">
             Date
@@ -155,11 +153,12 @@ function AddMaterials() {
             id="date"
             value={material.date}
             onChange={handleDateChange}
+            min={new Date().toISOString().slice(0, 10)} // Set min attribute to today's date
+            max={new Date().toISOString().slice(0, 10)} // Set max attribute to today's date
             required
           />
         </div>
 
-        {/* Submit Button */}
         <button type="submit" className="btn btn-primary">
           {location.state ? "Add" : "Update"}
         </button>

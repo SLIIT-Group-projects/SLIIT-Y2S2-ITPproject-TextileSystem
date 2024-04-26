@@ -27,9 +27,9 @@ export default function CreateDeliveryLog({ orderId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const today = new Date();
-      today.setHours(0, 0, 0, 0); // Set hours to start of day for comparison
+      today.setHours(0, 0, 0, 0); 
 
-      // Convert delivery date to Date object for comparison
+     
       const selectedDeliveryDate = new Date(deliveryDate);
 
       if (selectedDeliveryDate < today) {
@@ -80,7 +80,7 @@ export default function CreateDeliveryLog({ orderId }) {
         
         <div className="mb-3">
           <label htmlFor="driverId" className="form-label">
-            Driver ID
+            Driver Name:
           </label>
           <input
             type="text"

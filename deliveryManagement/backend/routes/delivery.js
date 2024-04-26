@@ -8,7 +8,7 @@ router.route("/add").post(async (req, res) => {
     const { deliveryDate, orderId, vehicleNo, driverId,pin } = req.body;
 
     try {
-        // Check if there's an existing delivery for the order
+        
         const existingDelivery = await Delivery.findOne({ orderId });
 
         if (existingDelivery) {

@@ -44,13 +44,13 @@ export default function DriverPortal() {
 
 
     const handleChange = (e) => {
-        setPin(e.target.value); // Update pin state
+        setPin(e.target.value); 
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Compare entered PIN with the stored PIN
+        
         if (pin !== delivery.pin) {
             setErrorMessage("Invalid PIN. Please enter the correct PIN.");
             return;
@@ -61,7 +61,7 @@ export default function DriverPortal() {
         try {
             const response = await axios.put(`http://localhost:8070/delivery/update/${id}`, updatedDelivery);
             setSuccessMessage("Delivery details updated successfully.");
-            // Optionally, you may update the local state with the updated delivery data from the server
+           
             setDelivery(updatedDelivery);
         } catch (err) {
             console.error("Error updating delivery:", err);
@@ -71,6 +71,7 @@ export default function DriverPortal() {
 
     return (
         <div className="container">
+            <h1>Complete Delivery</h1>
             <h2>Delivery Details</h2>
                 
                 <table className="table table-hover table-delivery">
@@ -154,7 +155,7 @@ export default function DriverPortal() {
                         <tbody>
                             {order.orderItems && order.orderItems.map((item, index) => (
                                 <tr className="table-del-header" key={index}>
-                                    <td>{item.item_name}</td>
+                                    <td>{item.product_name}</td>
                                     <td>{item.quantity}</td>
                                     <td>${item.price}</td>
                                 </tr>

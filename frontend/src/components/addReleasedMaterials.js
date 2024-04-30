@@ -41,12 +41,18 @@ function AddReleasedMaterials() {
 
   const sendData = async (e) => {
     e.preventDefault();
-
+  
+    const newMaterial = {
+      item_name: taskMaterial.item_name,
+      color: taskMaterial.color,
+      target: Number(taskMaterial.target),
+      emp_id: taskMaterial.emp_id,
+      approval: taskMaterial.approval,
+      date: taskMaterial.date
+    };
+  
     try {
-      await Axios.post(
-        "http://localhost:8070/released_material/add",
-        taskMaterial
-      );
+      await Axios.post("http://localhost:8070/released_material/released/add", newMaterial);
       alert("Released Material Added");
       navigate("/request_material");
     } catch (error) {
@@ -54,6 +60,7 @@ function AddReleasedMaterials() {
       alert("Error adding material");
     }
   };
+  
 
   // Add conditional rendering to check if taskMaterial is null
   if (!taskMaterial) {

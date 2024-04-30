@@ -26,4 +26,4 @@ const taskSchema = new Schema({
 
 const released_material = mongoose.model('released_material',taskSchema);
 
-module.exports = Task;
+module.exports =released_material;

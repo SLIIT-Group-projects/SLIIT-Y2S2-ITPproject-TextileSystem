@@ -1,5 +1,6 @@
 const router = require("express").Router();
 let Task = require("../models/task.js");
+let Released_materials = require("../models/released_material.js");
 
 router.route("/add").post((req, res) => {
   const task_id = Number(req.body.task_id);
@@ -117,30 +118,30 @@ router.route("/delete/:id").delete(async (req, res) => {
 
 
 // this is released material add
-router.route("/add").post((req, res) => {
-  const item_name = req.body.item_name;
-  const color = req.body.color;
-  const target = Number(req.body.target);
-  const emp_id = req.body.emp_id;
-  const date = req.body.emp_id;
-
-  const newTask = new Task({
-    item_name,
-    color,
-    target,
-    emp_id,
-    date,
-  });
-
-  newTask
-    .save()
-    .then(() => {
-      res.json("Initial Task Added");
-    })
-    .catch((err) => {
-      console.log(err);
+router.route("/released/add").post((req, res) => {
+    const item_name = req.body.item_name;
+    const color = req.body.color;
+    const target = Number(req.body.target);
+    const emp_id = req.body.emp_id;
+    const date = req.body.date; // Corrected variable name
+  
+    const newReleasedMaterial = new Released_materials({
+      item_name,
+      color,
+      target,
+      emp_id,
+      date,
     });
-});
-
+  
+    newReleasedMaterial
+      .save()
+      .then(() => {
+        res.json("Released Material Added"); // Adjusted response message
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: "Error adding released material" }); // Send error response
+      });
+  });
 
 module.exports = router;

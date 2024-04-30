@@ -1,6 +1,5 @@
 const router = require("express").Router();
 let Task = require("../models/task.js");
-let Released_material = require("../models/released_material.js");
 
 router.route("/add").post((req, res) => {
   const task_id = Number(req.body.task_id);
@@ -113,6 +112,33 @@ router.route("/delete/:id").delete(async (req, res) => {
       res
         .status(500)
         .send({ status: "Error with Delete Task", error: err.message });
+    });
+});
+
+
+// this is released material add
+router.route("/add").post((req, res) => {
+  const item_name = req.body.item_name;
+  const color = req.body.color;
+  const target = Number(req.body.target);
+  const emp_id = req.body.emp_id;
+  const date = req.body.emp_id;
+
+  const newTask = new Task({
+    item_name,
+    color,
+    target,
+    emp_id,
+    date,
+  });
+
+  newTask
+    .save()
+    .then(() => {
+      res.json("Initial Task Added");
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 

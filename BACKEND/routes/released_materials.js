@@ -144,4 +144,14 @@ router.route("/released/add").post((req, res) => {
       });
   });
 
+  router.route("/released/").get((req, res) => {
+    Released_materials.find()
+      .then((Released_materials) => {
+        res.json(Released_materials);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
 module.exports = router;

@@ -75,8 +75,8 @@ export default function AllMaterials() {
         <h2 className="text-black pti-bold">Releasing Tasks</h2>
         <div className="d-flex gap-3">
           <button className="add-product-btn pti-rounded-small pti-bg-black">
-            <Link className=" nav-link text-light pti-bold" to="/request_material/viewLow">
-              Low Materils
+            <Link className=" nav-link text-light pti-bold" to="/inv/AllReleasedMaterials">
+              Released Materils
             </Link>
           </button>
           <button className=" add-product-btn pti-rounded-small pti-bg-black text-light pti-bold" onClick={handlePrint}>

@@ -14,6 +14,7 @@ import AddRequestMaterials from "./components/addRequestMaterials";
 import ViewLowMaterials from "./components/viewLowMaterials";
 import AllReleasedTasks from "./components/AllReleasedTasks";
 import AddReleasedMaterials from "./components/addReleasedMaterials";
+import AllReleasedMaterials from "./components/AllReleasedMaterials";
 
 // header
 import Header from "./components/header";
@@ -45,6 +46,7 @@ function App() {
           <Route path="/product/:id" exact element={<ProductMaterials/>} />
           <Route path="/inv/releasedMaterials/add/:id" exact element={<AddReleasedMaterials />} />
           <Route path="/inv/AllReleasedTasks" exact element={<AllReleasedTasks />} />
+          <Route path="/inv/AllReleasedMaterials" exact element={<AllReleasedMaterials />} />
           <Route path="/" exact element={<AllProducts />} />
 
         </Routes>

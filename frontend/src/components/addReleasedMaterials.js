@@ -1,5 +1,3 @@
-// AddReleasedMaterials.js
-
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
@@ -42,22 +40,24 @@ function AddReleasedMaterials() {
   const sendData = async (e) => {
     e.preventDefault();
   
-    const newMaterial = {
-      item_name: taskMaterial.item_name,
-      color: taskMaterial.color,
-      target: Number(taskMaterial.target),
-      emp_id: taskMaterial.emp_id,
-      approval: taskMaterial.approval,
-      date: taskMaterial.date
+    // Update the approval status to "Approved"
+    const updatedMaterial = {
+      ...taskMaterial,
+      approval: "Approved"
     };
   
     try {
-      await Axios.post("http://localhost:8070/released_material/released/add", newMaterial);
-      alert("Released Material Added");
-      navigate("/request_material");
+      // Update the approval status first
+      await Axios.put(`http://localhost:8070/released_material/update/${id}`, updatedMaterial);
+      
+      // Add released materials
+      await Axios.post("http://localhost:8070/released_material/released/add", updatedMaterial);
+      
+      alert("Released Material Added and Approval Updated");
+      navigate("/inv/AllReleasedTasks");
     } catch (error) {
-      console.error("Error adding material:", error);
-      alert("Error adding material");
+      console.error("Error adding or updating material:", error);
+      alert("Error adding or updating material");
     }
   };
   

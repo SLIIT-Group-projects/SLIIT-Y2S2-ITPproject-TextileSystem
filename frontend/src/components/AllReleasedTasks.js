@@ -111,24 +111,26 @@ export default function AllMaterials() {
         ) : (
           // Display each material row
           <tbody>
-            {taskMaterials.map((taskMaterial) => {
-              return (
-                <tr key={taskMaterial._id} className="pti-bg-light_blue ">
-                  <td className="inv-Allproducts-table-row1 p-2">{taskMaterial.item_name}</td>
-                  <td>{taskMaterial.color}</td>
-                  <td>{taskMaterial.target}</td>
-                  <td>{taskMaterial.emp_id}</td>
-                  <td>{taskMaterial.approval}</td>
-                  <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
+            {taskMaterials
+              .filter((taskMaterial) => taskMaterial.approval === "Not Approved")
+              .map((taskMaterial) => {
+                return (
+                  <tr key={taskMaterial._id} className="pti-bg-light_blue ">
+                    <td className="inv-Allproducts-table-row1 p-2">{taskMaterial.item_name}</td>
+                    <td>{taskMaterial.color}</td>
+                    <td>{taskMaterial.target}</td>
+                    <td>{taskMaterial.emp_id}</td>
+                    <td>{taskMaterial.approval}</td>
+                    <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
                       <Link to={`/inv/releasedMaterials/add/${taskMaterial._id}`}>
                         <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
                           <i className="fa-solid fa-plus"></i>
                         </button>
                       </Link>
                     </td>
-                </tr>
-              );
-            })}
+                  </tr>
+                );
+              })}
           </tbody>
         )}
       </table>

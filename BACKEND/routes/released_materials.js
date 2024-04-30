@@ -1,89 +1,120 @@
 const router = require("express").Router();
+let Task = require("../models/task.js");
+let Released_material = require("../models/released_material.js");
 
-const released_material=require("../models/released_material")
-let Released_material = require("../models/released_material");
+router.route("/add").post((req, res) => {
+  const task_id = Number(req.body.task_id);
+  const color = req.body.color;
+  const item_name = req.body.item_name;
+  const target = Number(req.body.target);
+  const final_count = Number(req.body.final_count);
+  const deadline = req.body.deadline;
+  const emp_id = req.body.emp_id;
+  const approval = req.body.approval;
+  const status = req.body.status;
 
+  const newTask = new Task({
+    task_id,
+    color,
+    item_name,
+    target,
+    final_count,
+    deadline,
+    emp_id,
+    approval,
+    status,
+  });
 
-
-router.route("/add").post((req,res)=>{
-    //catch the details from in request body that come from frontend
-    const material_name = req.body.material_name;
-    const released_quantity = Number(req.body.released_quantity);
-    const employee_id = req.body.employee_id;
-    const employee_name = req.body.employee_name;
-    const description = req.body.description;
-
-    const newReleasedMaterial = new released_material({
-        material_name,
-        released_quantity,
-        employee_id,
-        employee_name,
-        description
+  newTask
+    .save()
+    .then(() => {
+      res.json("Initial Task Added");
     })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
-    //save in database and gave console msg or log errors(exception handilng)
-    newReleasedMaterial.save().then(()=>{
-        res.json("data Added...!!")
-    }).catch((err)=>{
-        console.log(err);
+router.route("/").get((req, res) => {
+  Task.find()
+    .then((tasks) => {
+      res.json(tasks);
     })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
-
-})
-
-
-// material view
-router.route("/").get((req,res)=>{
-    released_material.find().then((released_materials)=>{
-        res.json(released_materials)
-    }).catch((err)=>{
-        console.log(err)
+router.route("/get/:id").get(async (req, res) => {
+  let taskId = req.params.id;
+  //product.findOne(email)
+  const task = await Task.findById(taskId)
+    .then((task) => {
+      res.status(200).send({ status: "task fetched", task });
     })
-})
+    .catch(() => {
+      res
+        .status(500)
+        .send({ status: "error with get task", error: err.message });
+    });
+});
 
-//update the material
-router.route("/update/:id").put(async(req,res)=>{
-    let userId = req.params.id;
-    const {material_name,released_quantity,employee_id,employee_name,description
-    }=req.body;
-    
-    const updateReleasedMaterial = {
-        material_name,
-        released_quantity,
-        employee_id,
-        employee_name,
-        description
+router.route("/update/:id").put(async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    const {
+      task_id,
+      color,
+      item_name,
+      target,
+      final_count,
+      deadline,
+      emp_id,
+      approval,
+      status,
+    } = req.body;
+    const updateTask = {
+      task_id,
+      color,
+      item_name,
+      target,
+      final_count,
+      deadline,
+      emp_id,
+      approval,
+      status,
+    };
+    const updatedTask = await Task.findByIdAndUpdate(taskId, updateTask, {
+      new: true,
+    });
+    if (!updatedTask) {
+      return res.status(404).json({ error: "Task not found" });
     }
-    const update = await released_material.findByIdAndUpdate(userId,updateReleasedMaterial).then((material)=>{
-        res.status(200).send({status:"data updated",released_material})
-    }).catch((err)=>{
-        console.log(err)
-        res.status(500).send({status:"error with updating data",error:err.message});
-    })
-})
+    res
+      .status(200)
+      .json({ status: "Task updated successfully", task: updatedTask });
+  } catch (error) {
+    console.error("Error updating task:", error);
+    res.status(500).json({ error: "Error updating task" });
+  }
+});
 
-//delete operation for materials
-router.route("/delete/:id").delete(async(req,res)=>{
-    let userId = req.params.id;
-    await released_material.findByIdAndDelete(userId).then(()=>{
-        res.status(200).send({status:"row deleted"});
-    }).catch((err)=>{
-        console.log(err.message);
-        res.status(500).send({status:"Error with delete",error:err.message});
-    })
-}) 
+module.exports = router;
 
-// get one material
-router.route("/get/:id").get(async(req,res)=>{
-    let userId=req.params.id;
-    //product.findOne(email)
-   const user =  await released_material.findById(userId).then((released_material)=>{
-        res.status(200).send({status:"data fetched",released_material})
-    }).catch(()=>{
-        res.status(500).send({status:"error with get data",error:err.message});
-    })
-})
+router.route("/delete/:id").delete(async (req, res) => {
+  let taskId = req.params.id;
 
+  await Task.findByIdAndDelete(taskId)
+    .then(() => {
+      res.status(200).send({ status: "Task Deleted" });
+    })
+    .catch((err) => {
+      console.lof(err.message);
+      res
+        .status(500)
+        .send({ status: "Error with Delete Task", error: err.message });
+    });
+});
 
 
 module.exports = router;

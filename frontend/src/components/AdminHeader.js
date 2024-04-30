@@ -24,7 +24,9 @@ export default function AdminHeader() {
           </Link>
         </button>
         <button className="inv-allProducts-button pti-bg-secondary_blue pti-bold pti-rounded-small border-0 text-light pti-text-p">
-          RELEASED
+          <Link className="nav-link active" to="/inv/AllReleasedTasks">
+            RELEASED
+          </Link>
         </button>
         <button className="inv-allProducts-button pti-bg-secondary_blue pti-bold pti-rounded-small border-0 text-light pti-text-p">
           <Link className="nav-link active" to="/request_material">

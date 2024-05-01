@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
-import AdminHeader from '../components/AdminHeader';
+import AdminHeader from './AdminHeader';
 
 // Modal component to display image popup
 const ImageModal = ({ isModalOpen, selectedImage, closeModal }) => {

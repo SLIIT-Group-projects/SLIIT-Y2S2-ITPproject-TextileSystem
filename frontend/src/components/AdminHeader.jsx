@@ -3,6 +3,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
+import '../css/main.css';
+import '../css/Inventory_styles.css';
+
+
 export default function AdminHeader() {
   return (
     <div>

@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
+import '../css/header.css'
+
 export default function Header() {
   return (
     <div>

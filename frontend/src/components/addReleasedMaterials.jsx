@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
-import AdminHeader from "../components/AdminHeader";
+import AdminHeader from "./AdminHeader";
 
 function AddReleasedMaterials() {
   const { id } = useParams(); // Extract id from the URL parameters

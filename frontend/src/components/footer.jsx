@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
+import '../css/home.css'
+
 export default function Footer() {
   return (
     <div className="footer">

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
-import AdminHeader from '../components/AdminHeader';
+import AdminHeader from './AdminHeader';
 
 export default function AllMaterials() {
   const [materials, setMaterials] = useState([]);
@@ -59,6 +59,18 @@ export default function AllMaterials() {
     getMaterials();
   }, []);
 
+  // Handle delete function
+  const handleDelete = async (materialId) => {
+    try {
+      await axios.delete(`http://localhost:8070/material/delete/${materialId}`);
+      setMaterials(materials.filter((material) => material._id !== materialId));
+      alert("Material deleted successfully");
+    } catch (err) {
+      console.error("Error deleting material:", err);
+      alert("Error deleting material");
+    }
+  };
+
   // Handle report download
   const handlePrint = useReactToPrint({
     content: () => componentsRef.current,
@@ -80,7 +92,7 @@ export default function AllMaterials() {
 
   return (
     <div className="inv-Allproducts-page container" ref={componentsRef}>
-      <AdminHeader/>
+     <AdminHeader/>
 
       {/* Search form */}
       <div className="w-100 d-flex justify-content-center pt-4 pb-5">
@@ -109,6 +121,11 @@ export default function AllMaterials() {
       <div className="d-flex justify-content-between">
         <div className="pti-text-h2 pti-bold text-black">MATERIALS</div>
         <div className="d-flex gap-3">
+          <button className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold">
+            <Link className="nav-link active" to="/inv/material/add">
+              Add Material
+            </Link>
+          </button>
           <button
             className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold"
             onClick={handlePrint}
@@ -142,37 +159,102 @@ export default function AllMaterials() {
         ) : (
           // Display each material row
           <tbody>
-            {materials
-              .filter((material) => material.roll_quantity < 50) // Filter materials with roll quantity less than 50
-              .map((material) => {
-                // Define a class name for the row
-                const rowClassName =
-                  material.roll_quantity < 50 ? "low-roll-quantity" : "";
-                return (
-                  <tr
-                    className={`pti-bg-light_blue ${rowClassName}`}
-                    key={material._id}
-                  >
-                    <td className="inv-Allproducts-table-row1 p-2">
-                      {material.material_ID}
-                    </td>
-                    <td>{material.material_name}</td>
-                    <td>{material.material_type}</td>
-                    <td>{material.roll_quantity}</td>
-                    <td>{material.color}</td>
-                    <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
-                      <Link to={`/inv/request_material/add/${material._id}`}>
-                        <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
+            {materials.map((material) => {
+              // Define a class name for the row
+              const rowClassName =
+                material.roll_quantity < 50 ? "low-roll-quantity" : "";
+              return (
+                <tr
+                  className={`pti-bg-light_blue ${rowClassName}`}
+                  key={material._id}
+                >
+                  <td className="inv-Allproducts-table-row1 p-2">
+                    {material.material_ID}
+                  </td>
+                  <td>{material.material_name}</td>
+                  <td>{material.material_type}</td>
+                  <td>{material.roll_quantity}</td>
+                  <td>{material.color}</td>
+                  <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
+                    <Link to={`/inv/material/${material._id}`}>
+                      <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
+                        <i className="fa-solid fa-pen-to-square"></i>
+                      </button>
+                    </Link>
+                    <button
+                      className="pti-allProducts-tble-buttons pti-allProducts-delete-buttons"
+                      onClick={() => handleDelete(material._id)}
+                    >
+                      <i className="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         )}
       </table>
+
+      {/* Material totals summary */}
+      <section className="d-flex justify-content-center pt-5 pb-4">
+        <div className="inv-mat-anylicts-main d-flex justify-content-center align-items-center">
+          <div>
+            <table>
+              <tr>
+                <th className="inv-mat-anylicts pti-text-h2 pti-text-dark">
+                  Material
+                </th>
+                <th className="inv-mat-anylicts pti-text-h2 pti-text-dark">
+                  Totals
+                </th>
+              </tr>
+              <tr>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  Silks
+                </td>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  {silkTotal}
+                </td>
+              </tr>
+              <tr>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  Cottons
+                </td>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  {cottonTotal}
+                </td>
+              </tr>
+              <tr>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  Yarns
+                </td>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  {yarnTotal}
+                </td>
+              </tr>
+              <tr>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  Buttons
+                </td>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  {buttonTotal}
+                </td>
+              </tr>
+              <tr>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  Lace
+                </td>
+                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                  {laseTotal}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <div className="inv-mat-anylicts-img"></div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

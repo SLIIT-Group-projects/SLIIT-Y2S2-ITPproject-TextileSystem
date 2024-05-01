@@ -1,8 +1,3 @@
-import Test from "./components/test";
-import './css/main.css'
-import './css/header.css'
-import './css/home.css'
-import './css/Inventory_styles.css'
 import AddProducts from "./components/addProducts";
 import AddMaterials from "./components/addMaterials";
 import AllProducts from "./components/AllProducts";

@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
-import AdminHeader from '../components/AdminHeader';
+import AdminHeader from './AdminHeader';
 
 export default function AllMaterials() {
-  const [taskMaterials, settaskMaterials] = useState([]);
+  const [materials, setMaterials] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [noResult, setNoResult] = useState(false);
   const componentsRef = useRef();
@@ -15,16 +15,16 @@ export default function AllMaterials() {
     async function fetchMaterials() {
       try {
         const response = await axios.get(
-          "http://localhost:8070/released_material"
+          "http://localhost:8070/request_material"
         );
         const data = response.data;
-        settaskMaterials(data);
+        setMaterials(data);
 
         // Check if no results found based on data
         setNoResult(data.length === 0);
       } catch (error) {
-        console.error("Error fetching releasing tasks:", error);
-        alert("Failed to fetch tasks.");
+        console.error("Error fetching materials:", error);
+        alert("Failed to fetch materials.");
       }
     }
     fetchMaterials();
@@ -40,12 +40,12 @@ export default function AllMaterials() {
   // Handle searching for materials
   const handleSearch = (e) => {
     e.preventDefault();
-    const filteredMaterials = taskMaterials.filter((material) =>
+    const filteredMaterials = materials.filter((material) =>
       Object.values(material).some((value) =>
         value.toString().toLowerCase().includes(searchQuery.toLowerCase())
       )
     );
-    settaskMaterials(filteredMaterials);
+    setMaterials(filteredMaterials);
     setNoResult(filteredMaterials.length === 0);
   };
 
@@ -72,11 +72,11 @@ export default function AllMaterials() {
 
       {/* Title and buttons for materials */}
       <div className="d-flex justify-content-between">
-        <h2 className="text-black pti-bold">Releasing Tasks</h2>
+        <h2 className="text-black pti-bold">MATERIALS</h2>
         <div className="d-flex gap-3">
           <button className="add-product-btn pti-rounded-small pti-bg-black">
-            <Link className=" nav-link text-light pti-bold" to="/inv/AllReleasedMaterials">
-              Released Materils
+            <Link className=" nav-link text-light pti-bold" to="/inv/request_material/viewLow">
+              Low Materils
             </Link>
           </button>
           <button className=" add-product-btn pti-rounded-small pti-bg-black text-light pti-bold" onClick={handlePrint}>
@@ -90,12 +90,11 @@ export default function AllMaterials() {
         {/* Table header */}
         <thead className="">
           <tr className="inv-request-table-row pti-bg-secondary_blue text-light rounded-5">
-            <th className="inv-request-table-row inv-Allproducts-table-heading1 p-2">Material Name</th>
+            <th className="inv-request-table-row inv-Allproducts-table-heading1 p-2">Material ID</th>
+            <th className="inv-request-table-row">Material Name</th>
+            <th className="inv-request-table-row">Roll Quantity</th>
             <th className="inv-request-table-row">Material Color</th>
-            <th className="inv-request-table-row">Quantity</th>
-            <th className="inv-request-table-row">employee id</th>
-            <th className="inv-request-table-row">Approval</th>
-            <th className="inv-request-table-row inv-Allproducts-table-heading2">action</th>
+            <th className="inv-request-table-row inv-Allproducts-table-heading2">Date</th>
           </tr>
         </thead>
 
@@ -111,26 +110,17 @@ export default function AllMaterials() {
         ) : (
           // Display each material row
           <tbody>
-            {taskMaterials
-              .filter((taskMaterial) => taskMaterial.approval === "Not Approved")
-              .map((taskMaterial) => {
-                return (
-                  <tr key={taskMaterial._id} className="pti-bg-light_blue ">
-                    <td className="inv-Allproducts-table-row1 p-2">{taskMaterial.item_name}</td>
-                    <td>{taskMaterial.color}</td>
-                    <td>{taskMaterial.target}</td>
-                    <td>{taskMaterial.emp_id}</td>
-                    <td>{taskMaterial.approval}</td>
-                    <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
-                      <Link to={`/inv/releasedMaterials/add/${taskMaterial._id}`}>
-                        <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
-                          <i className="fa-solid fa-plus"></i>
-                        </button>
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
+            {materials.map((material) => {
+              return (
+                <tr key={material._id} className="pti-bg-light_blue ">
+                  <td className="inv-Allproducts-table-row1 p-2">{material.material_ID}</td>
+                  <td>{material.material_name}</td>
+                  <td>{material.roll_quantity}</td>
+                  <td>{material.color}</td>
+                  <td className="inv-Allproducts-table-heading2">{new Date(material.date).toLocaleDateString()}</td>
+                </tr>
+              );
+            })}
           </tbody>
         )}
       </table>

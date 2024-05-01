@@ -3,7 +3,7 @@ import Axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import AdminHeader from '../components/AdminHeader';
+import AdminHeader from './AdminHeader';
 
 function UpdateMaterials() {
   const { id } = useParams(); // Extract id from the URL parameters

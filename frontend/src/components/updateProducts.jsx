@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import AdminHeader from '../components/AdminHeader';
+import AdminHeader from './AdminHeader';
 
 function UpdateProducts() {
   const { id } = useParams();

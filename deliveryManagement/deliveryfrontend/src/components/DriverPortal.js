@@ -2,7 +2,7 @@ import React,{useState,useEffect,useRef} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
-
+import DeliveryHeader from "./DeliveryHeader";
 export default function DriverPortal() {
 
     const[deliveries, setDeliveries]=useState([]);
@@ -32,6 +32,7 @@ export default function DriverPortal() {
     
     return(
         <div>
+            <DeliveryHeader/>
             <div className="container">
             <h1>welcome to driver portal</h1>
             <form class="d-flex" role="search">

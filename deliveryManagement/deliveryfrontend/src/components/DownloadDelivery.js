@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
+import DeliveryHeader from "./DeliveryHeader";
 
 export default function DownloadDelivery() {
     const [deliveries, setDeliveries] = useState([]);
@@ -56,6 +57,7 @@ export default function DownloadDelivery() {
 
     return (
         <div className="container">
+            <DeliveryHeader/>
             <form className="d-flex" role="search">
                 <input onChange={(e) => setSearchQuery(e.target.value)} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
                 <input onChange={(e) => setSelectedDate(e.target.value)} className="form-control me-2" type="date" placeholder="Select Date" aria-label="Select Date"></input>

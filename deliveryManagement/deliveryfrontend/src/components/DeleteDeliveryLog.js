@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import { Link } from "react-router-dom";
-
+import DeliveryHeader from "./DeliveryHeader";
 export default function UpdateDeliveryLog() {
     const { id } = useParams();
     const navigate = useNavigate()
@@ -37,6 +37,7 @@ export default function UpdateDeliveryLog() {
     
     return (
         <div className="container">
+            <DeliveryHeader/>
             <h1>Delete Delivery Log</h1>
             <form onSubmit={deleteHandler}>
             <div className="container">

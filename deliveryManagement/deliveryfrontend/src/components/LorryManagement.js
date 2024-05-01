@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import DeliveryHeader from "./DeliveryHeader";
 const LorryManagement = () => {
     const [lorries, setLorries] = useState([]);
     const [formData, setFormData] = useState({
@@ -52,6 +52,7 @@ const LorryManagement = () => {
 
     return (
         <div>
+            <DeliveryHeader/>
             <h2>Lorry Management</h2>
             <form onSubmit={handleSubmit}>
                 <input

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import { useReactToPrint } from "react-to-print";
+import DeliveryHeader from "./DeliveryHeader";
 
 export default function ViewDeliveryLog(){
 
@@ -37,6 +38,7 @@ export default function ViewDeliveryLog(){
 
     return(
         <div className="container">
+            <DeliveryHeader/>
         <div className="container center">
         <form class="d-flex" role="search">
             <input onChange={(e)=>setSearchQuery(e.target.value)} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>

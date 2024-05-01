@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CreateDeliveryLog from "./CreateDeliveryLog";
+import DeliveryHeader from "./DeliveryHeader";
 
 export default function ViewOrders() {
   const [orders, setOrders] = useState([]);
@@ -35,6 +36,7 @@ export default function ViewOrders() {
 
   return (
     <div className="container">
+      <DeliveryHeader/>
       <h1>Orders</h1>
       <div className="container">
         <table border={0} className="table table-delivery rounded-5">

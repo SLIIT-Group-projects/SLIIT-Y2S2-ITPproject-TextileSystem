@@ -18,8 +18,7 @@ function App() {
   return (
     <Router>
         <div>
-          <DeliveryHeader/>
-
+         
           <Routes>
           <Route path="/delivery/add/" exact Component={CreateDeliveryLog}/>
           <Route path="/delivery/" exact Component={ViewDeliveryLog}/>

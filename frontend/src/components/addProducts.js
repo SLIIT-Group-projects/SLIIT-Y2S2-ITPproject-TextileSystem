@@ -64,7 +64,7 @@ function AddProducts() {
       .post("http://localhost:8070/product/add", newProduct)
       .then(() => {
         alert("Product Added");
-        navigate("/");
+        navigate("/inv/");
       })
       .catch((err) => {
         alert(err);

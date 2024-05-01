@@ -75,7 +75,7 @@ export default function AllMaterials() {
         <h2 className="text-black pti-bold">MATERIALS</h2>
         <div className="d-flex gap-3">
           <button className="add-product-btn pti-rounded-small pti-bg-black">
-            <Link className=" nav-link text-light pti-bold" to="/request_material/viewLow">
+            <Link className=" nav-link text-light pti-bold" to="/inv/request_material/viewLow">
               Low Materils
             </Link>
           </button>

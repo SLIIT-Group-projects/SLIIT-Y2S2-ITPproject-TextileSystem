@@ -74,7 +74,7 @@ function AddMaterials() {
     try {
       await Axios.post("http://localhost:8070/request_material/add", newMaterial);
       alert("Material Added");
-      navigate("/request_material");
+      navigate("/inv/request_material");
     } catch (error) {
       console.error("Error adding material:", error);
       alert("Error adding material");

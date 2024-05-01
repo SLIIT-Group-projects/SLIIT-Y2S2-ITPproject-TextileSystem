@@ -84,6 +84,40 @@ router.route("/get/:id").get(async(req,res)=>{
     })
 })
 
-
+// Reduce roll_quantity and add released materials when conditions are met
+router.route("/reduce-and-add").put(async (req, res) => {
+    try {
+      const { item_name, color, target } = req.body;
+  
+      // Find the material that matches the item_name and color
+      const material = await Material.findOne({ material_name: item_name, color });
+  
+      if (!material) {
+        return res.status(404).json({ error: "Material not found" });
+      }
+  
+      // Reduce roll_quantity by the target amount
+      material.roll_quantity -= target;
+  
+      // Save the updated material
+      await material.save();
+  
+      // Add released material
+      const releasedMaterial = new ReleasedMaterial({
+        item_name,
+        color,
+        target,
+        // Add other relevant fields
+      });
+  
+      await releasedMaterial.save();
+  
+      res.status(200).json({ status: "Roll quantity reduced and released material added successfully", material });
+    } catch (error) {
+      console.error("Error reducing roll quantity and adding released material:", error);
+      res.status(500).json({ error: "Error reducing roll quantity and adding released material" });
+    }
+  });
+  
 
 module.exports = router;

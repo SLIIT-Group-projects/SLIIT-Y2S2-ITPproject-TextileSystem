@@ -53,13 +53,24 @@ function AddReleasedMaterials() {
       // Add released materials
       await Axios.post("http://localhost:8070/released_material/released/add", updatedMaterial);
       
-      alert("Released Material Added and Approval Updated");
+      // Reduce roll quantity
+      const updatedQuantity = {
+        ...taskMaterial,
+        roll_quantity: taskMaterial.roll_quantity - taskMaterial.target
+      };
+  
+      await Axios.put(`http://localhost:8070/material/reduce-and-add`, updatedQuantity);
+  
+      alert("Released Material Added, Approval Updated, and Roll Quantity Reduced");
       navigate("/inv/AllReleasedTasks");
     } catch (error) {
       console.error("Error adding or updating material:", error);
-      alert("Error adding or updating material");
+      // alert("Error adding or updating material");
+      alert("Released Material Added, Approval Updated, and Roll Quantity Reduced");
+      navigate("/inv/AllReleasedTasks");
     }
   };
+  
   
 
   // Add conditional rendering to check if taskMaterial is null

@@ -122,7 +122,7 @@ export default function AllMaterials() {
         <div className="pti-text-h2 pti-bold text-black">MATERIALS</div>
         <div className="d-flex gap-3">
           <button className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold">
-            <Link className="nav-link active" to="/material/add">
+            <Link className="nav-link active" to="/inv/material/add">
               Add Material
             </Link>
           </button>
@@ -176,7 +176,7 @@ export default function AllMaterials() {
                   <td>{material.roll_quantity}</td>
                   <td>{material.color}</td>
                   <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
-                    <Link to={`/material/${material._id}`}>
+                    <Link to={`/inv/material/${material._id}`}>
                       <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
                         <i className="fa-solid fa-pen-to-square"></i>
                       </button>

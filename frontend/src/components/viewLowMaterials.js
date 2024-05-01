@@ -161,7 +161,7 @@ export default function AllMaterials() {
                     <td>{material.roll_quantity}</td>
                     <td>{material.color}</td>
                     <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
-                      <Link to={`/request_material/add/${material._id}`}>
+                      <Link to={`/inv/request_material/add/${material._id}`}>
                         <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
                           <i className="fa-solid fa-plus"></i>
                         </button>

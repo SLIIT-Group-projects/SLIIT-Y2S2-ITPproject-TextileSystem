@@ -122,7 +122,7 @@ const AllProducts = () => {
         <div className="pti-text-h2 pti-bold text-black">PRODUCTS</div>
         <div className="d-flex gap-3">
           <button className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold">
-            <Link className="nav-link active" to="/add">
+            <Link className="nav-link active" to="/inv/add">
               Add Product
             </Link>
           </button>
@@ -180,7 +180,7 @@ const AllProducts = () => {
                   <td>{product.unit_price}</td>
                   <td>{product.size}</td>
                   <td>
-                    <Link to={`/product/${product._id}`}>
+                    <Link to={`/inv/product/${product._id}`}>
                       <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
                         <i className="fa-solid fa-pen-to-square"></i>
                       </button>

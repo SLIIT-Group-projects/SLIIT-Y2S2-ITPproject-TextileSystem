@@ -62,7 +62,7 @@ function UpdateProducts() {
       }
       await Axios.put(`http://localhost:8070/product/update/${id}`, product);
       alert("Product updated successfully");
-      navigate("/");
+      navigate("/inv/");
     } catch (error) {
       console.error("Error updating product:", error);
       alert("Error updating product");

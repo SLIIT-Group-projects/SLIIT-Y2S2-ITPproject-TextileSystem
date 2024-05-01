@@ -31,23 +31,23 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/add" exact element={<AddProducts />} />
+          <Route path="/inv/add" exact element={<AddProducts />} />
           {/* header tempory */}
           <Route path="/footer" exact element={<Footer />} />
 
           <Route path="/home" exact element={<Home />} />
 
-          <Route path="/material/add" exact element={<AddMaterials />} />
-          <Route path="/material" exact element={<AllMaterials />} />
-          <Route path="/request_material" exact element={<RequestMaterials />} />
-          <Route path="/request_material/add/:id" exact element={<AddRequestMaterials />} />
-          <Route path="/request_material/viewLow" exact element={<ViewLowMaterials />} />
-          <Route path="/material/:id" exact element={<UpdateMaterials/>} />
-          <Route path="/product/:id" exact element={<ProductMaterials/>} />
+          <Route path="/inv/material/add" exact element={<AddMaterials />} />
+          <Route path="/inv/material" exact element={<AllMaterials />} />
+          <Route path="/inv/request_material" exact element={<RequestMaterials />} />
+          <Route path="/inv/request_material/add/:id" exact element={<AddRequestMaterials />} />
+          <Route path="/inv/request_material/viewLow" exact element={<ViewLowMaterials />} />
+          <Route path="/inv/material/:id" exact element={<UpdateMaterials/>} />
+          <Route path="/inv/product/:id" exact element={<ProductMaterials/>} />
           <Route path="/inv/releasedMaterials/add/:id" exact element={<AddReleasedMaterials />} />
           <Route path="/inv/AllReleasedTasks" exact element={<AllReleasedTasks />} />
           <Route path="/inv/AllReleasedMaterials" exact element={<AllReleasedMaterials />} />
-          <Route path="/" exact element={<AllProducts />} />
+          <Route path="/inv/" exact element={<AllProducts />} />
 
         </Routes>
         

@@ -57,7 +57,7 @@ function UpdateMaterials() {
       // Update the material data
       await Axios.put(`http://localhost:8070/material/update/${id}`, material);
       alert("Material updated successfully");
-      navigate("/material"); // Navigate back to the materials page
+      navigate("/inv/material"); // Navigate back to the materials page
     } catch (error) {
       console.error("Error updating material:", error);
       alert("Error updating material");

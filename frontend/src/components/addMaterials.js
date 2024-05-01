@@ -29,7 +29,7 @@ function AddMaterials() {
       .post("http://localhost:8070/material/add", newMaterial)
       .then(() => {
         alert("Material Added");
-        navigate("/material"); // Navigate back to the materials page
+        navigate("/inv/material"); // Navigate back to the materials page
       })
       .catch((err) => {
         alert(err);

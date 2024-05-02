@@ -1,5 +1,3 @@
-// DisplayTasks.js
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -8,7 +6,6 @@ export default function DisplayTasks() {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [excessCompletedTasks, setExcessCompletedTasks] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:8070/task/")
@@ -30,9 +27,8 @@ export default function DisplayTasks() {
     setFilteredTasks(filtered);
   }, [searchQuery, tasks]);
 
-  const handleSearch = () => {
-    const filtered = tasks.filter(task => task.status.toLowerCase().includes(searchQuery.toLowerCase()));
-    setFilteredTasks(filtered);
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   const handleReset = () => {
@@ -52,16 +48,6 @@ export default function DisplayTasks() {
       });
   };
 
-  const calculateExcessCompletedTasks = () => {
-    axios.get("http://localhost:8070/task/excess-completed")
-      .then((res) => {
-        setExcessCompletedTasks(res.data);
-      })
-      .catch((err) => {
-        alert("Error fetching excess completed tasks: " + err.message);
-      });
-  };
-
   return (
     <div className="container mt-4">
       <h1>List of Tasks</h1>
@@ -71,18 +57,11 @@ export default function DisplayTasks() {
         <input
           type="text"
           className="form-control"
-          placeholder="Search by Status"
+          placeholder="Search..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={handleSearch}
         />
         <div className="input-group-append">
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            onClick={handleSearch}
-          >
-            Search
-          </button>
           <button
             className="btn btn-outline-secondary"
             type="button"
@@ -134,11 +113,11 @@ export default function DisplayTasks() {
           ))}
         </tbody>
       </table>
-      <Link to="/excess-completed" className="btn btn-primary">
-        Excess Completed Tasks
-      </Link>
       <Link to="/add-task" className="btn btn-success ml-2">
         Add Task
+      </Link>
+      <Link to="/task-excess" className="btn btn-primary">
+        Excess Completed Tasks
       </Link>
     </div>
   );

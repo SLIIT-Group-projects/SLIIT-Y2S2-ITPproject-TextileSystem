@@ -6,7 +6,7 @@ import AddTaskButton from './components/AddTaskButton';
 import DisplayTasks from './components/DisplayTask';
 import UpdateTask from './components/UpdateTask';
 import DeleteTask from './components/DeleteTask'; 
-import ExcessCompletedTasks from "./components/ExcessCompletedTasks";
+import Excess from "./components/Excess";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
           <Route path="/delete/:id" element={<DeleteTask />} /> {/* Route for DeleteTask component */}
           <Route path="/*" element={<ConditionalDisplayTasks />} />
           <Route path="/" element={<DisplayTasks />} />
-          <Route path="/excess-completed" element={<ExcessCompletedTasks />} />
+          <Route path="/task-excess" element={<Excess />} />
         </Routes>
       </div>
     </Router>

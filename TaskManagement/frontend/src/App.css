@@ -32,6 +32,13 @@
   color: #08A6D5;
 }
 
+@media print {
+  .print-show {
+    display: inline-block !important;
+  }
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

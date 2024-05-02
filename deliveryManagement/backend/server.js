@@ -47,6 +47,14 @@ const requestMaterialsRouter = require("./routes/request_materials");
 app.use("/request_material", requestMaterialsRouter);
 
 
+// chami
+const taskRouter = require("./routes/tasks.js");
+const excessTaskRouter = require("./routes/taskexcess.js")
+
+app.use("/task",taskRouter);
+app.use("/taskexcess",excessTaskRouter);
+
+
 app.listen(PORT, () =>{
     console.log(`Server is up and running on port ${PORT}`);
 })

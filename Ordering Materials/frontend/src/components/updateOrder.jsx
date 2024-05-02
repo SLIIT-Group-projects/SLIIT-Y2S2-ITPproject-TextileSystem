@@ -31,7 +31,7 @@ const UpdateOrder = () => {
     fetchOrder();
   }, [id]);
 
-  const materialOptions = ['Wood', 'Metal', 'Plastic']; // Hardcoded material options
+  const materialOptions = ['Silk', 'Threads','Elastic', 'Cotton']; // Hardcoded material options
   const supplierOptions = ['Supplier A', 'Supplier B', 'Supplier X', 'Supplier Y']; // Hardcoded supplier options
 
   const handleChange = (e) => {
@@ -83,7 +83,7 @@ const UpdateOrder = () => {
           {errors.validation && <Alert variant="danger">{errors.validation}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="category" className="mb-3">
-              <Form.Label>Category</Form.Label>
+              <Form.Label>Material ID</Form.Label>
               <Form.Control
                 type="text"
                 name="category"
@@ -108,7 +108,7 @@ const UpdateOrder = () => {
                 ))}
               </Form.Control>
             </Form.Group>
-            <Form.Group controlId="supplier" className="mb-3">
+            {/*<Form.Group controlId="supplier" className="mb-3">
               <Form.Label>Supplier</Form.Label>
               <Form.Control
                 as="select"
@@ -123,7 +123,7 @@ const UpdateOrder = () => {
                   </option>
                 ))}
               </Form.Control>
-            </Form.Group>
+              </Form.Group>*/}
             <Form.Group controlId="quantity" className="mb-3">
               <Form.Label>Quantity</Form.Label>
               <Form.Control

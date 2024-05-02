@@ -16,8 +16,6 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Check if material and supplier exist (You can implement this check)
-
     // Create new order with status "Placed"
     const newOrder = await Order.create({
       category,
@@ -43,19 +41,18 @@ router.post('/', async (req, res) => {
     doc.pipe(fs.createWriteStream('order.pdf'));
 
     // Add content to the PDF
-    doc.fontSize(12);
-    doc.text('Invoice', { align: 'center' });
+    doc.fontSize(25); // Increase font size to 25
+    doc.text('INVOICE - PTI TEXTILES', { align: 'center' });
     doc.moveDown();
+    doc.fontSize(15);
     doc.text(`Invoice ID: ${newOrder._id}`);
-    doc.text(`Category: ${category}`);
     doc.text(`Material: ${material}`);
-    doc.text(`Supplier: ${supplier}`);
     doc.text(`Quantity: ${quantity}`);
     doc.text(`Color: ${color}`);
     doc.moveDown();
-    doc.text('Thank you for your order!', { align: 'center' });
-
-    doc.end();
+    doc.fontSize(15); // Reset font size to 15
+    doc.text('We are waiting for your reply. If there is anything else, please feel free to contact us.', { align: 'center' });
+  doc.end();
 
     // Send email with PDF attachment
     const transporter = nodemailer.createTransport({
@@ -68,11 +65,24 @@ router.post('/', async (req, res) => {
 
     const mailOptions = {
       from: 'ptiproject2024@gmail.com',
-      to: 'wsasanka.shenal@gmail.com',
-      subject: `New Order Invoice: ${newOrder._id}`, // Use newOrder._id instead of _id
-      text: 'Please find attached the invoice for your recent order.',
+      to: 'ptiproject2024@gmail.com',
+      subject: `New Order Invoice: ${newOrder._id}`,
+      text: `Dear Team,
+    
+    Hope you are doing well!
+    
+    Please do necessary to fulfill this order, we are waiting for your reply.
+    
+    If there is anything else, please feel free to contact us.
+    
+    Kind regards,
+    Shenal Weerawardhana
+    Supplier Manager
+    PTI Textiles 
+    +94 716 442 849`,
       attachments: [{ filename: 'order.pdf', path: 'order.pdf' }],
-    };    
+    };
+    
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {

@@ -106,7 +106,7 @@ const AddOrder = () => {
           )}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="category" className="mb-3">
-              <Form.Label>Category</Form.Label>
+              <Form.Label>Material ID</Form.Label>
               <Form.Control
                 type="text"
                 name="category"

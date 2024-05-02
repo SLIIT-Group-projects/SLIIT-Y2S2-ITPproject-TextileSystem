@@ -29,6 +29,24 @@ app.use("/delivery",deliveryRouter);
 app.use("/order",orderRouter);
 app.use("/lorry",lorryRouter);
 
+// daham
+// this is th route for products table
+const productRouter = require("./routes/products.js");
+app.use("/product",productRouter)
+
+// this is th route for material table
+const materialRouter = require("./routes/materials.js");
+app.use("/material",materialRouter)
+
+// this is th route for realeased material table
+const released_materials_Router = require("./routes/released_materials.js");
+app.use("/released_material",released_materials_Router)
+
+// this is th route for request material 
+const requestMaterialsRouter = require("./routes/request_materials");
+app.use("/request_material", requestMaterialsRouter);
+
+
 app.listen(PORT, () =>{
     console.log(`Server is up and running on port ${PORT}`);
 })

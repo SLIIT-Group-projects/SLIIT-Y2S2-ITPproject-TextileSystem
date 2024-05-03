@@ -24,4 +24,15 @@ router.post("/task-excess/", (req, res) => {
     });
 });
 
+router.get("/task-excess", (req, res) => {
+  TaskExcess.find()
+    .then((taskExcessData) => {
+      res.status(200).json(taskExcessData);
+    })
+    .catch((err) => {
+      console.error("Error retrieving task excess data:", err);
+      res.status(500).json({ error: "Failed to retrieve task excess data" });
+    });
+});
+
 module.exports = router;

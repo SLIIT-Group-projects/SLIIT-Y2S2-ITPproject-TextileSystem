@@ -48,10 +48,31 @@ export default function DisplayTasks() {
       });
   };
 
+  const getApprovalColor = (approval) => {
+    return approval === "Approved" ? "text-success" : "text-danger";
+  };
+
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Pending":
+        return "text-warning";
+      case "In Progress":
+        return "text-primary";
+      case "Complete":
+        return "text-success";
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className="container mt-4">
+      <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+        <span style={{ color: '#08A6D5', fontFamily: 'Poppins', fontWeight: 'bold', fontSize: '55px', display: 'block' }}>
+          TASK DASHBOARD
+        </span>
+      </div> 
       <h1>List of Tasks</h1>
-
       {/* Search bar */}
       <div className="input-group mb-3">
         <input
@@ -97,8 +118,8 @@ export default function DisplayTasks() {
               <td>{task.final_count}</td>
               <td>{task.deadline}</td>
               <td>{task.emp_id}</td>
-              <td>{task.approval}</td>
-              <td>{task.status}</td>
+              <td className={getApprovalColor(task.approval)}>{task.approval}</td>
+              <td className={getStatusColor(task.status)}>{task.status}</td>
               <td>
                 <Link to={`/update/${task._id}`} className="btn btn-primary">
                   Update

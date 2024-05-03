@@ -8,6 +8,8 @@ function Excess() {
   const [completedTasks, setCompletedTasks] = useState([]);
   const [hideCompleted, setHideCompleted] = useState(false);
   const [taskExcessData, setTaskExcessData] = useState([]);
+  const [showTaskExcessTable, setShowTaskExcessTable] = useState(false); // State to manage table visibility
+
 
   useEffect(() => {
     axios.get("http://localhost:8070/task/")
@@ -44,15 +46,23 @@ function Excess() {
       });
   };
 
-  const retrieveTaskExcessData = () => {
-    axios.get("http://localhost:8070/taskexcess/task-excess/")
-      .then((res) => {
-        setTaskExcessData(res.data);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+  const handleToggleTaskExcessTable = () => {
+    if (showTaskExcessTable) {
+      setShowTaskExcessTable(false); // Hide the table if it's currently visible
+    } else {
+      // Fetch data from tasksexcess table before showing the table
+      axios.get("http://localhost:8070/taskexcess/task-excess/")
+        .then((res) => {
+          setTaskExcessData(res.data);
+          setShowTaskExcessTable(true); // Show the table after data is fetched
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
   };
+  
+
 
   const ComponentsRef = useRef();
   const handlePrint = useReactToPrint({
@@ -64,7 +74,7 @@ function Excess() {
 
   return (
     <div className="container mt-4">
-      <div ref={ComponentsRef}>
+      <div  ref={ComponentsRef}>
         <h1>Target Exceeded</h1>
 
         <table className="table table-striped table-bordered">
@@ -98,7 +108,7 @@ function Excess() {
           </tbody>
         </table>
 
-        <button onClick={calculateExcessForAll}>Calculate Excess</button>
+        
 
         <h2>Target Not Completed</h2>
 
@@ -122,35 +132,44 @@ function Excess() {
             ))}
           </tbody>
         </table>
-      </div>
-      <button onClick={handlePrint}>Download Report</button>
 
-      <div>
-        <button onClick={retrieveTaskExcessData}>Retrieve Task Excess Data</button>
-        <h2>Task Excess Data</h2>
-        <table className="table table-striped table-bordered">
-          <thead className="app-color">
-            <tr>
-              <th>Task ID</th>
-              <th>Employee ID</th>
-              <th>Target</th>
-              <th>Final Count</th>
-              <th>Excess</th>
-            </tr>
-          </thead>
-          <tbody>
-            {taskExcessData.map((task) => (
-              <tr key={task._id}>
-                <td>{task.task_id}</td>
-                <td>{task.emp_id}</td>
-                <td>{task.target}</td>
-                <td>{task.final_count}</td>
-                <td>{task.excess}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <button onClick={calculateExcessForAll}>Calculate Excess</button>
       </div>
+      <br/>
+      <button onClick={handlePrint}>Download Report</button>
+      <br/><br/>
+      <div>
+      <button onClick={handleToggleTaskExcessTable}>Show Task Excess Table</button>
+        
+        {showTaskExcessTable && (
+          <>
+            <h2>Task Excess Data</h2>
+            <table className="table table-striped table-bordered">
+              <thead className="app-color">
+                <tr>
+                  <th>Task ID</th>
+                  <th>Employee ID</th>
+                  <th>Target</th>
+                  <th>Final Count</th>
+                  <th>Excess</th>
+                </tr>
+              </thead>
+              <tbody>
+                {taskExcessData.map((task) => (
+                  <tr key={task._id}>
+                    <td>{task.task_id}</td>
+                    <td>{task.emp_id}</td>
+                    <td>{task.target}</td>
+                    <td>{task.final_count}</td>
+                    <td>{task.excess}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+        </div>
+        
     </div>
   );
 }

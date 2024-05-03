@@ -80,8 +80,16 @@ export default function AddTask() {
                         </div>
                         <div className="form-group">
                             <label htmlFor="final_count" className="form-label">Final Count</label>
-                            <input type="number" className="form-control" id="final_count" onChange={(e) => setFinalCount(e.target.value)} />
+                            <input 
+                                type="number" 
+                                className="form-control" 
+                                id="final_count" 
+                                value={final_count} 
+                                readOnly 
+                                onChange={(e) => setFinalCount(e.target.value)} 
+                            />
                         </div>
+
                         <div className="form-group">
                             <label htmlFor="deadline" className="form-label">Deadline</label>
                             <input type="date" className="form-control" id="deadline" onChange={(e) => setDeadline(e.target.value)} />
@@ -92,20 +100,19 @@ export default function AddTask() {
                         </div>
                         <div className="form-group">
                             <label htmlFor="approval" className="form-label">Approval</label>
-                            <select className="form-control" id="approval" value={approval} onChange={(e) => setApproval(e.target.value)}>
+                            <select className="form-control" id="approval" value={approval} onChange={(e) => setApproval(e.target.value)} disabled>
                                 <option value="Not Approved">Not Approved</option>
                                 <option value="Approved">Approved</option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label htmlFor="status" className="form-label">Status</label>
-                            <select className="form-control" id="status" value={status} onChange={(e) => setStatus(e.target.value)}>
+                            <select className="form-control" id="status" value={status} onChange={(e) => setStatus(e.target.value)} disabled>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Progress</option>
                                 <option value="Complete">Complete</option>
                             </select>
                         </div>
-
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
                 </div>

@@ -20,8 +20,7 @@ const taskExcessSchema = new Schema({
     },
     excess : {
         type : Number
-    },
-    
+    }
 });
 
 const TaskExcess = mongoose.model('TaskExcess',taskExcessSchema);

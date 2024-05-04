@@ -54,6 +54,10 @@ const excessTaskRouter = require("./routes/taskexcess.js")
 app.use("/task",taskRouter);
 app.use("/taskexcess",excessTaskRouter);
 
+// shenal
+const orderRoutes = require('./routes/order.route');
+app.use('/api/orders', orderRoutes);
+
 
 app.listen(PORT, () =>{
     console.log(`Server is up and running on port ${PORT}`);

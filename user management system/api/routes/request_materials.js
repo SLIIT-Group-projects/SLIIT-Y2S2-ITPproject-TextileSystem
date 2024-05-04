@@ -1,6 +1,6 @@
 import express from "express";
 import request_material from "../models/request_material.js";
-import nodemailer from "nodemailer";
+import nodeMailer from 'nodemailer';
 
 const router = express.Router();
 

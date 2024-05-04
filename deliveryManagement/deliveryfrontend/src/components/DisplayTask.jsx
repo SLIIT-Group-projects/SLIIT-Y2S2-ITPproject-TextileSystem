@@ -121,7 +121,7 @@ export default function DisplayTasks() {
               <td className={getApprovalColor(task.approval)}>{task.approval}</td>
               <td className={getStatusColor(task.status)}>{task.status}</td>
               <td>
-                <Link to={`/update/${task._id}`} className="btn btn-primary">
+                <Link to={`/task/update/${task._id}`} className="btn btn-primary">
                   Update
                 </Link>
               </td>
@@ -134,10 +134,10 @@ export default function DisplayTasks() {
           ))}
         </tbody>
       </table>
-      <Link to="/add-task" className="btn btn-success ml-2">
+      <Link to="/task/add-task" className="btn btn-success ml-2">
         Add Task
       </Link>
-      <Link to="/task-excess" className="btn btn-primary">
+      <Link to="/task/task-excess" className="btn btn-primary">
         Excess Completed Tasks
       </Link>
     </div>

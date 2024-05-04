@@ -79,13 +79,13 @@ function App() {
           <Route path="/inv/" exact element={<AllProducts />} />
 
           {/* chami */}
-          <Route path="/add-task" element={<AddTask />} />
-          <Route path="/update/:id" element={<UpdateTask />} />
-          <Route path="/delete/:id" element={<DeleteTask />} />{" "}
+          <Route path="/task/add-task" element={<AddTask />} />
+          <Route path="/task/update/:id" element={<UpdateTask />} />
+          <Route path="/task/delete/:id" element={<DeleteTask />} />{" "}
           {/* Route for DeleteTask component */}
-          <Route path="/*" element={<ConditionalDisplayTasks />} />
-          <Route path="/" element={<DisplayTasks />} />
-          <Route path="/task-excess" element={<Excess />} />
+          <Route path="/task/*" element={<ConditionalDisplayTasks />} />
+          <Route path="/task/" element={<DisplayTasks />} />
+          <Route path="/task/task-excess" element={<Excess />} />
 
           </Routes>
 

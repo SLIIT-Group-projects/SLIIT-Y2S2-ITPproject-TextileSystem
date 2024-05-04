@@ -37,7 +37,7 @@
       <header>
         <Navbar className='custom-navbar-bg' variant='dark' expand='lg' collapseOnSelect>
           <Container>
-            <LinkContainer to='/'>
+            <LinkContainer to='/shop'>
               <Navbar.Brand>
 
                 PTI 360 Shop
@@ -57,7 +57,7 @@
                     )}
                   </Nav.Link>
                 </LinkContainer>
-                {userInfo ? (
+                {/* {userInfo ? (
                   <>
                     <NavDropdown title={userInfo.name} id='username'>
                       <LinkContainer to='/profile'>
@@ -74,7 +74,7 @@
                       <FaUser /> Sign In
                     </Nav.Link>
                   </LinkContainer>
-                )}
+                )} */}
 
                 
               </Nav>

@@ -1,0 +1,25 @@
+.carousel-item-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensures each item fills the full height of the carousel */
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and transparency as needed */
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .carousel-caption h2 {
+    text-align: center; /* Center align the text within the caption */
+  }
+  
+  /* Constrain image size */
+  .carousel-item img {
+    max-width: 500px;
+    max-height: 500px;
+  }
+  

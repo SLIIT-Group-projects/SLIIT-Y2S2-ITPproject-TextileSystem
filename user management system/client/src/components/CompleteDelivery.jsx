@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import DeliveryHeader from "./DeliveryHeader";
+
 export default function DriverPortal() {
     const { id } = useParams();
     const [pin, setPin] = useState("");
@@ -50,23 +51,22 @@ export default function DriverPortal() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        
         if (pin !== delivery.pin) {
             setErrorMessage("Invalid PIN. Please enter the correct PIN.");
             return;
         }
-        const updatedDelivery = { ...delivery, deliveryStatus: delivery.deliveryStatus };
+
+        // Set delivery status to "Completed"
+        const updatedDelivery = { ...delivery, deliveryStatus: "Completed" };
 
         // PIN validation successful, proceed with updating delivery status
         try {
             const response = await axios.put(`http://localhost:3000/delivery/update/${id}`, updatedDelivery);
             setSuccessMessage("Delivery details updated successfully.");
-           
             setDelivery(updatedDelivery);
         } catch (err) {
             console.error("Error updating delivery:", err);
         }
-    
     };
 
     return (
@@ -100,7 +100,7 @@ export default function DriverPortal() {
             {/* PIN input form */}
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                <label htmlFor="deliveryStatus" className="form-label">Delivery Status</label>
+                    <label htmlFor="deliveryStatus" className="form-label">Delivery Status</label>
                     <select id="deliveryStatus" name="deliveryStatus" value={delivery.deliveryStatus} onChange={handleChange} className="form-control">
                         <option value="Pending">Pending</option>
                         <option value="Completed">Completed</option>
@@ -123,7 +123,7 @@ export default function DriverPortal() {
             </form>
 
             <h2>Order Details</h2>
-            <table class="table table-hover table-delivery">
+            <table className="table table-hover table-delivery">
                     <tbody>
                         <tr className="table-del-header">
                             <td>Customer Code:</td>
@@ -145,7 +145,7 @@ export default function DriverPortal() {
                 </table>
 
                 <h2>Ordered Items</h2>
-                    <table class="table table-hover table-delivery">
+                    <table className="table table-hover table-delivery">
                         <thead>
                             <tr className="table-del-header">
                                 <th>Name</th>

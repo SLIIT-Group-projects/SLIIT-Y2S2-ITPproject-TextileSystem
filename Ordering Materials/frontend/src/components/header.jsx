@@ -15,7 +15,7 @@ const Header = () => {
       </div>
       {/* Second line: Buttons for "Add New Orders" and "View All Orders" */}
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '20px' }}>
-        <Link to="/addorder">
+        <Link to="/om/addorder">
           <Button 
             className="nav-button" 
             style={{
@@ -32,7 +32,7 @@ const Header = () => {
             Add New Order
           </Button>
         </Link>
-        <Link to="/orders" style={{ marginLeft: '10px' }}>
+        <Link to="/om/orders" style={{ marginLeft: '10px' }}>
           <Button 
             className="nav-button" 
             style={{

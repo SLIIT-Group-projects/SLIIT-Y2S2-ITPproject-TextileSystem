@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../model/order.model');
-
+const Supplier = require('../model/supplier.model');
 const nodemailer = require('nodemailer');
 
 const PDFDocument = require('pdfkit');
@@ -25,6 +25,8 @@ router.post('/', async (req, res) => {
       color,
       status: 'Placed', // Set status to "Placed"
     });
+    const supplierDetails = await Supplier.findOne({ username: supplier });
+    const supplierEmail = supplierDetails.email;
 
     // Schedule order status update after 48 hours
     setTimeout(async () => {
@@ -54,6 +56,7 @@ router.post('/', async (req, res) => {
     doc.text('We are waiting for your reply. If there is anything else, please feel free to contact us.', { align: 'center' });
   doc.end();
 
+    
     // Send email with PDF attachment
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -65,7 +68,7 @@ router.post('/', async (req, res) => {
 
     const mailOptions = {
       from: 'ptiproject2024@gmail.com',
-      to: 'ptiproject2024@gmail.com',
+      to: supplierEmail,
       subject: `New Order Invoice: ${newOrder._id}`,
       text: `Dear Team,
     
@@ -99,7 +102,27 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 });
+// API endpoint to get all unique categories and usernames
+router.get('/suppliers/categories', async (req, res) => {
+  try {
+      const results = await Supplier.aggregate([
+          { $group: {
+              _id: '$category', // Group by category
+              usernames: { $push: '$username' } // Collect usernames for each category
+          }},
+          { $project: {
+              _id: 0, // Exclude the _id field from results
+              category: '$_id', // Rename _id to category
+              usernames: 1 // Include usernames array in the output
+          }}
+      ]);
 
+      res.status(200).json(results);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Server Error' });
+  }
+});
 // GET route to fetch all orders
 router.get('/', async (req, res) => {
   try {
@@ -162,5 +185,8 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 });
+
+
+
 
 module.exports = router;

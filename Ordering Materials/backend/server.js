@@ -26,5 +26,5 @@ mongoose.connect('mongodb+srv://ptiproject123:ptiproject123@cluster0.4yctu6r.mon
 app.use('/api/orders', orderRoutes);
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8070;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

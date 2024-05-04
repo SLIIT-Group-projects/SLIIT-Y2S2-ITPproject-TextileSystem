@@ -21,7 +21,7 @@ const UpdateOrder = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/orders/${id}`);
+        const res = await axios.get(`http://localhost:8070/api/orders/${id}`);
         setFormData(res.data);
       } catch (err) {
         console.error(err);
@@ -60,12 +60,12 @@ const UpdateOrder = () => {
         }
 
         // Proceed with updating if validation passes
-        const res = await axios.put(`http://localhost:5000/api/orders/${id}`, orderToUpdate);
+        const res = await axios.put(`http://localhost:8070/api/orders/${id}`, orderToUpdate);
         console.log(res.data); // Handle response as needed
         setSuccessMessage('Order updated successfully');
         setErrors({});
         setTimeout(() => {
-          navigate('/orders');
+          navigate('/om/orders');
         }, 2000); // Redirect to orders page after 2 seconds
       } catch (err) {
         console.error(err);
@@ -90,6 +90,7 @@ const UpdateOrder = () => {
                 placeholder="Enter category"
                 value={formData.category}
                 onChange={handleChange}
+                disabled
               />
             </Form.Group>
             <Form.Group controlId="material" className="mb-3">
@@ -99,8 +100,8 @@ const UpdateOrder = () => {
                 name="material"
                 value={formData.material}
                 onChange={handleChange}
+                disabled
               >
-                <option value="">Select Material</option>
                 {materialOptions.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
@@ -108,22 +109,6 @@ const UpdateOrder = () => {
                 ))}
               </Form.Control>
             </Form.Group>
-            {/*<Form.Group controlId="supplier" className="mb-3">
-              <Form.Label>Supplier</Form.Label>
-              <Form.Control
-                as="select"
-                name="supplier"
-                value={formData.supplier}
-                onChange={handleChange}
-              >
-                <option value="">Select Supplier</option>
-                {supplierOptions.map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </Form.Control>
-              </Form.Group>*/}
             <Form.Group controlId="quantity" className="mb-3">
               <Form.Label>Quantity</Form.Label>
               <Form.Control

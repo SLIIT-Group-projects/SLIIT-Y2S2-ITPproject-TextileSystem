@@ -18,7 +18,7 @@ const Home = () => {
               <Card.Text>
                 Easily add new orders with details such as category, material, supplier, quantity, and color.
               </Card.Text>
-              <Link to="/addorder" className="btn btn-primary">Add Order</Link>
+              <Link to="/om/addorder" className="btn btn-primary">Add Order</Link>
             </Card.Body>
           </Card>
         </div>
@@ -29,7 +29,7 @@ const Home = () => {
               <Card.Text>
                 See a list of all existing orders with search functionality to find orders quickly.
               </Card.Text>
-              <Link to="/orders" className="btn btn-primary">View Orders</Link>
+              <Link to="/om/orders" className="btn btn-primary">View Orders</Link>
             </Card.Body>
           </Card>
         </div>

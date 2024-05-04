@@ -14,53 +14,64 @@ const AddOrder = () => {
 
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
+
+  const [categoriesWithSuppliers, setCategoriesWithSuppliers] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
   const navigate = useNavigate();
 
-  const materialOptions = ['Silk', 'Threads','Elastic', 'Cotton']; // Hardcoded material options
-  const supplierData = {
-    Silk: ['Supplier A', 'Supplier B'],
-    Threads: ['Supplier X', 'Supplier Y'],
-    Elastic: ['Supplier L', 'Supplier P'],
-    Cotton: ['Supplier M', 'Supplier N'],
-  };
-
-  const [dynamicSuppliers, setDynamicSuppliers] = useState([]);
 
   useEffect(() => {
-    if (formData.material && supplierData[formData.material]) {
-      setDynamicSuppliers(supplierData[formData.material]);
-    } else {
-      setDynamicSuppliers([]);
+    fetchCategoriesWithSuppliers()
+  }, [])
+  
+  const fetchCategoriesWithSuppliers = async () => {
+    try {
+      const res = await axios.get('http://localhost:8070/api/orders/suppliers/categories');
+      setCategoriesWithSuppliers(res.data);
+    } catch (err) {
+      console.error(err);
     }
-  }, [formData.material]);
-
+  }
+  
   const handleChange = (e) => {
+    console.log("e.target",e.target.value,e.target.name)
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    if (e.target.name === 'material') {
+      console.log("first", name,value)
+      setFormData({ ...formData, [name]: value });
+    const selectedCategory=categoriesWithSuppliers.find((category)=>category.category===e.target.value)
+    if (selectedCategory && selectedCategory.usernames) {
+      setSuppliers(selectedCategory.usernames);
+  } else {
+      setSuppliers([]);
+  }
+}else{
+  setFormData({ ...formData, [name]: value });
+}
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic validation checks
     const formErrors = {};
-    if (!formData.category.trim()) {
-      formErrors.category = 'Category is required';
-    }
-    if (!formData.material.trim()) {
-      formErrors.material = 'Material is required';
-    }
-    if (!formData.supplier.trim()) {
-      formErrors.supplier = 'Supplier is required';
-    }
-    if (formData.quantity <= 0) {
-      formErrors.quantity = 'Quantity must be greater than 0';
-    }
-    if (!formData.color.trim()) {
-      formErrors.color = 'Color is required';
-    } else if (!isNaN(formData.color.trim())) {
-      formErrors.color = 'Color should not be a number';
-    }
+    if (!formData.category || !formData.category.trim()) {
+  formErrors.category = 'Category is required';
+}
+if (!formData.material || !formData.material.trim()) {
+  formErrors.material = 'Material is required';
+}
+if (!formData.supplier || !formData.supplier.trim()) {
+  formErrors.supplier = 'Supplier is required';
+}
+if (!formData.color || !formData.color.trim()) {
+  formErrors.color = 'Color is required';
+} else if (!isNaN(formData.color.trim())) {
+  formErrors.color = 'Color should not be a number';
+}
+if (formData.quantity === undefined || formData.quantity < 0) {
+  formErrors.quantity = 'Quantity should be 0 or greater';
+}
 
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
@@ -69,7 +80,7 @@ const AddOrder = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/orders', formData);
+      const res = await axios.post('http://localhost:8070/api/orders', formData);
       console.log(res.data); // Handle response as needed
       setSuccessMessage('Order added successfully!');
       setFormData({
@@ -81,7 +92,7 @@ const AddOrder = () => {
       });
       setErrors({});
       setTimeout(() => {
-        navigate('/');
+        navigate('/om/');
       }, 2000); // Redirect to home page after 2 seconds
     } catch (err) {
       console.error(err);
@@ -127,9 +138,9 @@ const AddOrder = () => {
                 isInvalid={errors.material}
               >
                 <option value="">Select Material</option>
-                {materialOptions.map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
+                {categoriesWithSuppliers.map((option, index) => (
+                  <option key={index} value={option.category}>
+                     {option.category}
                   </option>
                 ))}
               </Form.Control>
@@ -145,7 +156,7 @@ const AddOrder = () => {
                 isInvalid={errors.supplier}
               >
                 <option value="">Select Supplier</option>
-                {dynamicSuppliers.map((option, index) => (
+                {suppliers.map((option, index) => (
                   <option key={index} value={option}>
                     {option}
                   </option>

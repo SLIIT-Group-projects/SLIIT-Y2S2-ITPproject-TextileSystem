@@ -13,7 +13,7 @@ const ViewAllOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/orders');
+        const res = await axios.get('http://localhost:8070/api/orders');
         setOrders(res.data);
         setFilteredOrders(res.data); // Initialize filteredOrders with all orders
       } catch (err) {
@@ -63,7 +63,7 @@ const ViewAllOrders = () => {
 
         // Update order status in the database
         try {
-          await axios.put(`http://localhost:5000/api/orders/${id}`, { status: 'pending' });
+          await axios.put(`http://localhost:8070/api/orders/${id}`, { status: 'pending' });
         } catch (err) {
           console.error(err);
         }
@@ -74,7 +74,7 @@ const ViewAllOrders = () => {
 
     if (window.confirm('Are you sure you want to delete this order?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/orders/${id}`);
+        await axios.delete(`http://localhost:8070/api/orders/${id}`);
         setDeleteSuccessMessage('Order deleted successfully');
 
         // Update orders list after deletion
@@ -110,7 +110,7 @@ const ViewAllOrders = () => {
           <InputGroup>
             <FormControl
               type="text"
-              placeholder="Search by material, category, or supplier"
+              placeholder="Search by material id, material, or supplier"
               value={searchTerm}
               onChange={handleSearchChange}
             />
@@ -122,7 +122,8 @@ const ViewAllOrders = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Category</th>
+            <th>Date</th>
+            <th>Material ID</th>
             <th>Material</th>
             <th>Supplier</th>
             <th>Quantity</th>
@@ -134,6 +135,7 @@ const ViewAllOrders = () => {
         <tbody>
           {filteredOrders.map((order) => (
             <tr key={order._id}>
+              <td>{order.createdAt}</td>
               <td>{order.category}</td>
               <td>{order.material}</td>
               <td>{order.supplier}</td>
@@ -141,7 +143,7 @@ const ViewAllOrders = () => {
               <td>{order.color}</td>
               <td>{getOrderStatus(order.createdAt)}</td>
               <td>
-                <Link to={`/update/${order._id}`} className="btn btn-primary me-2">
+                <Link to={`/om/update/${order._id}`} className="btn btn-primary me-2">
                   Update
                 </Link>
                 <Button

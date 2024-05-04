@@ -12,7 +12,7 @@
 }
 /* footer css */
 .footer{
-    height: 400px;
+    height: 220px;
 }
 
 .footer-logo{
@@ -20,4 +20,8 @@
     height: 45px;
     background-size: cover;
     background-image: url("../resources/header/logo.png");
+}
+
+.pti-footer-ol{
+    list-style: none;
 }

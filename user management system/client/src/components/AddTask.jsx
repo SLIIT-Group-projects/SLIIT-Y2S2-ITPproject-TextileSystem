@@ -104,6 +104,7 @@ export default function AddTask() {
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Progress</option>
                                 <option value="Complete">Complete</option>
+                                <option value="Sent to Production">Complete</option>
                             </select>
                         </div>
 

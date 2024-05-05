@@ -50,7 +50,7 @@ export default function Header() {
           >
             <ul class="navbar-nav gap-5 mb-2 mb-lg-0">
               <li class="nav-item">
-                <a href=""
+                <a href="/"
                   class="nav-link header-list cursor-pointer  pti-bold"
                   aria-current="page"
                 >
@@ -76,7 +76,7 @@ export default function Header() {
               <li class="nav-item">
                 <a
                   class="nav-link header-list pti-bold"
-                  href=""
+                  href="/create-feedback"
                 >
                   Contact US
                 </a>
@@ -95,9 +95,7 @@ export default function Header() {
           {currentUser ? (
             
             <div className="dropdown">
-              <Link to='/ApprovedFeedbacks'>
-            <button className="pti-header-signin pti-bg-blue">Feedbacks</button>
-            </Link>
+              
               <Link to="/profile" className="dropdown-toggle text-decoration-none text-white">
                 <img src={currentUser.profilePicture} alt="user" className="rounded-circle" style={{ width: '3rem', height: '3rem' }} />
               </Link>

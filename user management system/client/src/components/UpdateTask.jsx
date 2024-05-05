@@ -151,6 +151,7 @@ export default function UpdateTask() {
             <option value="Pending">Pending</option>
             <option value="In Progress">In Progress</option>
             <option value="Complete">Complete</option>
+            <option value="Sent to Production">Sent to Production</option>
           </select>
         </div>
         <button type="submit" className="btn btn-primary">

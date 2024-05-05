@@ -92,6 +92,7 @@ export default function UpdateTask() {
             name="target"
             value={taskData.target}
             onChange={handleChange}
+            min = '1'
           />
         </div>
         <div className="form-group">
@@ -102,6 +103,7 @@ export default function UpdateTask() {
             name="final_count"
             value={taskData.final_count}
             onChange={handleChange}
+            min = '1'
           />
         </div>
         <div className="form-group">

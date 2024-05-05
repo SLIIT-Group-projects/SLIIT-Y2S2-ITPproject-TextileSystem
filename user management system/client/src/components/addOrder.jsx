@@ -187,6 +187,7 @@ const AddOrder = () => {
                   type="number"
                   name="quantity"
                   placeholder="Enter quantity"
+                  min='1'
                   value={formData.quantity}
                   onChange={handleChange}
                   isInvalid={errors.quantity}

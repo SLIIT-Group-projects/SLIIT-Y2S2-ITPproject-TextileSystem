@@ -116,7 +116,7 @@ const UpdateOrder = () => {
               <Form.Control
                 type="number"
                 name="quantity"
-                min="0"
+                min="1"
                 placeholder="Enter quantity"
                 value={formData.quantity}
                 onChange={handleChange}

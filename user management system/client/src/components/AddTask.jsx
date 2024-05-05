@@ -93,9 +93,9 @@ export default function AddTask() {
                         </div>
                         <div className="form-group">
                             <label htmlFor="approval" className="form-label">Approval</label>
-                            <select className="form-control" id="approval" value={approval} onChange={(e) => setApproval(e.target.value)} disabled>
+                            <select className="form-control" id="approval" value={approval} onChange={(e) => setApproval(e.target.value)}>
                                 <option value="Not Approved">Not Approved</option>
-                                <option value="Approved">Approved</option>
+                                <option value="Pending">Pending</option>
                             </select>
                         </div>
                         <div className="form-group">

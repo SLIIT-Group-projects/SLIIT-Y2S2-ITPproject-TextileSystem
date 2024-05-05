@@ -27,7 +27,7 @@ export default function CreateFeedback() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Email validation
     if (!isValidEmail(formData.email)) {
       setError('Please enter a valid email address');
@@ -80,21 +80,24 @@ export default function CreateFeedback() {
 
   return (
     <div className='container mt-5' style={{ backgroundImage: 'url(../src/components/Untitled design.png)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
-      
-      <Header/>
-      <Navbar/>
-      <h1 className='text-2xl font-weight-bold text-dark'>Create Feedback</h1>
-      <form className='mt-5' style={{backgroundColor :' #DBECF2'}}>
+
+      <Header />
+      <Navbar />
+      <div style={{ textAlign: 'center' }}>
+        <h1 className='text-2xl font-weight-bold text-dark'>Create Feedback</h1>
+      </div>
+
+      <form className='mt-5' style={{ backgroundColor: ' #DBECF2' }}>
         <div className='row'>
-        <div className='d-flex justify-content-center mb-3'>
-              {[1, 2, 3, 4, 5].map((value) => (
-                <StarIcon
-                  key={value}
-                  filled={value <= rating}
-                  onClick={() => handleRatingChange(value)}
-                />
-              ))}
-            </div>
+          <div className='d-flex justify-content-center mb-3'>
+            {[1, 2, 3, 4, 5].map((value) => (
+              <StarIcon
+                key={value}
+                filled={value <= rating}
+                onClick={() => handleRatingChange(value)}
+              />
+            ))}
+          </div>
           <div className='col' >
             <input
               type='text'
@@ -105,27 +108,29 @@ export default function CreateFeedback() {
             />
             <input
               type='email'
-              placeholder='Email' 
+              placeholder='Email'
               className='form-control mb-3'
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
             {error && <span style={{ color: 'red' }}>{error}</span>}
-            <br/>
+            <br />
 
-            <p>How satisfied were you with the resolution of any issues or concerns?</p>
+            <div style={{ textAlign: 'center' }}>
+              <p>How satisfied were you with the resolution of any issues or concerns?</p>
 
+              <input type="radio" id="very-satisfied" name="resolution-satisfaction" value="Very satisfied" />
+              <label htmlFor="very-satisfied">Very satisfied</label><br />
+              <input type="radio" id="satisfied" name="resolution-satisfaction" value="Satisfied" />
+              <label htmlFor="satisfied">Satisfied</label><br />
+              <input type="radio" id="neutral" name="resolution-satisfaction" value="Neutral" />
+              <label htmlFor="neutral">Neutral</label><br />
+              <input type="radio" id="dissatisfied" name="resolution-satisfaction" value="Dissatisfied" />
+              <label htmlFor="dissatisfied">Dissatisfied</label><br />
+              <input type="radio" id="very-dissatisfied" name="resolution-satisfaction" value="Very dissatisfied" />
+              <label htmlFor="very-dissatisfied">Very dissatisfied</label><br />
+            </div>
 
-            <input type="radio" id="very-satisfied" name="resolution-satisfaction" value="Very satisfied"/>
-            <label for="very-satisfied">Very satisfied</label><br/>
-            <input type="radio" id="satisfied" name="resolution-satisfaction" value="Satisfied"/>
-            <label for="satisfied">Satisfied</label><br/>
-            <input type="radio" id="neutral" name="resolution-satisfaction" value="Neutral"/>
-            <label for="neutral">Neutral</label><br/>
-            <input type="radio" id="dissatisfied" name="resolution-satisfaction" value="Dissatisfied"/>
-            <label for="dissatisfied">Dissatisfied</label><br/>
-            <input type="radio" id="very-dissatisfied" name="resolution-satisfaction" value="Very dissatisfied"/>
-            <label for="very-dissatisfied">Very dissatisfied</label><br/>
 
             <textarea
               placeholder='Message'
@@ -133,14 +138,20 @@ export default function CreateFeedback() {
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             />
-            <button onClick={handleSubmit} className='btn btn-primary btn-block mb-3'>
-              Create Feedback
-            </button><br/>
-            <Link to={`/userFeedbacks`} className="btn btn-primary"> Past reviews </Link>
-            
-          
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <button onClick={handleSubmit} className='btn btn-primary btn-block mb-3'>
+                Create Feedback
+              </button>
             </div>
-            
+
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Link to={`/userFeedbacks`} className="btn btn-primary"> Past reviews </Link>
+            </div>
+
+
+
+          </div>
+
         </div>
       </form>
     </div>

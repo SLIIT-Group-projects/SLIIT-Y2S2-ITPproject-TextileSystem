@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import NavBar from './Navbar.jsx';
-// import AdminMainHeader from '../components/Header'
+import Header from './MainHeader.jsx';
+import Navbar from './Navbar.jsx';
 const StarIcon = ({ filled, onClick }) => (
   <span
     className={`cursor-pointer ${filled ? 'text-warning' : 'text-secondary'}`}
@@ -59,6 +59,13 @@ export default function Feedback() {
 
   const handleEdit = async (e) => {
     e.preventDefault();
+
+    // Email validation
+    if (!isValidEmail(formData.email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
     try {
       const res = await fetch(`http://localhost:3000/api/feedback/update/${params.Id}`, {
         method: 'POST',
@@ -73,7 +80,7 @@ export default function Feedback() {
         return;
       }
       setListing(data);
-      navigate('userFeedbacks');
+      navigate('/userFeedbacks');
     } catch (error) {
       setError(true);
     }
@@ -97,15 +104,21 @@ export default function Feedback() {
     }
   };
 
+  // Function to validate email
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   return (
     <main>
-      <AdminMainHeader/>
+      <Header/>
+      <Navbar/>
       {loading && <p className="text-center my-7 text-2xl">Loading...</p>}
       {error && <p className="text-center my-7 text-2xl"></p>}
       {listing && (
         
         <div className="container mt-10">
-      <NavBar/>
           <h1 className="text-2xl font-bold text-dark">Edit Feedback</h1>
           <div className="row mt-4" style={{backgroundColor :' #DBECF2'}}>
             <div className="col"><br></br>

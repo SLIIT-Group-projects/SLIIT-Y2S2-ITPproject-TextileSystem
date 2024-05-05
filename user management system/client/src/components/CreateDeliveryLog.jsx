@@ -79,17 +79,19 @@ export default function CreateDeliveryLog({ orderId }) {
         </div>
         
         <div className="mb-3">
-          <label htmlFor="driverId" className="form-label">
-            Driver Name:
-          </label>
-          <input
-            type="text"
-            className="form-control"
+        <select
+            className="form-select"
             id="driverId"
             value={driverId}
             onChange={(e) => setDriverId(e.target.value)}
             required
-          />
+          >
+            <option value="">Select Driver</option>
+            <option value="Sumedha">Sumedha</option>
+            <option value="Madura">Madura</option>
+            
+            {/* Add more options as needed */}
+          </select>
         </div>
         <select
             className="form-select"

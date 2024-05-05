@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import LogoImage from "../images/logo.png"; // Import your logo image
+import LogoImage from "../images/pti.png"; // Import your logo image
 import { signOut } from "../redux/user/userSlice";
+
+// import '../css/main.css';
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -26,11 +28,11 @@ export default function Header() {
   };
 
   return (
-    <div className="container-fluid" style={{ backgroundColor: "#334155" }}>
+    <div className="container-fluid" style={{ backgroundColor: "#08A6D5" }}>
       <div className="container-fluid d-flex justify-content-between align-items-center mx-auto p-1">
         <div className="d-flex align-items-center gap-1">
-          <img src={LogoImage} alt="PTI TEXTILE Logo" className="w-20 h-10" />
-          <h1 className="font-weight-bold text-white">TEXTILE</h1>
+          <img src={LogoImage} style={{ width:"100px" }} alt="PTI TEXTILE Logo" className="w-20" />
+          {/* <h1 className="font-weight-bold text-light">PTI TEXTILE</h1> */}
         </div>
 
         <ul className="d-flex gap-4 align-items-center">

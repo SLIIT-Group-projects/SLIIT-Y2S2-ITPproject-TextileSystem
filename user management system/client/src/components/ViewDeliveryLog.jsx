@@ -18,9 +18,7 @@ export default function ViewDeliveryLog() {
     }, []);
 
     const history = useNavigate();
-
     const ComponentsRef = useRef();
-
     const [searchQuery, setSearchQuery] = useState("");
     const [noResults, setNoResults] = useState(false);
 

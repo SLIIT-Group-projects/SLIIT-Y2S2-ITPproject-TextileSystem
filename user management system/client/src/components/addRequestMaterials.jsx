@@ -83,8 +83,9 @@ function AddMaterials() {
   };
 
   return (
-    <div className="container">
+    <div>
       <AdminMainHeader/>
+    <div className="container">
       <AdminHeader />
       <div className="text-center pti-text-h2 pti-bold pb-4">
         Add Request Material
@@ -165,6 +166,7 @@ function AddMaterials() {
           {location.state ? "Add" : "Update"}
         </button>
       </form>
+    </div>
     </div>
   );
 }

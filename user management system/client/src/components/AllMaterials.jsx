@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
-import AdminHeader from './AdminHeader';
-import AdminMainHeader from '../components/Header'
+import AdminHeader from "./AdminHeader";
+import AdminMainHeader from "../components/Header";
 export default function AllMaterials() {
   const [materials, setMaterials] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -91,171 +91,175 @@ export default function AllMaterials() {
   };
 
   return (
-    <div className="inv-Allproducts-page container" ref={componentsRef}>
-      <AdminMainHeader/>
-     <AdminHeader/>
+    <div>
+      <AdminMainHeader />
+      <div className="inv-Allproducts-page container" ref={componentsRef}>
+        <AdminHeader />
 
-      {/* Search form */}
-      <div className="w-100 d-flex justify-content-center pt-4 pb-5">
-        <form
-          className="inv-search-bar d-flex justify-content-center form-inline"
-          onSubmit={handleSearch}
-        >
-          <input
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={searchQuery}
-          />
-          <button
-            className="btn btn-outline-primary my-2 my-sm-0"
-            type="submit"
+        {/* Search form */}
+        <div className="w-100 d-flex justify-content-center pt-4 pb-5">
+          <form
+            className="inv-search-bar d-flex justify-content-center form-inline"
+            onSubmit={handleSearch}
           >
-            Search
-          </button>
-        </form>
-      </div>
-
-      {/* Title and buttons for materials */}
-      <div className="d-flex justify-content-between">
-        <div className="pti-text-h2 pti-bold text-black">MATERIALS</div>
-        <div className="d-flex gap-3">
-          <button className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold">
-            <Link className="nav-link active" to="/inv/material/add">
-              Add Material
-            </Link>
-          </button>
-          <button
-            className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold"
-            onClick={handlePrint}
-          >
-            Download Report
-          </button>
+            <input
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={searchQuery}
+            />
+            <button
+              className="btn btn-outline-primary my-2 my-sm-0"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
         </div>
-      </div>
 
-      {/* Table for materials */}
-      <table border={0} className="inv-Allproducts-table">
-        {/* Table header */}
-        <thead>
-          <tr className="inv-Allproducts-table-row pti-bg-secondary_blue text-light rounded-5">
-            <th className="inv-Allproducts-table-heading1 p-2">Material ID</th>
-            <th>Material Name</th>
-            <th>Material Description</th>
-            <th>Roll Quantity</th>
-            <th>Material Color</th>
-            <th className="inv-Allproducts-table-heading2">Actions</th>
-          </tr>
-        </thead>
+        {/* Title and buttons for materials */}
+        <div className="d-flex justify-content-between">
+          <div className="pti-text-h2 pti-bold text-black">MATERIALS</div>
+          <div className="d-flex gap-3">
+            <button className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold">
+              <Link className="nav-link active" to="/inv/material/add">
+                Add Material
+              </Link>
+            </button>
+            <button
+              className="add-product-btn pti-bg-black p-2 text-light pti-rounded-small pti-bold"
+              onClick={handlePrint}
+            >
+              Download Report
+            </button>
+          </div>
+        </div>
 
-        {/* Display no materials found */}
-        {noResult ? (
-          <tr>
-            <td colSpan="6" className="text-center">
-              No materials found
-            </td>
-          </tr>
-        ) : (
-          // Display each material row
-          <tbody>
-            {materials.map((material) => {
-              // Define a class name for the row
-              const rowClassName =
-                material.roll_quantity < 50 ? "low-roll-quantity" : "";
-              return (
-                <tr
-                  className={`pti-bg-light_blue ${rowClassName}`}
-                  key={material._id}
-                >
-                  <td className="inv-Allproducts-table-row1 p-2">
-                    {material.material_ID}
-                  </td>
-                  <td>{material.material_name}</td>
-                  <td>{material.material_type}</td>
-                  <td>{material.roll_quantity}</td>
-                  <td>{material.color}</td>
-                  <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
-                    <Link to={`/inv/material/${material._id}`}>
-                      <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
-                        <i className="fa-solid fa-pen-to-square"></i>
+        {/* Table for materials */}
+        <table border={0} className="inv-Allproducts-table">
+          {/* Table header */}
+          <thead>
+            <tr className="inv-Allproducts-table-row pti-bg-secondary_blue text-light rounded-5">
+              <th className="inv-Allproducts-table-heading1 p-2">
+                Material ID
+              </th>
+              <th>Material Name</th>
+              <th>Material Description</th>
+              <th>Roll Quantity</th>
+              <th>Material Color</th>
+              <th className="inv-Allproducts-table-heading2">Actions</th>
+            </tr>
+          </thead>
+
+          {/* Display no materials found */}
+          {noResult ? (
+            <tr>
+              <td colSpan="6" className="text-center">
+                No materials found
+              </td>
+            </tr>
+          ) : (
+            // Display each material row
+            <tbody>
+              {materials.map((material) => {
+                // Define a class name for the row
+                const rowClassName =
+                  material.roll_quantity < 50 ? "low-roll-quantity" : "";
+                return (
+                  <tr
+                    className={`pti-bg-light_blue ${rowClassName}`}
+                    key={material._id}
+                  >
+                    <td className="inv-Allproducts-table-row1 p-2">
+                      {material.material_ID}
+                    </td>
+                    <td>{material.material_name}</td>
+                    <td>{material.material_type}</td>
+                    <td>{material.roll_quantity}</td>
+                    <td>{material.color}</td>
+                    <td className="d-flex gap-3 p-2 inv-Allproducts-table-row2">
+                      <Link to={`/inv/material/${material._id}`}>
+                        <button className="pti-allProducts-tble-buttons pti-allProducts-edit-buttons">
+                          <i className="fa-solid fa-pen-to-square"></i>
+                        </button>
+                      </Link>
+                      <button
+                        className="pti-allProducts-tble-buttons pti-allProducts-delete-buttons"
+                        onClick={() => handleDelete(material._id)}
+                      >
+                        <i className="fa-solid fa-trash"></i>
                       </button>
-                    </Link>
-                    <button
-                      className="pti-allProducts-tble-buttons pti-allProducts-delete-buttons"
-                      onClick={() => handleDelete(material._id)}
-                    >
-                      <i className="fa-solid fa-trash"></i>
-                    </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          )}
+        </table>
+
+        {/* Material totals summary */}
+        <section className="d-flex justify-content-center pt-5 pb-4">
+          <div className="inv-mat-anylicts-main d-flex justify-content-center align-items-center">
+            <div>
+              <table>
+                <tr>
+                  <th className="inv-mat-anylicts pti-text-h2 pti-text-dark">
+                    Material
+                  </th>
+                  <th className="inv-mat-anylicts pti-text-h2 pti-text-dark">
+                    Totals
+                  </th>
+                </tr>
+                <tr>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    Silks
+                  </td>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    {silkTotal}
                   </td>
                 </tr>
-              );
-            })}
-          </tbody>
-        )}
-      </table>
-
-      {/* Material totals summary */}
-      <section className="d-flex justify-content-center pt-5 pb-4">
-        <div className="inv-mat-anylicts-main d-flex justify-content-center align-items-center">
-          <div>
-            <table>
-              <tr>
-                <th className="inv-mat-anylicts pti-text-h2 pti-text-dark">
-                  Material
-                </th>
-                <th className="inv-mat-anylicts pti-text-h2 pti-text-dark">
-                  Totals
-                </th>
-              </tr>
-              <tr>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  Silks
-                </td>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  {silkTotal}
-                </td>
-              </tr>
-              <tr>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  Cottons
-                </td>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  {cottonTotal}
-                </td>
-              </tr>
-              <tr>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  Yarns
-                </td>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  {yarnTotal}
-                </td>
-              </tr>
-              <tr>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  Buttons
-                </td>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  {buttonTotal}
-                </td>
-              </tr>
-              <tr>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  Lace
-                </td>
-                <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
-                  {laseTotal}
-                </td>
-              </tr>
-            </table>
+                <tr>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    Cottons
+                  </td>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    {cottonTotal}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    Yarns
+                  </td>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    {yarnTotal}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    Buttons
+                  </td>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    {buttonTotal}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    Lace
+                  </td>
+                  <td className="inv-mat-anylicts-td pti-text-h3 pti-bolder text-danger">
+                    {laseTotal}
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div>
+              <div className="inv-mat-anylicts-img"></div>
+            </div>
           </div>
-          <div>
-            <div className="inv-mat-anylicts-img"></div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

@@ -37,8 +37,9 @@ function AddMaterials() {
   };
 
   return (
-    <div className="container">
+    <div>
       <AdminMainHeader/>
+      <div className="container">
       <AdminHeader/>
       <div className="text-center pti-text-h2 pti-bold pb-4">ADD MATERIALS</div>
       <form onSubmit={sendData}>
@@ -133,6 +134,7 @@ function AddMaterials() {
         </div>
       </form>
       <br />
+    </div>
     </div>
   );
 }

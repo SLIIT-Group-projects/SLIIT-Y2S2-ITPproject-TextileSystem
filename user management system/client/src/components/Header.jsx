@@ -29,7 +29,7 @@ export default function Header() {
 
   return (
     <div className="container-fluid" style={{ backgroundColor: "#08A6D5" }}>
-      <div className="container-fluid d-flex justify-content-between align-items-center mx-auto p-1">
+      <div className="container container-fluid d-flex justify-content-between align-items-center mx-auto p-1">
         <div className="d-flex align-items-center gap-1">
           <img src={LogoImage} style={{ width:"100px" }} alt="PTI TEXTILE Logo" className="w-20" />
           {/* <h1 className="font-weight-bold text-light">PTI TEXTILE</h1> */}
@@ -39,9 +39,7 @@ export default function Header() {
           <Link to={currentUser?.isAdmin ? "/dashboard" : "/"} className="text-decoration-none text-white">
             <li>{currentUser?.isAdmin ? "Admin Home" : "Home"}</li>
           </Link>
-          <Link to="/about" className="text-decoration-none text-white">
-            <li>About</li>
-          </Link>
+          
           {currentUser ? (
             <div className="dropdown">
               <Link to="/profile" className="dropdown-toggle text-decoration-none text-white">

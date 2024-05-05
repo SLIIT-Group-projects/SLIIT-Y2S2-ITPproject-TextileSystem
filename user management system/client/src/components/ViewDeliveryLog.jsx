@@ -99,11 +99,7 @@ export default function ViewDeliveryLog() {
                                                             </td>
                                                         </>
                                                     )}
-                                                <td>
-                                                    <Link to={`/order/get/${Delivery.orderId}`} className="btn action-button btn-primary">
-                                                        View Order
-                                                    </Link>
-                                                </td>
+                                               
                                             </tr>
                                         ))}
                                     </tbody>

@@ -110,10 +110,10 @@ export default function AddSuppliers() {
             id="category"
           >
             <option value="uncategorized">Select a user category</option>
-            <option value="fabricSupplier">Fabric Supplier</option>
-            <option value="chemicalSupplier">Chemical Supplier</option>
-            <option value="apparelManufacturers">Apparel Manufacturers</option>
-            <option value="equipmentSuppliers">Equipment Suppliers</option>
+            <option value="fabricSupplier">silk</option>
+            <option value="chemicalSupplier">cotton</option>
+            <option value="apparelManufacturers">yarn</option>
+            <option value="equipmentSuppliers">button</option>
           </select>
         </div>
         <div className="col">

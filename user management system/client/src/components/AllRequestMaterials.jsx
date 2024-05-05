@@ -50,8 +50,9 @@ export default function AllMaterials() {
   };
 
   return (
-    <div className="container" ref={componentsRef}>
+    <div>
       <AdminMainHeader/>
+    <div className="container" ref={componentsRef}>
       <AdminHeader/>
 
       {/* Search form */}
@@ -125,6 +126,7 @@ export default function AllMaterials() {
           </tbody>
         )}
       </table>
+    </div>
     </div>
   );
 }

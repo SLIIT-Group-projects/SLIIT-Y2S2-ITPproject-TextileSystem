@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import AdminHeader from './AdminHeader';
-
+import AdminMainHeader from '../components/Header'
 // Modal component to display image popup
 const ImageModal = ({ isModalOpen, selectedImage, closeModal }) => {
   if (!isModalOpen) return null;
@@ -93,6 +93,8 @@ const AllProducts = () => {
 
   return (
     <div ref={ComponentsRef} className="inv-Allproducts-page container">
+      
+      <AdminMainHeader/>
       <AdminHeader/>
 
       {/* Search Bar */}

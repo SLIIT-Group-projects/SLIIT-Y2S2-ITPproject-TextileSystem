@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import DeliveryHeader from "./DeliveryHeader";
-
+import AdminMainHeader from '../components/Header'
 export default function DownloadDelivery() {
     const [deliveries, setDeliveries] = useState([]);
     const [orders, setOrders] = useState([]);
@@ -56,6 +56,7 @@ export default function DownloadDelivery() {
     });
 
     return (
+        <div> <AdminMainHeader/>
         <div className="container">
             <DeliveryHeader/>
             <form className="d-flex" role="search">
@@ -108,5 +109,6 @@ export default function DownloadDelivery() {
             </div>
             <button className="btn action-button btn-primary" onClick={handlePrint}>Download Report</button>
         </div>
+    </div>
     )
 }

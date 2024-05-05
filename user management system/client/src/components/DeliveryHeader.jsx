@@ -14,8 +14,7 @@ export default function DeliveryHeader(){
                 <Link  className='btn del-button btn-primary' to={'/delivery/'}>Delivery log</Link>
                 <Link  className='btn del-button btn-primary' to={'/driver/delivery/'}>Driver Portal</Link>
                 <Link  className='btn del-button btn-primary' to={'/delivery/download'}>Download</Link>
-                <Link  className='btn del-button btn-primary' to={'/lorry/'}>Lorry</Link>
-
+                
                 </div>
             
         </div>

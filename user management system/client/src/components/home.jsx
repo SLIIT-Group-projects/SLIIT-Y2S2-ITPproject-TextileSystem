@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
-import Header from "./header";
+import Header from "./MainHeader";
 import Footer from "./footer";
 
 export default function Home() {

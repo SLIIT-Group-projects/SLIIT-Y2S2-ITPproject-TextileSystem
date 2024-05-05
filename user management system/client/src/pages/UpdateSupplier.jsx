@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import AdminHeader from '../components/Header';
 export default function AddSuppliers() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -87,6 +87,7 @@ export default function AddSuppliers() {
   };
 
   return (
+    <div><AdminHeader/>
     <div className="container py-2 p-3 max-w-lg mx-auto">
       <h1 className="text-center display-4 my-5 fw-bold">Update Supplier</h1>
       <form className="d-flex flex-column gap-3" onSubmit={handleSubmit}>
@@ -190,5 +191,6 @@ export default function AddSuppliers() {
         </div>
       </form>
     </div>
+  </div>
   );
 }

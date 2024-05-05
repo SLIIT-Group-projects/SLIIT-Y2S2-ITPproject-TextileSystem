@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AdminHeader from './AdminHeader';
-
+import AdminMainHeader from '../components/Header'
 function AddMaterials() {
   const navigate = useNavigate();
 
@@ -38,6 +38,7 @@ function AddMaterials() {
 
   return (
     <div className="container">
+      <AdminMainHeader/>
       <AdminHeader/>
       <div className="text-center pti-text-h2 pti-bold pb-4">ADD MATERIALS</div>
       <form onSubmit={sendData}>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import AdminMainHeader from '../components/Header'
 export default function DisplayTasks() {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
@@ -67,6 +67,7 @@ export default function DisplayTasks() {
 
   return (
     <div className="container mt-4">
+      <AdminMainHeader/>
       <div style={{ textAlign: 'center', marginBottom: '10px' }}>
         <span style={{ color: '#08A6D5', fontFamily: 'Poppins', fontWeight: 'bold', fontSize: '55px', display: 'block' }}>
           TASK DASHBOARD

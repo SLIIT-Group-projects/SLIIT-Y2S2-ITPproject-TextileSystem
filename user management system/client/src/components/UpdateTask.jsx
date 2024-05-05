@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import AdminMainHeader from '../components/Header'
 export default function UpdateTask() {
   const { id } = useParams();
   const [taskData, setTaskData] = useState({
@@ -51,6 +51,8 @@ export default function UpdateTask() {
   };
 
   return (
+    <div> <AdminMainHeader/>
+   
     <div className="container mt-4">
       <h1>Update Task</h1>
       <form onSubmit={handleSubmit}>
@@ -155,6 +157,7 @@ export default function UpdateTask() {
           Update
         </button>
       </form>
+    </div>
     </div>
   );
 }

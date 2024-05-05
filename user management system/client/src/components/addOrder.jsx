@@ -3,7 +3,7 @@ import axios from "axios";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Header from "./omheader";
-
+import AdminMainHeader from '../components/Header'
 const AddOrder = () => {
   const [formData, setFormData] = useState({
     category: "",
@@ -109,6 +109,7 @@ const AddOrder = () => {
 
   return (
     <div>
+      <AdminMainHeader/>
       <Header />
       <div className="p-4">
         <h2 className="mb-4">Add New Order</h2>

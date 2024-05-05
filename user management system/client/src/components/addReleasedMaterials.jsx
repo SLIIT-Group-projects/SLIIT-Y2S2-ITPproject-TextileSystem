@@ -3,7 +3,7 @@ import Axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import AdminHeader from "./AdminHeader";
-
+import AdminMainHeader from '../components/Header'
 function AddReleasedMaterials() {
   const { id } = useParams(); // Extract id from the URL parameters
   const navigate = useNavigate();
@@ -80,6 +80,7 @@ function AddReleasedMaterials() {
 
   return (
     <div className="container">
+      <AdminMainHeader/>
       <AdminHeader />
       <div className="text-center pti-text-h2 pti-bold pb-4">
         Add Released Material

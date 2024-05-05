@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import AdminHeader from './AdminHeader';
-
+import AdminMainHeader from '../components/Header'
 export default function AllMaterials() {
   const [taskMaterials, settaskMaterials] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -51,6 +51,7 @@ export default function AllMaterials() {
 
   return (
     <div className="container" ref={componentsRef}>
+      <AdminMainHeader/>
       <AdminHeader/>
 
       {/* Search form */}

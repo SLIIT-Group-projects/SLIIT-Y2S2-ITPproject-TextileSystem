@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
+import AdminMainHeader from '../components/Header'
 import {
   getDownloadURL,
   getStorage,
@@ -115,6 +116,7 @@ export default function Profile() {
   };
   return (
     <div style={{backgroundColor: '#F2FAFF'}}>
+    <AdminMainHeader/><br/>
     <div className="p-3 mx-auto" style={{ maxWidth: '32rem', backgroundColor: '#CBCDCF' }}>
       <h1 className='text-center text-3xl font-weight-bold my-7'>Profile</h1>
       <form onSubmit={handleSubmit} className='d-flex flex-column gap-4'>

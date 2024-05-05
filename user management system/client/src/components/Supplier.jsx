@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { useReactToPrint } from 'react-to-print';
-
+import AdminMainHeader from '../components/Header'
 const Supplier = React.forwardRef((props, ref) => {
   const { currentUser } = useSelector((state) => state.user);
   const [userSuppliers, setUserSuppliers] = useState([]);
@@ -82,6 +82,7 @@ const Supplier = React.forwardRef((props, ref) => {
 
   return (
     <div ref={ref} className="container-fluid py-3" style={{ backgroundColor: '#F2FAFF ' }}>
+      <AdminMainHeader/><br/>
       <div className="row">
         <div className="col-12">
           <h3 className="text-center text-3xl font-semibold">Supplier List</h3>

@@ -10,6 +10,18 @@
     background-size: cover;
     background-image: url("../resources/header/logo.png");
 }
+.pti-header-signin{
+    width: 80px;
+    height: 35px;
+    border-radius: 8px;
+    background-color: var(--secondary_blue);
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+.pti-header-signin:hover{
+    background-color: #55b0cb;
+}
 /* footer css */
 .footer{
     height: 220px;
@@ -24,4 +36,17 @@
 
 .pti-footer-ol{
     list-style: none;
+}
+/* sign In page css */
+pti-signIn{
+    border-radius: 10px;
+}
+.pit-signin-header{
+    color: #55b0cb;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+.pti-signin-conatiner{
+    padding-top:20px ;
 }

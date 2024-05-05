@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
-
+import AdminMainHeader from '../components/Header'
 function Excess() {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
@@ -73,6 +73,7 @@ function Excess() {
 
 
   return (
+    <div> <AdminMainHeader/>
     <div className="container mt-4">
       <div  ref={ComponentsRef}>
         <h1>Target Exceeded</h1>
@@ -171,6 +172,7 @@ function Excess() {
         </div>
         
     </div>
+  </div>
   );
 }
 

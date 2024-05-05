@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import AdminHeader from '../components/Header';
 export default function UpdateEmployee() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -73,7 +73,7 @@ export default function UpdateEmployee() {
   };
 
   return (
-    
+    <div><AdminHeader/>
     <div className="container py-3 p-3 max-w-lg mx-auto">
     <h1 className="text-center display-4 my-5 fw-bold">Update an Employee</h1>
     <form className="d-flex flex-column gap-4" onSubmit={handleSubmit}>
@@ -180,7 +180,7 @@ export default function UpdateEmployee() {
         {publishError && <div className="mt-5 text-danger">{publishError}</div>}
       </form>
     </div>
-   
+  </div>
   );
   
   

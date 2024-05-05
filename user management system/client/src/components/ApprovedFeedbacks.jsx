@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from './Navbar.jsx';
+// import AdminMainHeader from '../components/Header'
+import Header from './MainHeader.jsx';
 const StarIcon = ({ filled, onClick }) => (
   <span
     className={`cursor-pointer ${filled ? 'text-warning' : 'text-secondary'
@@ -63,6 +65,8 @@ const ApprovedFeedbacks = () => {
   return (
     <main>
       <div className="container my-5">
+      <Header/>
+        
         <NavBar/>
         <div className="my-3">
           <h2 className="text-2xl font-bold text-dark">Give your feedback fo us!!</h2><br></br>

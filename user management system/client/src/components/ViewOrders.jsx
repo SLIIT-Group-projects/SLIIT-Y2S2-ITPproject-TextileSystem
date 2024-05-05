@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CreateDeliveryLog from "./CreateDeliveryLog";
 import DeliveryHeader from "./DeliveryHeader";
-
+import AdminMainHeader from '../components/Header'
 export default function ViewOrders() {
   const [orders, setOrders] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -35,6 +35,7 @@ export default function ViewOrders() {
   };
 
   return (
+    <div><AdminMainHeader/>
     <div className="container">
       <DeliveryHeader/>
       <h1>Orders</h1>
@@ -81,5 +82,7 @@ export default function ViewOrders() {
         </table>
       </div>
     </div>
+
+  </div>
   );
 }

@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Home from './pages/Home';
+import Home from './pages/Home';
 import About from './pages/About';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './components/Profile';
 import AdminHome from './pages/AdminHome';
-// import Header from './components/Header';
+import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
 
@@ -52,7 +52,7 @@ import OmHome from "../src/components/omHome";
 // import Footer from "./components/footer";
 
 // home
-// import Home from "./components/home";
+import MainHome from "./components/home";
 
 // siluni
 import "./App.css";
@@ -82,7 +82,9 @@ export default function App() {
     <BrowserRouter>
       {/* header */}
       {/* <Header /> */}
+      {/* <Mainhome/> */}
       <Routes>
+        <Route path="/" element={<MainHome/>}/>
         {/* <Route path='/' element={<Home />} /> */}
         <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<SignIn />} />

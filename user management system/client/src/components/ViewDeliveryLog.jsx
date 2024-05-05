@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useReactToPrint } from "react-to-print";
 import DeliveryHeader from "./DeliveryHeader";
-
+import AdminMainHeader from '../components/Header'
 export default function ViewDeliveryLog() {
 
     const [deliveries, setDeliveries] = useState([]);
@@ -34,6 +34,7 @@ export default function ViewDeliveryLog() {
     }
 
     return (
+        <div><AdminMainHeader/>
         <div className="container">
             <DeliveryHeader />
             <div className="container center">
@@ -113,5 +114,7 @@ export default function ViewDeliveryLog() {
 
             </div>
         </div>
+
+    </div>
     )
 }

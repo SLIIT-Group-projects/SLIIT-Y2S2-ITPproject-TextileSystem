@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AdminHeader from './AdminHeader';
-
+import AdminMainHeader from '../components/Header'
 function UpdateMaterials() {
   const { id } = useParams(); // Extract id from the URL parameters
   const navigate = useNavigate(); // useNavigate hook to navigate
@@ -65,6 +65,8 @@ function UpdateMaterials() {
   };
 
   return (
+    <div>
+    <AdminHeader/>
     <div className="container">
       <AdminHeader/>
       {/* Form Title */}
@@ -176,6 +178,7 @@ function UpdateMaterials() {
         </div>
       </form>
     </div>
+  </div>
   );
 }
 

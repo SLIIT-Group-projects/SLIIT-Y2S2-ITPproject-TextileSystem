@@ -5,7 +5,7 @@ import { app } from "../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from 'react-router-dom';
-
+import AdminHeader from '../components/Header';
 export default function AddSuppliers() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
@@ -97,6 +97,8 @@ export default function AddSuppliers() {
   };
 
   return (
+
+    <div> <AdminHeader/>
     <div class="container py-2 p-3 max-w-lg mx-auto">
 <h1 class="text-center display-4 my-5 fw-bold">
         Add Supplier
@@ -200,6 +202,8 @@ export default function AddSuppliers() {
         </div>
       </form>
     </div>
+
+  </div>
   );
   
   

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import {useNavigate} from 'react-router-dom';
 import DeliveryHeader from "./DeliveryHeader";
+import AdminMainHeader from '../components/Header'
 export default function DriverPortal() {
 
     const[deliveries, setDeliveries]=useState([]);
@@ -32,6 +33,7 @@ export default function DriverPortal() {
     
     return(
         <div>
+            <AdminMainHeader/>
             <DeliveryHeader/>
             <div className="container">
             <h1>welcome to driver portal</h1>

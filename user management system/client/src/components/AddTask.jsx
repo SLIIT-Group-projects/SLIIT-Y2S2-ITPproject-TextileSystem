@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import AdminMainHeader from '../components/Header'
 export default function AddTask() {
     const [task_id, setTaskId] = useState("");
     const [color, setColor] = useState("-");
@@ -57,6 +57,7 @@ export default function AddTask() {
     }
 
     return (
+        <div> <AdminMainHeader/> 
         <div className="container">
             <h1 className="mt-3 mb-4">Add New Task</h1>
             <div className="row">
@@ -111,5 +112,6 @@ export default function AddTask() {
                 </div>
             </div>
         </div>
+    </div>
     );
 }

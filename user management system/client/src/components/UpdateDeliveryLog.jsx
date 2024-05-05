@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import {useNavigate} from 'react-router'
 import { Link } from "react-router-dom";
 import DeliveryHeader from "./DeliveryHeader";
+import AdminMainHeader from '../components/Header'
 export default function UpdateDeliveryLog() {
     const { id } = useParams();
     const history= useNavigate();
@@ -54,6 +55,7 @@ export default function UpdateDeliveryLog() {
     };
 
     return (
+        <div> <AdminMainHeader/>
         <div className="container">
             <DeliveryHeader/>
             <h1>Update Delivery Log</h1>
@@ -90,7 +92,7 @@ export default function UpdateDeliveryLog() {
             <Link to={'/delivery/'}>
             <button type="submit" className="btn cancel">Cancel</button>
             </Link>
-            
+            </div>
         </div>
     );
 }

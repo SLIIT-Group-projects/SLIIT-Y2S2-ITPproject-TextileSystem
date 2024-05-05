@@ -7,7 +7,9 @@ import {
 } from '../redux/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import OAuth from '../components/OAuth';
-import backgroundImage from '/src/images/LOGIN.png'; // Import your background image
+import backgroundImage from '/src/images/bg_login.jpg'; // Import your background image
+import MainHeader from '../components/MainHeader'
+import '../css/header.css'
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -43,21 +45,18 @@ const {currentUser}=useSelector((state)=>state.user)
         } else {
           navigate('/'); // Redirect to home page for regular users
         }
-        
-
-     
-      
-      
+              
     } catch (error) {
       dispatch(signInFailure(error));
     }
   };
 
   const backgroundStyle = {
+
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: '',
     backgroundPosition: 'center',
-    height: '110vh',
+    height: '150vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -65,10 +64,13 @@ const {currentUser}=useSelector((state)=>state.user)
   };
   
   return (
-    <div style={backgroundStyle}>
-      <div className="container p-1 max-w-md mx-auto rounded-lg shadow-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+    <div>
+    <MainHeader/>
+    <div className='pti-signin-conatiner' style={backgroundStyle}>
+      
+      <div className="container pti-signIn  p-1 max-w-md mx-auto rounded-lg shadow-lg" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', width:'700px'}}>
   
-        <h1 className="text-center text-4xl font-bold my-9">Sign In</h1>
+        <h1 className="pit-signin-header text-center text-4xl font-bold my-9">Sign In</h1>
         <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
           
           <div className="input-group">
@@ -111,6 +113,8 @@ const {currentUser}=useSelector((state)=>state.user)
           {error ? error.message || 'Something went wrong!' : ''}
         </p>
       </div>
+    </div>
+
     </div>
   );
 }

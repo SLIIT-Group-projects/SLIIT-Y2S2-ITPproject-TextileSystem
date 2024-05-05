@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, Form, Button, Alert } from 'react-bootstrap';
 import Header from './omheader';
-
+import AdminMainHeader from '../components/Header'
 const UpdateOrder = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -77,6 +77,7 @@ const UpdateOrder = () => {
 
   return (
     <div className="p-4">
+      <AdminMainHeader/>
       <Header />
       <h2 className="mb-4">Update Order</h2>
       <Card className="p-4">

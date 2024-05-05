@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { PDFDocument, rgb } from 'pdf-lib';
 import NavBar from './Navbar.jsx';
+// import AdminMainHeader from '../components/Header'
+import Header from './MainHeader.jsx';
 const UserFeedbacks = () => {
     const [feedbacks, setFeedbacks] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -45,6 +47,7 @@ const UserFeedbacks = () => {
 
     return (
         <div className="container mt-5">
+            <Header/>
       <NavBar/>
             <h1 className="text-2xl font-bold text-gray-800 mb-4">User Dashboard</h1>
             <div className="d-flex justify-content-between align-items-center mb-4">

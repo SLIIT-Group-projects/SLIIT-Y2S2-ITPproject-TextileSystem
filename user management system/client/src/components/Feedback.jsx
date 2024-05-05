@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from './Navbar.jsx';
+// import AdminMainHeader from '../components/Header'
 const StarIcon = ({ filled, onClick }) => (
   <span
     className={`cursor-pointer ${filled ? 'text-warning' : 'text-secondary'}`}
@@ -98,6 +99,7 @@ export default function Feedback() {
 
   return (
     <main>
+      <AdminMainHeader/>
       {loading && <p className="text-center my-7 text-2xl">Loading...</p>}
       {error && <p className="text-center my-7 text-2xl"></p>}
       {listing && (

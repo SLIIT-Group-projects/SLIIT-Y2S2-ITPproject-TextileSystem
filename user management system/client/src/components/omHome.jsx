@@ -2,9 +2,10 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Header from './omheader';
-
+import AdminMainHeader from '../components/Header'
 const Home = () => {
   return (
+    <div> <AdminMainHeader/>
     <div className="container  mt-4" style={{marginBottom: "250px"}}>
       <Header />
       <h2>Welcome to Ordering Materials</h2>
@@ -41,6 +42,7 @@ const Home = () => {
         by visiting the <strong>View All Orders</strong> page.
       </p>
     </div>
+  </div>
   );
 };
 

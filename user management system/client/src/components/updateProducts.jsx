@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import AdminHeader from './AdminHeader';
-
+import AdminMainHeader from '../components/Header'
 function UpdateProducts() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -70,6 +70,7 @@ function UpdateProducts() {
   };
 
   return (
+    <div><AdminMainHeader/>
     <div className="container">
       <AdminHeader/>
       <div className="text-center pti-text-h2 pti-bold pb-4">
@@ -207,6 +208,7 @@ function UpdateProducts() {
         </div>
       </form>
       <br />
+    </div>
     </div>
   );
 }

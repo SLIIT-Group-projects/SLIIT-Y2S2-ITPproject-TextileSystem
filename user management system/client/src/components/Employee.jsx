@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { useReactToPrint } from 'react-to-print';
-
+import AdminMainHeader from '../components/Header';
 const Employee = React.forwardRef((props, ref) => {
   const { currentUser } = useSelector((state) => state.user);
   const [userEmployees, setUserEmployees] = useState([]);
@@ -80,8 +80,9 @@ const Employee = React.forwardRef((props, ref) => {
 
   return (
     <div ref={ref} className="container-fluid py-3" style={{ backgroundColor: '#F2FAFF ' }}>
+      <AdminMainHeader/>
       <div className="row">
-        <div className="col-12">
+        <div className="col-12"><br/>
           <h3 className="text-center text-3xl font-semibold mb-4">Employee List</h3>
         </div>
       </div>

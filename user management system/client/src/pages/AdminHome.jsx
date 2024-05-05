@@ -9,7 +9,7 @@ import { HiUser, HiArrowSmRight,HiDocumentText,
   HiAnnotation,
   HiChartPie ,HiArrowNarrowUp} from "react-icons/hi";
   import { Button, Table } from 'flowbite-react';
-
+import AdminHeader from '../components/Header';
 import { Link ,useLocation} from "react-router-dom";
 import { signOut } from "../redux/user/userSlice";
 import {useDispatch} from 'react-redux';
@@ -98,7 +98,11 @@ if(currentUser.isAdmin){
 );
 
   return (
+    <div>
+       <AdminHeader/>
+    
     <div class="d-flex flex-col">
+   
     <div class="min-vh-100 d-flex flex-md-row flex-column " >
       <Sidebar  class="col-md-100 text-gray-400 w-full" style={{backgroundColor:'lightgrey'}}>
         <Sidebar.Items>
@@ -335,6 +339,6 @@ if(currentUser.isAdmin){
     </div>
     </div>
 
-
+    </div>
   );
 }

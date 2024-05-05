@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from './Navbar.jsx';
+// import AdminMainHeader from '../components'
 // Define star icon components
+import Header from './MainHeader.jsx';
+
 const StarIcon = ({ filled, onClick }) => (
   <span
     className={`cursor-pointer ${filled ? 'text-warning' : 'text-secondary'}`}
@@ -69,7 +72,9 @@ export default function CreateFeedback() {
   };
 
   return (
+    <div><Header/>
     <div className='container mt-5' style={{ backgroundImage: 'url(../src/components/Untitled design.png)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
+      
       <NavBar/>
       <h1 className='text-2xl font-weight-bold text-dark'>Create Feedback</h1>
       <form className='mt-5' style={{backgroundColor :' #DBECF2'}}>
@@ -133,6 +138,7 @@ export default function CreateFeedback() {
             
         </div>
       </form>
+    </div>
     </div>
     
   );

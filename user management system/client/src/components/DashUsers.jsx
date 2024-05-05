@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import {useReactToPrint} from 'react-to-print';
-
+import AdminMainHeader from '../components/Header'
 
 export default function DashUsers() {
   const [users, setUsers] = useState([]);
@@ -87,6 +87,7 @@ const handlePrint=useReactToPrint({
 
 return (
   <div className='container-fluid p-3'>
+    <AdminMainHeader/>
     {currentUser.isAdmin && users.length > 0 ? (
       <>
         <div ref={ComponentsRef} className="overflow-auto">

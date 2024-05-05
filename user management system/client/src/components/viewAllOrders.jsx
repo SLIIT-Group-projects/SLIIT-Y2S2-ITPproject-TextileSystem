@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Table, Button, InputGroup, FormControl, Container, Row, Col, Alert } from 'react-bootstrap';
 import Header from './omheader';
-
+import AdminMainHeader from '../components/Header'
 const ViewAllOrders = () => {
   const [orders, setOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -103,6 +103,7 @@ const ViewAllOrders = () => {
 
   return (
     <Container fluid style={{ marginBottom: '250px' }}>
+      <AdminMainHeader/>
       <Header />
       <Row className="mt-4 mb-3">
         <Col>

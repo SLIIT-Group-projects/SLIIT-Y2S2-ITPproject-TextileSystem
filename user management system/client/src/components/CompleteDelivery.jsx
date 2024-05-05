@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import DeliveryHeader from "./DeliveryHeader";
-
+import AdminMainHeader from '../components/Header'
 export default function DriverPortal() {
     const { id } = useParams();
     const [pin, setPin] = useState("");
@@ -70,6 +70,7 @@ export default function DriverPortal() {
     };
 
     return (
+        <div><AdminMainHeader/>
         <div className="container">
             <DeliveryHeader/>
             <h1>Complete Delivery</h1>
@@ -165,5 +166,6 @@ export default function DriverPortal() {
                     </table>
 
         </div>
+    </div>
     );
 }

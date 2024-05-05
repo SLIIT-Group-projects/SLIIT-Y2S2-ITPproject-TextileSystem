@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
 import '../css/header.css'
-
+import '../css/main.css'
 export default function Header() {
   return (
     <div>
@@ -71,7 +71,14 @@ export default function Header() {
               </li>
             </ul>
           </div>
+          <div>
+            <Link to='/sign-in'>
+            <button className="pti-header-signin pti-bg-blue">Sign In</button>
+            </Link>
+            
+          </div>
         </div>
+
       </nav>
     </div>
   );

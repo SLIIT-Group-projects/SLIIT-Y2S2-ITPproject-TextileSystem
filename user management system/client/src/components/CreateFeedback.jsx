@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from './Navbar.jsx';
-// import AdminMainHeader from '../components'
-// Define star icon components
 import Header from './MainHeader.jsx';
-
+import Navbar from './Navbar.jsx';
+// Define star icon components
 const StarIcon = ({ filled, onClick }) => (
   <span
     className={`cursor-pointer ${filled ? 'text-warning' : 'text-secondary'}`}
@@ -16,8 +14,6 @@ const StarIcon = ({ filled, onClick }) => (
 );
 
 export default function CreateFeedback() {
-
-
 
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,6 +27,13 @@ export default function CreateFeedback() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Email validation
+    if (!isValidEmail(formData.email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
     try {
       setLoading(true);
       setError(false);
@@ -41,7 +44,6 @@ export default function CreateFeedback() {
         },
         body: JSON.stringify({
           ...formData,
-
           rating, // Include rating in the request body
         }),
       });
@@ -62,9 +64,14 @@ export default function CreateFeedback() {
     }
   };
 
-  // Function to handle rating changes
   const handleRatingChange = (value) => {
     setRating(value);
+  };
+
+  // Function to validate email
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   const handleShowListings = async () => {
@@ -72,10 +79,10 @@ export default function CreateFeedback() {
   };
 
   return (
-    <div><Header/>
     <div className='container mt-5' style={{ backgroundImage: 'url(../src/components/Untitled design.png)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
       
-      <NavBar/>
+      <Header/>
+      <Navbar/>
       <h1 className='text-2xl font-weight-bold text-dark'>Create Feedback</h1>
       <form className='mt-5' style={{backgroundColor :' #DBECF2'}}>
         <div className='row'>
@@ -88,7 +95,7 @@ export default function CreateFeedback() {
                 />
               ))}
             </div>
-          <div className='col'>
+          <div className='col' >
             <input
               type='text'
               placeholder='Name'
@@ -98,13 +105,13 @@ export default function CreateFeedback() {
             />
             <input
               type='email'
-              placeholder='Email'
+              placeholder='Email' 
               className='form-control mb-3'
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
+            {error && <span style={{ color: 'red' }}>{error}</span>}
             <br/>
-
 
             <p>How satisfied were you with the resolution of any issues or concerns?</p>
 
@@ -119,8 +126,6 @@ export default function CreateFeedback() {
             <label for="dissatisfied">Dissatisfied</label><br/>
             <input type="radio" id="very-dissatisfied" name="resolution-satisfaction" value="Very dissatisfied"/>
             <label for="very-dissatisfied">Very dissatisfied</label><br/>
-
-
 
             <textarea
               placeholder='Message'
@@ -139,8 +144,5 @@ export default function CreateFeedback() {
         </div>
       </form>
     </div>
-    </div>
-    
   );
-  
 }

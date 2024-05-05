@@ -60,7 +60,7 @@ export default function Header() {
               <li class="nav-item">
                 <a
                   class="nav-link header-list pti-bold"
-                  href=""
+                  href="https://pti-shop-360.onrender.com"
                 >
                   Shop
                 </a>

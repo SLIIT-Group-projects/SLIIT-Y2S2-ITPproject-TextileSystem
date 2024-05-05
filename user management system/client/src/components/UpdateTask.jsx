@@ -138,6 +138,7 @@ export default function UpdateTask() {
           >
             <option value="Not Approved">Not Approved</option>
             <option value="Approved">Approved</option>
+            <option value="Pending">Pending</option>
           </select>
         </div>
         <div className="form-group">

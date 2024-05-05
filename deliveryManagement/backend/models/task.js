@@ -31,7 +31,7 @@ const taskSchema = new Schema({
     approval : {
         type : String,
         default : 'Not Approved',
-        enum : ['Not Approved','Approved']
+        enum : ['Not Approved','Approved','Pending']
     },
     status : {
         type : String,

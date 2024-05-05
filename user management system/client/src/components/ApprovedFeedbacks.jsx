@@ -65,11 +65,14 @@ const ApprovedFeedbacks = () => {
   return (
     <main>
       <div className="container my-5">
-      <Header/>
-        
-        <NavBar/>
+        <Header />
+
+        <NavBar />
         <div className="my-3">
-          <h2 className="text-2xl font-bold text-dark">Give your feedback fo us!!</h2><br></br>
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-dark">Give your feedback for us!!</h2>
+          </div>
+
           <input
             type="text"
             placeholder="Search by name"
@@ -79,23 +82,23 @@ const ApprovedFeedbacks = () => {
           />
         </div><br></br>
         <div className="mb-4">
-  <div className="font-weight-bold text-center" style={{ color: '#00215E', fontSize: '1.5rem' }}>
-    Overall Feedback: {overallFeedback !== null ? overallFeedback : 'Calculating...'}
-  </div>
-  <br />
-</div>
+          <div className="font-weight-bold text-center" style={{ color: '#00215E', fontSize: '1.5rem' }}>
+            Overall Feedback: {overallFeedback !== null ? overallFeedback : 'Calculating...'}
+          </div>
+          <br />
+        </div>
 
 
 
 
         <div>
-  <button className="btn btn-primary">
-    <a href="/create-feedback" className="text-white text-decoration-none">
-      Add Feedback
-    </a>
-  </button>
-</div>
-<br></br>
+          <button className="btn btn-primary">
+            <a href="/create-feedback" className="text-white text-decoration-none">
+              Add Feedback
+            </a>
+          </button>
+        </div>
+        <br></br>
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
@@ -104,23 +107,23 @@ const ApprovedFeedbacks = () => {
           <div className="row row-cols-1 row-cols-md-2 g-4">
             {filteredFeedbacks.map((feedback) => (
               <div key={feedback.id} className="col">
-              <div className="bg-primary-light p-4 rounded shadow" style={{ backgroundColor: '#DBECF2' }}>
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                  <h3 className="text-lg font-weight-bold text-dark">{feedback.name}</h3>
-                  <span className="text-sm text-muted">{new Date(feedback.createdAt).toLocaleDateString()}</span>
-                </div>
-                <p className="text-dark">{feedback.message}</p>
-                <div className="d-flex justify-content-start">
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <StarIcon
-                      key={value}
-                      filled={value <= feedback.rating}
-                    />
-                  ))}
+                <div className="bg-primary-light p-4 rounded shadow" style={{ backgroundColor: '#DBECF2' }}>
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <h3 className="text-lg font-weight-bold text-dark">{feedback.name}</h3>
+                    <span className="text-sm text-muted">{new Date(feedback.createdAt).toLocaleDateString()}</span>
+                  </div>
+                  <p className="text-dark">{feedback.message}</p>
+                  <div className="d-flex justify-content-start">
+                    {[1, 2, 3, 4, 5].map((value) => (
+                      <StarIcon
+                        key={value}
+                        filled={value <= feedback.rating}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-            
+
             ))}
           </div>
         ) : (

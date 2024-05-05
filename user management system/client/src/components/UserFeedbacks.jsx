@@ -47,9 +47,12 @@ const UserFeedbacks = () => {
 
     return (
         <div className="container mt-5">
-            <Header/>
-      <NavBar/>
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">User Dashboard</h1>
+            <Header />
+            <NavBar />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h1 className="text-2xl font-bold text-gray-800 mb-4">User Dashboard</h1>
+            </div>
+
             <div className="d-flex justify-content-between align-items-center mb-4">
 
             </div>
